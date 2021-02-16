@@ -4,7 +4,7 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const morgan = require('morgan');
+
 
 export const expressInit = (app: Application) => {
     if (typeof app.use !== 'function' ||
@@ -19,6 +19,4 @@ export const expressInit = (app: Application) => {
     app.use(bodyParser.json());
 
     app.use('/static', express.static(path.join(__dirname, '../../public')));
-    app.use(morgan('combined'));
-    app.set('view engine', 'pug');
 };

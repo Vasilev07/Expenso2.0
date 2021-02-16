@@ -9,4 +9,5 @@ const app: Application = express();
 expressInit(app);
 routesInit(app);
 
+console.log('heheh');
 app.listen(port, () => console.log(`Listening on ${port}`));
