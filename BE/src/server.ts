@@ -7,7 +7,6 @@ import { initializeMongoStorage } from './configs/mongodbConfig';
 
 export const startServer = async (): Promise<any> => {
     const server: Application = express();
-    console.log('aiaiaiia');
     const mongoStorage = initializeMongoStorage();
     const mongoClient = await mongoStorage.getMongoClient();
     
