@@ -1,6 +1,6 @@
 import { Application } from 'express';
 import fs from 'fs';
-import { Db, MongoClient } from 'mongodb';
+import { Db } from 'mongodb';
 import path from 'path';
 
 export const routesInit = (app: Application, db: Db) => {

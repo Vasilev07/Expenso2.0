@@ -1,7 +1,6 @@
   
 import express, { Application } from 'express';
 import { expressInit } from './configs/expressConfig';
-import { port } from './configs/index';
 import { routesInit } from './routes';
 import { initializeMongoStorage } from './configs/mongodbConfig';
 
