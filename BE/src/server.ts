@@ -11,7 +11,7 @@ expressInit(app);
 routesInit(app);
 
 const mongoStorage = initializeMongoStorage();
-const mongoClient = mongoStorage.getMongoClient().then();
+const mongoClient = mongoStorage.getMongoClient().then().catch(console.error);
 
 export const mongoDb = () => {
     return mongoClient;
