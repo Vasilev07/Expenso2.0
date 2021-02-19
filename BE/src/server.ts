@@ -5,16 +5,14 @@ import { port } from './configs/index';
 import { routesInit } from './routes';
 import { initializeMongoStorage } from './configs/mongodbConfig';
 
-const app: Application = express();
+export const startServer = async (): Promise<any> => {
+    const server: Application = express();
+    console.log('aiaiaiia');
+    const mongoStorage = initializeMongoStorage();
+    const mongoClient = await mongoStorage.getMongoClient();
+    
+    expressInit(server);
+    routesInit(server, mongoClient);
 
-expressInit(app);
-routesInit(app);
-
-const mongoStorage = initializeMongoStorage();
-const mongoClient = mongoStorage.getMongoClient().then().catch(console.error);
-
-export const mongoDb = () => {
-    return mongoClient;
-}
-
-app.listen(port, () => console.log(`Listening on ${port}`));
+    return server;
+};
