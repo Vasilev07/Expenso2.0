@@ -7,6 +7,6 @@ export const dbCollections: IDbCollections = {
         name: 'expenses'
     },
     income: {
-        name: 'expenses'
+        name: 'income'
     }
 }
