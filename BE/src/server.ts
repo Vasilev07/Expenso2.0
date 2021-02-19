@@ -17,5 +17,4 @@ export const mongoDb = () => {
     return mongoClient;
 }
 
-console.log('heheh');
 app.listen(port, () => console.log(`Listening on ${port}`));
