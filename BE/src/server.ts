@@ -3,15 +3,19 @@ import express, { Application } from 'express';
 import { expressInit } from './configs/expressConfig';
 import { port } from './configs/index';
 import { routesInit } from './routes';
-import { getMongoClient } from './configs/mongodbConfig';
+import { initializeMongoStorage } from './configs/mongodbConfig';
 
 const app: Application = express();
 
 expressInit(app);
 routesInit(app);
 
+const mongoStorage = initializeMongoStorage();
+const mongoClient = mongoStorage.getMongoClient().then();
 
-getMongoClient().then();
+export const mongoDb = () => {
+    return mongoClient;
+}
 
 console.log('heheh');
 app.listen(port, () => console.log(`Listening on ${port}`));
