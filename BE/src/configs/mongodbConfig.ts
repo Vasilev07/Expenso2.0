@@ -1,6 +1,6 @@
-import { MongoClient } from "mongodb";
+import { MongoClient } from 'mongodb';
 
-const connect = async() => {
+const connect = async () => {
     const url = 'mongodb://localhost:27017';
     const dbName = 'expenso';
 
@@ -14,8 +14,6 @@ const connect = async() => {
     return db;
 };
 
-export const initializeMongoStorage = () => {
-    return {
-        getMongoClient: () => connect()
-    };
-}
+export const initializeMongoStorage = () => ({
+    getMongoClient: () => connect(),
+});

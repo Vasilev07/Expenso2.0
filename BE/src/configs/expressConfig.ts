@@ -5,10 +5,9 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-
 export const expressInit = (app: Application) => {
-    if (typeof app.use !== 'function' ||
-        typeof app.set !== 'function') {
+    if (typeof app.use !== 'function'
+        || typeof app.set !== 'function') {
         throw new Error('Invalid app');
     }
 

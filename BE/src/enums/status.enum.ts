@@ -1,3 +1,3 @@
-export enum Status {
+export enum Statuses {
     OK = 200
 }

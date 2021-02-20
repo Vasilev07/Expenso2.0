@@ -4,9 +4,9 @@ interface IDbCollections {
 
 export const dbCollections: IDbCollections = {
     expenses: {
-        name: 'expenses'
+        name: 'expenses',
     },
     income: {
-        name: 'income'
-    }
-}
+        name: 'income',
+    },
+};

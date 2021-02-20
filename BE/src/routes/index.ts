@@ -13,4 +13,4 @@ export const routesInit = (app: Application, db: Db) => {
             const route = require(modulePath);
             route.init(app, db);
         });
-}
+};

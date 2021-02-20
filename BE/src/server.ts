@@ -1,4 +1,3 @@
-  
 import express, { Application } from 'express';
 
 import { expressInit } from './configs/expressConfig';
@@ -10,7 +9,7 @@ export const startServer = async (): Promise<any> => {
     const server: Application = express();
     const mongoStorage = initializeMongoStorage();
     const mongoClient = await mongoStorage.getMongoClient();
-    
+
     expressInit(server);
     routesInit(server, mongoClient);
     await initizalizeCollections(mongoClient);

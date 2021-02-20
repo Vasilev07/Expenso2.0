@@ -1,5 +1,5 @@
-import { port } from "./configs";
-import { startServer } from "./server";
+import { port } from './configs';
+import { startServer } from './server';
 
 startServer()
     .then((app: any) => {
