@@ -1,5 +1,5 @@
 interface IDbCollections {
-    [key: string]: { name: string };
+    [key: string]: { [key: string]: string };
 }
 
 export const dbCollections: IDbCollections = {
@@ -9,4 +9,7 @@ export const dbCollections: IDbCollections = {
     income: {
         name: 'income',
     },
+    categories: {
+        schemaValidation: 'category'
+    }
 };

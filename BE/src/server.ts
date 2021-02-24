@@ -3,7 +3,7 @@ import express, { Application } from 'express';
 import { expressInit } from './configs/expressConfig';
 import { routesInit } from './routes';
 import { initializeMongoStorage } from './configs/mongodbConfig';
-import { initizalizeCollections } from './repositories/db-helper';
+import { initizalizeCollections } from './repositories';
 
 export const startServer = async (): Promise<any> => {
     const server: Application = express();

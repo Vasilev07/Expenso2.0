@@ -1,5 +1,7 @@
 import { Db } from 'mongodb';
-import { dbCollections } from './db-collections';
+import { dbCollections } from '../configs/db-collections';
+import { ICategory } from '../models/category.interface';
+import { mongoRepository } from './mongo.repository';
 
 export const initizalizeCollections = async (db: Db) => {
     const collectionsToCreate = Object.entries(dbCollections);
@@ -12,4 +14,8 @@ export const initizalizeCollections = async (db: Db) => {
             console.log(`Collection ${collectionName} created`);
         }
     });
+
+    return {
+        categories: mongoRepository<ICategory>(db, 'categories'),
+    }
 };
