@@ -12,6 +12,9 @@ export const startServer = async (): Promise<any> => {
 
     expressInit(server);
     routesInit(server, mongoClient);
+    // put that on the row above and pass it to routes in order routes to be 
+    // responsible to pass the right repository to the right route which by itself
+    // should pass it to the service :)
     await initizalizeCollections(mongoClient);
 
     return server;
