@@ -1,8 +1,9 @@
-import { Db } from "mongodb";
+import { Db, ObjectId } from "mongodb";
 
 export interface IRepository<T> {
     create: (entity: any) => Promise<any>;
     findAll: () => Promise<T[]>;
+    deleteById: (id: string) => Promise<void>;
 }
 
 export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<T> => {
@@ -17,8 +18,13 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
         return collection.find({}).toArray();
     }
 
+    const deleteById = async(id: string): Promise<void> => {
+        collection.deleteOne({id: new ObjectId(id)});
+    }
+
     return {
         create,
         findAll,
+        deleteById
     }
 };
