@@ -6,7 +6,6 @@ import { createCategory, getAllCategories } from '../services/category.service';
 
 export const init = (app: any, collection: any): void => {
     app.get('/category', async(request: Request, response: Response, next: NextFunction): Promise<void> => {
-        // response.send('Hello Georgi!');
         const categories = await getAllCategories(collection);
 
         response.status(Statuses.OK).send(categories);
