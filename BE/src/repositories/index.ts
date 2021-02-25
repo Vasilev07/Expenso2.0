@@ -17,5 +17,7 @@ export const initizalizeCollections = async (db: Db) => {
 
     return {
         categories: mongoRepository<ICategory>(db, 'categories'),
+        expenses: mongoRepository<any>(db, 'expenses'),
+        incomes: mongoRepository<any>(db, 'incomes')
     }
 };
