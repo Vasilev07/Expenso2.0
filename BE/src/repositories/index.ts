@@ -1,9 +1,15 @@
 import { Db } from 'mongodb';
 import { dbCollections } from '../configs/db-collections';
 import { ICategory } from '../models/category.interface';
-import { mongoRepository } from './mongo.repository';
+import { IRepository, mongoRepository } from './mongo.repository';
 
-export const initizalizeCollections = async (db: Db) => {
+export interface ICollections {
+    categories: IRepository<ICategory>;
+    expenses: IRepository<any>;
+    incomes: IRepository<any>;
+}
+
+export const initizalizeCollections = async (db: Db): Promise<ICollections> => {
     const collectionsToCreate = Object.entries(dbCollections);
 
     const dbData = await db.listCollections().toArray();

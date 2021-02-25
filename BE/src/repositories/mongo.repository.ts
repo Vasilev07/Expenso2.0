@@ -1,6 +1,6 @@
 import { Db } from "mongodb";
 
-interface IRepository<T> {
+export interface IRepository<T> {
     create: (entity: any) => Promise<any>;
     findAll: () => Promise<T[]>;
 }
