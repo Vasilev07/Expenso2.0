@@ -1,10 +1,11 @@
 import { Db } from "mongodb";
 
-interface IRepository {
+interface IRepository<T> {
     create: (entity: any) => Promise<any>;
+    findAll: () => Promise<T[]>;
 }
 
-export const mongoRepository = <T>(db: Db, collectionName: string): IRepository => {
+export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<T> => {
 
     const collection = db.collection(collectionName);
 
@@ -12,7 +13,12 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository 
         collection.insertOne(entity);
     };
 
+    const findAll = async(): Promise<T[]> => {
+        return collection.find({}).toArray();
+    }
+
     return {
         create,
+        findAll,
     }
 };
