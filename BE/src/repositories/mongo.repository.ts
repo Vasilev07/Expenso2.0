@@ -19,7 +19,7 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
     }
 
     const deleteById = async(id: string): Promise<void> => {
-        collection.deleteOne({id: new ObjectId(id)});
+        collection.deleteOne({ _id: new ObjectId(id) });
     }
 
     return {

@@ -22,7 +22,12 @@ export const init = (app: any, collection: any): void => {
     app.delete('/category', async (request: Request, response: Response, next: NextFunction): Promise<void> => {
         const category = request.body as { id: string };
 
-        await deleteCategoryById(collection, category?.id);
+        try {
+            const test = await deleteCategoryById(collection, category?.id);
+            
+        } catch (error) {
+            console.log(error);
+        }
 
         response.status(Statuses.OK).send({});
     });
