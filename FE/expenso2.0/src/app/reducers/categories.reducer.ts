@@ -1,11 +1,11 @@
 import { createReducer, on } from "@ngrx/store";
-import { createCategory } from "../actions/categories.action";
+import { createCategory, retrieveCategoryList } from "../actions/categories.action";
 
 export const initialState = [];
 
 const _categoriesReducer = createReducer(
     initialState,
-    on(createCategory, (state) => [...state])
+    on(retrieveCategoryList, (state, { Categories }) => [...state, ...Categories])
 )
 
 export const categoriesReducer = (state, action) => {

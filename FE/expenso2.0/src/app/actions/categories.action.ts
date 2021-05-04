@@ -1,5 +1,6 @@
-import { createAction } from "@ngrx/store";
+import { createAction, props } from "@ngrx/store";
+import { ICategory } from "../categories/category.interface";
 
-export const createCategory = createAction('[Categories Component] Crate Category');
-export const updateCategory = createAction('[Categories Component] Update Category');
-export const deleteCategory = createAction('[Categories Component] Delete Category');
+export const createCategory = createAction('[Categories List] Add Category', props<{ Category: ICategory }>());
+export const deleteCategory = createAction('[Categories Collection] Remove Category');
+export const retrieveCategoryList = createAction('[Categories List/API] Retrieve Categories Success', props<{ Categories: ICategory[] }>());
