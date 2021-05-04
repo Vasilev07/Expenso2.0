@@ -1,5 +1,4 @@
 import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +6,7 @@ import { CategoriesPage } from './categories.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { CategoriesPageRoutingModule } from './categories-routing.module';
+import { CategoryPage } from './category/category.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,9 @@ import { CategoriesPageRoutingModule } from './categories-routing.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    CategoriesPageRoutingModule
+    CategoriesPageRoutingModule,
+    
   ],
-  declarations: [CategoriesPage]
+  declarations: [CategoriesPage, CategoryPage]
 })
 export class CategoriesPageModule {}
