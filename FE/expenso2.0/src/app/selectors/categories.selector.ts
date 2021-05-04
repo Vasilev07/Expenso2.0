@@ -6,4 +6,3 @@ export const selectCategories = createSelector(
     (state: IAppState) => state.categories, 
     (categories: ICategory[]) => categories
 );
-
