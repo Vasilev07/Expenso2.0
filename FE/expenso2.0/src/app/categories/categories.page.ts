@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { retrieveCategoryList } from '../actions/categories.action';
@@ -13,15 +14,18 @@ export class CategoriesPage implements OnInit {
   public categories$: Observable<any[]>;
 
   constructor(private readonly store: Store<{ categories: [] }>,
-              private readonly categoriesService: CategoriesService) {
+              private readonly categoriesService: CategoriesService,
+              private readonly router: Router) {
     this.categories$ = store.select('categories');
   }
 
   public ngOnInit(): void {
     this.categoriesService
-      .getCategories()
-      .subscribe((categories) =>  this.store.dispatch(retrieveCategoryList({ categories })))
+      .getAll()
+      .subscribe((categories) =>  this.store.dispatch(retrieveCategoryList({ categories })));
+  }
 
-      this.categories$.subscribe(console.log);
+  public addNewCategory(): void {
+    this.router.navigate(['tabs/categories/create'])
   }
 }

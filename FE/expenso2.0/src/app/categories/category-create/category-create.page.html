@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        Create Category 
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-label>Name:</ion-label>
+        <ion-input placeholder="Category Name..."></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Gender</ion-label>
+        <ion-select placeholder="Select Icon">
+          <ng-container *ngFor="let item of categoryIcons">
+            <ion-select-option value="item">
+                {{item}}
+            </ion-select-option>
+          </ng-container>
+        </ion-select>
+      </ion-item>
+</ion-content>

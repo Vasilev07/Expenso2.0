@@ -12,7 +12,7 @@ export class CategoryEffect {
     loadMovies$ = createEffect((): any => {
         return this.actions$.pipe(
             ofType('[Categories List/API] Retrieve Categories Success'),
-            mergeMap(() => this.categoriesService.getCategories().pipe(
+            mergeMap(() => this.categoriesService.getAll().pipe(
                 map(movies => ({ type: '[Movies API] Movies Loaded Success', payload: movies })),
                 catchError(() => EMPTY)
             )),
