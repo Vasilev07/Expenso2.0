@@ -14,6 +14,6 @@ export class CategoriesService {
     constructor(private readonly httpClient: HttpClient) {}
 
     getCategories(): Observable<ICategory[]> {
-        return of(this.categories);
+        return this.httpClient.get<ICategory[]>('http://localhost:3001/category');
     }
 }
