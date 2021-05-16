@@ -1,3 +1,4 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 import { ICategory } from "../category.interface";
@@ -9,6 +10,8 @@ export class CategoriesService {
         {name: 'home', color: 'blue', iconUrl: 'blabla'},
         {name: 'food', color: 'yellow', iconUrl: 'blabla'},
     ];
+
+    constructor(private readonly httpClient: HttpClient) {}
 
     getCategories(): Observable<ICategory[]> {
         return of(this.categories);
