@@ -21,5 +21,7 @@ export class CategoriesPage implements OnInit {
     this.categoriesService
       .getCategories()
       .subscribe((categories) =>  this.store.dispatch(retrieveCategoryList({ categories })))
+
+      this.categories$.subscribe(console.log);
   }
 }

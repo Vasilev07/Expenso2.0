@@ -6,7 +6,6 @@ import { CategoriesPage } from './categories.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { CategoriesPageRoutingModule } from './categories-routing.module';
-import { CategoryPage } from './category/category.page';
 import { EffectsModule } from '@ngrx/effects';
 import { CategoryEffect } from '../effects/category.effect';
 
@@ -19,6 +18,6 @@ import { CategoryEffect } from '../effects/category.effect';
     CategoriesPageRoutingModule,
     EffectsModule.forFeature([CategoryEffect])
   ],
-  declarations: [CategoriesPage, CategoryPage]
+  declarations: [CategoriesPage]
 })
 export class CategoriesPageModule {}

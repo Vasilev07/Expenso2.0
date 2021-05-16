@@ -13,7 +13,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-category></app-category>
-
-  <app-explore-container name="Categories page"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let item of categories$ | async">
+      {{item.name}}
+    </ion-item>
+  </ion-list>
 </ion-content>
