@@ -9,6 +9,7 @@ import { CategoriesPageRoutingModule } from './categories-routing.module';
 import { EffectsModule } from '@ngrx/effects';
 import { CategoryEffect } from '../effects/category.effect';
 import { CategoryCreatePage } from './category-create/category-create.page';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { CategoryCreatePage } from './category-create/category-create.page';
     FormsModule,
     ExploreContainerComponentModule,
     CategoriesPageRoutingModule,
-    EffectsModule.forFeature([CategoryEffect])
+    EffectsModule.forFeature([CategoryEffect]),
+    ColorPickerModule
   ],
   declarations: [CategoriesPage, CategoryCreatePage]
 })
