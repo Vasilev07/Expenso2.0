@@ -7,7 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { CategoriesPageRoutingModule } from './categories-routing.module';
 import { EffectsModule } from '@ngrx/effects';
-import { CategoryEffect } from '../effects/category.effect';
+import { CategoryEffect } from './effects/category.effect';
 import { CategoryCreatePage } from './category-create/category-create.page';
 import { ColorPickerModule } from 'ngx-color-picker';
 

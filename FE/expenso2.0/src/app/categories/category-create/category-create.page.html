@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
     <ion-toolbar size="small">
       <ion-buttons slot="secondary">
-        <ion-button>
+        <ion-button (click)="onCancelClick()">
           Cancel
         </ion-button>
       </ion-buttons>
@@ -9,7 +9,7 @@
         Create Category 
       </ion-title>
       <ion-buttons slot="end">
-        <ion-button>
+        <ion-button (click)="onSaveClick()">
           Save
         </ion-button>
       </ion-buttons>
@@ -19,13 +19,13 @@
 <ion-content>
     <ion-item>
         <ion-label>Name:</ion-label>
-        <ion-input placeholder="Category Name..."></ion-input>
+        <ion-input placeholder="Category Name..." [(ngModel)]="categoryName"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Icon:</ion-label>
       <ion-select placeholder="Select Icon">
         <ng-container *ngFor="let item of categoryIcons">
-          <ion-select-option value="item">
+          <ion-select-option value="item" (ionChange)="iconSelected($event)">
               {{item}}
           </ion-select-option>
         </ng-container>
@@ -35,7 +35,7 @@
       <ion-label>Chart Color:</ion-label>
       <input 
           [style.background]="colorList[0].value" 
-          [(colorPicker)]="colorList[0].value"
+          [colorPicker]="colorList[0].value"
           [cpOKButton] = "true"
           [cpOKButtonText] = "'Select'"
           [cpCancelButton] = "true"
@@ -44,7 +44,9 @@
           [cpAlphaChannel]="'disabled'" 
           [cpOutputFormat]="'hex'"
           [cpPresetColors]="presetValues"
-          [cpAddColorButton]="true" 
+          [cpAddColorButton]="true"
+          [(ngModel)]="color"
+          (colorPickerChange)="colorSelected($event)"
       />
     </ion-item>
 </ion-content>

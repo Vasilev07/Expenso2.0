@@ -10,7 +10,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { categoriesReducer } from './reducers/categories.reducer';
+import { categoriesReducer } from './categories/reducers/categories.reducer';
 
 @NgModule({
   declarations: [AppComponent],
