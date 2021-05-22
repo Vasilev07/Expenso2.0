@@ -7,6 +7,8 @@
 </ion-header>
 
 <ion-content>
+  <ion-button (click)="login()">Login</ion-button>
+
   <ion-list></ion-list>
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
