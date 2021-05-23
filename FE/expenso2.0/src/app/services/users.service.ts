@@ -32,11 +32,11 @@ export class UsersService {
 
     if (result.accessToken && result.accessToken.userId) {
       this.token = result.accessToken;
-      console.log('LOADING USERS');
+      console.log('LOADING USERS1');
 
       this.setLoginUrl();
     } else if (result.accessToken && !result.accessToken.userId) {
-      console.log('LOADING USERS');
+      console.log('LOADING USERS2');
       await this.getCurrentToken();
     }
   }
@@ -58,6 +58,8 @@ export class UsersService {
   }
 
   private setLoginUrl(): void {
-    this.url = `https://graph.facebook.com/${this.token.userId}?fields=id,name,picture.width(720),birthday,email&access_token=${this.token.token}`
+    this.url = `https://graph.facebook.com/${this.token.userId}?fields=id,name,picture.width(720),birthday,email&access_token=${this.token.token}`;
+    console.log(this.url);
+
   }
 }
