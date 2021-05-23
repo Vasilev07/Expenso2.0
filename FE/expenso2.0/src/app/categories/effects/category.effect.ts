@@ -6,17 +6,16 @@ import { CategoriesService } from "../services/categories.service";
 
 @Injectable()
 export class CategoryEffect {
-    constructor(private actions$: Actions,
-                private categoriesService: CategoriesService) {}
+  constructor(private actions$: Actions,
+    private categoriesService: CategoriesService) { }
 
-    loadMovies$ = createEffect((): any => {
-        return this.actions$.pipe(
-            ofType('[Categories List/API] Retrieve Categories Success'),
-            mergeMap(() => this.categoriesService.getAll().pipe(
-                map(movies => ({ type: '[Movies API] Movies Loaded Success', payload: movies })),
-                catchError(() => EMPTY)
-            )),
-        );
-    })
-    
+  loadCategories$ = createEffect((): any => {
+    return this.actions$.pipe(
+      ofType('[Categories List/API] Retrieve Categories'),
+      mergeMap(() => this.categoriesService.getAll().pipe(
+        map(categories => ({ type: '[Categories List/API] Retrieve Categories Success', categories })),
+        catchError(() => EMPTY)
+      )),
+    );
+  })
 }

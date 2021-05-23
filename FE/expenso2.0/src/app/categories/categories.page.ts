@@ -14,15 +14,12 @@ export class CategoriesPage implements OnInit {
   public categories$: Observable<any[]>;
 
   constructor(private readonly store: Store<{ categories: [] }>,
-              private readonly categoriesService: CategoriesService,
               private readonly router: Router) {
     this.categories$ = store.select('categories');
   }
 
   public ngOnInit(): void {
-    this.categoriesService
-      .getAll()
-      .subscribe((categories) =>  this.store.dispatch(retrieveCategoryList({ categories })));
+    this.store.dispatch(retrieveCategoryList());
   }
 
   public addNewCategory(): void {

@@ -1,4 +1,4 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,16 +12,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { categoriesReducer } from './categories/reducers/categories.reducer';
 import { Facebook } from '@ionic-native/facebook/ngx';
+import { userReducer } from './reducers/app.reducer';
+import { AppEffect } from './effects/app.effects';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
-    StoreModule.forRoot({ categories: categoriesReducer }),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(
+      {
+        categories: categoriesReducer,
+        user: userReducer
+      }
+    ),
+    EffectsModule.forRoot([AppEffect]),
     HttpClientModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
