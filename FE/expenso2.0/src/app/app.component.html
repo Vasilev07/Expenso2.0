@@ -1,5 +1,5 @@
 <ion-app fullscreen class="ion-padding" scroll-y="false">
-  <ion-slides>
+  <ion-slides *ngIf="shouldShow">
 
     <ion-slide>
       <div class="slide">
@@ -24,9 +24,10 @@
     <ion-slide>
       <img src="../assets/images/slide-4.png"/>
       <h2>Ready to Play?</h2>
-      <ion-button fill="clear">Continue <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+      <ion-button fill="clear" (click)="onContinue()">Facebook Login<ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+      <ion-button fill="clear" (click)="onContinue()">Continue <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
     </ion-slide>
 
   </ion-slides>
-  <!-- <ion-router-outlet></ion-router-outlet> -->
+  <ion-router-outlet *ngIf="!shouldShow"></ion-router-outlet>
 </ion-app>
