@@ -3,7 +3,11 @@ import { Router } from '@angular/router';
 import { FacebookLogin } from '@capacitor-community/facebook-login';
 import { registerWebPlugin } from '@capacitor/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/internal/Observable';
+import { filter, isEmpty } from 'rxjs/operators';
 import { loginUser } from './actions/app.action';
+import { IUser } from './interfaces/user.interface';
+import { selectUser } from './selectors/app.selector';
 import { UsersService } from './services/users.service';
 
 registerWebPlugin(FacebookLogin as any);
@@ -14,7 +18,8 @@ registerWebPlugin(FacebookLogin as any);
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  public shouldShow: boolean = true;
+  public user$: Observable<IUser>;
+  public user: IUser;
   public readonly slideOpts = {
     initialSlide: 1,
     speed: 400
@@ -22,16 +27,19 @@ export class AppComponent {
 
   public constructor(private readonly usersService: UsersService,
     private readonly router: Router,
-    private readonly store: Store) {
+    private readonly store: Store<{ user: IUser }>) {
     this.usersService.setupFbLogin();
+    this.user$ = store.select('user');
+    this.user$.pipe(
+      filter((user) => Object.keys(user).length > 0)
+    ).subscribe((user) => {
+      this.user = { ...user[0] }
+    });
   }
 
   public onLogin(): void {
-    console.log('login should be dispached');
-
     this.store.dispatch(loginUser());
-    // await this.usersService.login();
-    this.shouldShow = false;
+
     this.router.navigate(['/tabs/spendings']);
   }
 }

@@ -18,4 +18,12 @@ export class CategoryEffect {
       )),
     );
   })
+
+  createCategory$ = createEffect((): any => {
+    return this.actions$.pipe(
+      ofType('[Categories List] Add Category'),
+      map((payload: any) => payload.category),
+      mergeMap((category) => this.categoriesService.addNew(category))
+    )
+  })
 }

@@ -1,5 +1,5 @@
 <ion-app fullscreen class="ion-padding" scroll-y="false">
-  <ion-slides *ngIf="shouldShow">
+  <ion-slides *ngIf="!user">
     <ion-slide>
       <div class="slide">
         <img src="../assets/images/slide-1.png" />
@@ -33,5 +33,5 @@
     </ion-slide>
 
   </ion-slides>
-  <ion-router-outlet *ngIf="!shouldShow"></ion-router-outlet>
+  <ion-router-outlet *ngIf="user"></ion-router-outlet>
 </ion-app>

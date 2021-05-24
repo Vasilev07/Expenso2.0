@@ -1,8 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { forkJoin } from "rxjs/internal/observable/forkJoin";
-import {  exhaustMap, filter, map, mergeMap, switchMap, tap } from "rxjs/operators";
+import {  exhaustMap, map, switchMap } from "rxjs/operators";
 import { UsersService } from "../services/users.service";
 
 @Injectable()
