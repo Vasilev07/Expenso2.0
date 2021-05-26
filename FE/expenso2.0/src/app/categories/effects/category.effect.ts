@@ -6,8 +6,8 @@ import { CategoriesService } from "../services/categories.service";
 
 @Injectable()
 export class CategoryEffect {
-  constructor(private actions$: Actions,
-    private categoriesService: CategoriesService) { }
+  constructor(private readonly actions$: Actions,
+    private readonly categoriesService: CategoriesService) { }
 
   loadCategories$ = createEffect((): any => {
     return this.actions$.pipe(
@@ -23,7 +23,10 @@ export class CategoryEffect {
     return this.actions$.pipe(
       ofType('[Categories List] Add Category'),
       map((payload: any) => payload.category),
-      mergeMap((category) => this.categoriesService.addNew(category))
+      mergeMap((category) =>
+        this.categoriesService.addNew(category).pipe(
+          map((category) => ({type: '[Categories List] Add Category Sucess', category}))
+        ))
     )
   })
 }

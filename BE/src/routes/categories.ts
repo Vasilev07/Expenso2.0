@@ -24,7 +24,7 @@ export const init = (app: any, collection: any): void => {
 
         try {
             const test = await deleteCategoryById(collection, category?.id);
-            
+
         } catch (error) {
             console.log(error);
         }

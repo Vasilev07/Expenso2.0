@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { retrieveCategoryList } from './actions/categories.action';
-import { CategoriesService } from './services/categories.service';
 
 @Component({
   selector: 'app-categories',

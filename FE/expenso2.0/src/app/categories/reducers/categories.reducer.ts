@@ -1,11 +1,12 @@
 import { createReducer, on } from "@ngrx/store";
-import { retrieveCategoryListSuccess } from "../actions/categories.action";
+import { createCategorySuccess, retrieveCategoryListSuccess } from "../actions/categories.action";
 
 export const initialState = [];
 
 const _categoriesReducer = createReducer(
     initialState,
-    on(retrieveCategoryListSuccess, (state, { categories }) => [...state, ...categories])
+    on(retrieveCategoryListSuccess, (state, { categories }) => [...state, ...categories]),
+    on(createCategorySuccess, (state, { category }) => [...state, {...category}])
 )
 
 export const categoriesReducer = (state, action) => {

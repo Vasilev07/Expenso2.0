@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/internal/Observable';
 import { filter, isEmpty } from 'rxjs/operators';
 import { loginUser } from './actions/app.action';
 import { IUser } from './interfaces/user.interface';
-import { selectUser } from './selectors/app.selector';
 import { UsersService } from './services/users.service';
 
 registerWebPlugin(FacebookLogin as any);
@@ -28,13 +27,17 @@ export class AppComponent {
   public constructor(private readonly usersService: UsersService,
     private readonly router: Router,
     private readonly store: Store<{ user: IUser }>) {
+
     this.usersService.setupFbLogin();
+
     this.user$ = store.select('user');
+
     this.user$.pipe(
       filter((user) => Object.keys(user).length > 0)
     ).subscribe((user) => {
       this.user = { ...user[0] }
     });
+
   }
 
   public onLogin(): void {
