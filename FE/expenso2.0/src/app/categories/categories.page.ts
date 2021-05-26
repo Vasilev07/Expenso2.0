@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { retrieveCategoryList } from './actions/categories.action';
+import { ICategory } from './category.interface';
 
 @Component({
   selector: 'app-categories',
@@ -10,14 +11,15 @@ import { retrieveCategoryList } from './actions/categories.action';
   styleUrls: ['categories.page.scss']
 })
 export class CategoriesPage implements OnInit {
-  public categories$: Observable<any[]>;
+  public categories$: Observable<ICategory[]>;
 
   constructor(private readonly store: Store<{ categories: [] }>,
               private readonly router: Router) {
-    this.categories$ = store.select('categories');
   }
 
   public ngOnInit(): void {
+    this.categories$ = this.store.select('categories');
+
     this.store.dispatch(retrieveCategoryList());
   }
 

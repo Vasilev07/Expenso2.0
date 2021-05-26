@@ -16,7 +16,7 @@ export const init = (app: any, collection: any): void => {
 
         await createCategory(collection, category);
 
-        response.status(Statuses.OK).send({});
+        response.status(Statuses.OK).send(category);
     });
 
     app.delete('/category', async (request: Request, response: Response, next: NextFunction): Promise<void> => {

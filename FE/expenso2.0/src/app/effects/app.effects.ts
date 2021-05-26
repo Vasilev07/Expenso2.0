@@ -37,6 +37,8 @@ export class AppEffect {
         ),
       exhaustMap(async () => await this.storageService.get('fbToken')),
       tap((token) => this.token = token),
+      tap(console.log
+      ),
       exhaustMap(() => this.http.get(`https://graph.facebook.com/me?access_token=${this.token}`)),
       switchMap((user: any) => this.http.get(`https://graph.facebook.com/${user.id}?fields=id,name,picture.width(720),birthday,email&access_token=${this.token}`)
           .pipe(

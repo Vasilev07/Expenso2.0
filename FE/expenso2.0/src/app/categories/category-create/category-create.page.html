@@ -23,13 +23,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Icon:</ion-label>
-      <ion-select placeholder="Select Icon" (ionChange)="iconSelected($event)">
-        <ng-container *ngFor="let item of categoryIcons">
-          <ion-select-option value="item">
-              {{item}}
-          </ion-select-option>
-        </ng-container>
-      </ion-select>
+      <ion-input placeholder="Icon..." (click)="onIconSelect()"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Chart Color:</ion-label>

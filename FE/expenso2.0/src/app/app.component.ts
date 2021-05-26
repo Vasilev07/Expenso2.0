@@ -20,6 +20,7 @@ registerWebPlugin(FacebookLogin as any);
 export class AppComponent implements OnInit {
   public user$: Observable<IUser>;
   public user: IUser;
+  public shouldShowSlides: boolean = true;
   public readonly slideOpts = {
     initialSlide: 1,
     speed: 400
@@ -33,19 +34,25 @@ export class AppComponent implements OnInit {
       this.store.dispatch(userLoggedIn());
   }
 
-  public async ngOnInit() {
+  public ngOnInit() {
     this.user$ = this.store.select('user');
 
     this.user$.pipe(
       filter((user) => Object.keys(user).length > 0)
     ).subscribe((user) => {
-      this.user = { ...user[0] }
+      this.user = { ...user[0] };
     });
+  }
+
+  public afterViewInit(): void {
+    if (this.user) {
+      this.router.navigate(['/expenso/spendings']);
+    }
   }
 
   public onLogin(): void {
     this.store.dispatch(loginUser());
 
-    this.router.navigate(['/tabs/spendings']);
+    this.router.navigate(['/expenso/spendings']);
   }
 }

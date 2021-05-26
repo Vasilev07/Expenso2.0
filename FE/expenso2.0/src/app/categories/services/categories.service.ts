@@ -11,7 +11,7 @@ export class CategoriesService {
         return this.httpClient.get<ICategory[]>('http://localhost:3001/category');
     }
 
-    public addNew(category: ICategory): Observable<any> {
-        return this.httpClient.post('http://localhost:3001/category', category);
+    public addNew(category: ICategory): Observable<ICategory> {
+        return this.httpClient.post<ICategory>('http://localhost:3001/category', category);
     }
 }

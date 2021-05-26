@@ -6,7 +6,7 @@ export const initialState = [];
 const _categoriesReducer = createReducer(
     initialState,
     on(retrieveCategoryListSuccess, (state, { categories }) => [...state, ...categories]),
-    on(createCategorySuccess, (state, { category }) => [...state, {...category}])
+    on(createCategorySuccess, (state, { category }) => [...state, { ...category }])
 )
 
 export const categoriesReducer = (state, action) => {

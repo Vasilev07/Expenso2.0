@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { EMPTY } from "rxjs";
-import { map, mergeMap, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError, tap } from 'rxjs/operators';
+import { ICategory } from "../category.interface";
 import { CategoriesService } from "../services/categories.service";
 
 @Injectable()
@@ -19,14 +20,13 @@ export class CategoryEffect {
     );
   })
 
-  createCategory$ = createEffect((): any => {
+  addCategory = createEffect((): any => {
     return this.actions$.pipe(
       ofType('[Categories List] Add Category'),
-      map((payload: any) => payload.category),
-      mergeMap((category) =>
-        this.categoriesService.addNew(category).pipe(
-          map((category) => ({type: '[Categories List] Add Category Sucess', category}))
-        ))
+      mergeMap((categoryAction: any) => this.categoriesService.addNew(categoryAction.category).pipe(
+        map((category) => ({type: '[Categories List] Add Category Sucess', category})),
+        catchError(() => EMPTY)
+      ))
     )
   })
 }

@@ -10,6 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { CategoryEffect } from './effects/category.effect';
 import { CategoryCreatePage } from './category-create/category-create.page';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { CategoryIconCreatePage } from './category-create/category-icon-create/category-icon-create.page';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { ColorPickerModule } from 'ngx-color-picker';
     EffectsModule.forFeature([CategoryEffect]),
     ColorPickerModule
   ],
-  declarations: [CategoriesPage, CategoryCreatePage]
+  declarations: [CategoriesPage, CategoryCreatePage, CategoryIconCreatePage]
 })
 export class CategoriesPageModule {}
