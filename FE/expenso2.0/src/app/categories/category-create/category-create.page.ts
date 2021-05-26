@@ -23,15 +23,15 @@ export class CategoryCreatePage implements OnInit {
     public onSaveClick(): void {
       this.store.dispatch(createCategory({category: {color: this.color, iconUrl: this.icon, name: this.categoryName}}));
 
-      this.router.navigate(['/expenso/categories']);
+      this.router.navigate(['/expenso/tabs/categories']);
     }
 
     public onCancelClick(): void {
-        this.router.navigate(['/expenso/categories']);
+        this.router.navigate(['/expenso/tabs/categories']);
     }
 
     public onIconSelect(): void {
-      this.router.navigate(['tabs/categories/icon/create']);
+      this.router.navigate(['expenso/tabs/categories/icon/create']);
 
         // this.icon = icon;
     }
