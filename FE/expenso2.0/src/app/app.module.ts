@@ -14,6 +14,7 @@ import { categoriesReducer } from './categories/reducers/categories.reducer';
 import { Facebook } from '@ionic-native/facebook/ngx';
 import { userReducer } from './reducers/app.reducer';
 import { AppEffect } from './effects/app.effects';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { AppEffect } from './effects/app.effects';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
+    IonicStorageModule.forRoot()
   ],
   providers: [Facebook,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
