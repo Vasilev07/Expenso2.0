@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { FacebookLoginPlugin } from "@capacitor-community/facebook-login";
 import { Plugins } from "@capacitor/core";
 import { IUser } from "../interfaces/user.interface";
-import { Storage } from '@ionic/storage-angular';
+import { StorageService } from "./storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,8 @@ export class UsersService {
   public url: string;
   public token;
 
-  public constructor(private readonly storage: Storage) {
+  public constructor(private readonly storageService: StorageService) {
+
   }
 
   public async setupFbLogin(): Promise<void> {
@@ -44,7 +45,7 @@ export class UsersService {
 
     if (result.accessToken) {
       this.token = result.accessToken;
-      await this.storage.set("fbToken", `${result.accessToken.token}`);
+      await this.storageService.set("fbToken", `${result.accessToken.token}`);
       this.setLoginUrl();
     }
   }

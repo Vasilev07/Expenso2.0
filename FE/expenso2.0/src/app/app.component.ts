@@ -5,7 +5,7 @@ import { registerWebPlugin } from '@capacitor/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { filter } from 'rxjs/operators';
-import { loginUser } from './actions/app.action';
+import { loginUser, userLoggedIn } from './actions/app.action';
 import { IUser } from './interfaces/user.interface';
 import { UsersService } from './services/users.service';
 import { Storage } from '@ionic/storage';
@@ -27,21 +27,20 @@ export class AppComponent implements OnInit {
 
   public constructor(private readonly usersService: UsersService,
     private readonly router: Router,
-    private readonly store: Store<{ user: IUser }>,
-    private readonly storage: Storage) {
+    private readonly store: Store<{ user: IUser }>) {
       this.usersService.setupFbLogin();
 
-      this.user$ = store.select('user');
-
-      this.user$.pipe(
-        filter((user) => Object.keys(user).length > 0)
-      ).subscribe((user) => {
-        this.user = { ...user[0] }
-      });
+      this.store.dispatch(userLoggedIn());
   }
 
   public async ngOnInit() {
-    await this.storage.create();
+    this.user$ = this.store.select('user');
+
+    this.user$.pipe(
+      filter((user) => Object.keys(user).length > 0)
+    ).subscribe((user) => {
+      this.user = { ...user[0] }
+    });
   }
 
   public onLogin(): void {
