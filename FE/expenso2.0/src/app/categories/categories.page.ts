@@ -24,6 +24,6 @@ export class CategoriesPage implements OnInit {
   }
 
   public addNewCategory(): void {
-    this.router.navigate(['tabs/categories/create'])
+    this.router.navigate(['expenso/tabs/categories/create'])
   }
 }

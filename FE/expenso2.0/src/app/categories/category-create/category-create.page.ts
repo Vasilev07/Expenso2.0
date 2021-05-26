@@ -31,7 +31,7 @@ export class CategoryCreatePage implements OnInit {
     }
 
     public onIconSelect(): void {
-      // this.router.navigate(['tabs/categories/icon/create']);
+      this.router.navigate(['tabs/categories/icon/create']);
 
         // this.icon = icon;
     }
