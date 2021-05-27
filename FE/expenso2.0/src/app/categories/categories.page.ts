@@ -22,9 +22,7 @@ export class CategoriesPage implements OnInit {
   public ngOnInit(): void {
     this.store.select('categories').subscribe((categories: ICategory[]) => {
       this.categories = categories;
-      this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense)
-      console.log('isExpense', this.isExpense);
-      console.log('categories', this.categories);
+      this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
     });
 
     this.store.dispatch(retrieveCategoryList());
