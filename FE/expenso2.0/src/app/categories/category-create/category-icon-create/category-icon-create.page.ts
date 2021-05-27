@@ -1,4 +1,7 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
+import { NavController } from "@ionic/angular";
+import { CategoryIconService } from "../services/category-icon.service";
 import { categoryIcons, ICategoryIcons } from "./category-icons";
 
 @Component({
@@ -7,8 +10,13 @@ import { categoryIcons, ICategoryIcons } from "./category-icons";
 export class CategoryIconCreatePage {
   public readonly icons: ICategoryIcons[] = categoryIcons;
 
-  public ngOnInit(): void {
-    console.log('icons', this.icons);
+  public constructor(private readonly categoryIconService: CategoryIconService,
+    private navCtrl: NavController) {
+  }
 
+  public onIconSelected(icon: ICategoryIcons): void {
+    this.categoryIconService.iconSelected.next(icon);
+
+    this.navCtrl.back();
   }
 }

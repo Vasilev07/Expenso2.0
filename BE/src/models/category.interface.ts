@@ -2,5 +2,6 @@ export interface ICategory {
     id?: string;
     name: string;
     color: string;
-    iconUrl: string;
+    icon: string;
+    isExpense: boolean;
 };
