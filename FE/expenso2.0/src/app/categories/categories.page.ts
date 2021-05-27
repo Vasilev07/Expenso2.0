@@ -11,14 +11,21 @@ import { ICategory } from './category.interface';
   styleUrls: ['categories.page.scss']
 })
 export class CategoriesPage implements OnInit {
-  public categories$: Observable<ICategory[]>;
+  private categories: ICategory[];
+  public filteredCategories: ICategory[];
+  public isExpense: boolean = true;
 
   constructor(private readonly store: Store<{ categories: [] }>,
               private readonly router: Router) {
   }
 
   public ngOnInit(): void {
-    this.categories$ = this.store.select('categories');
+    this.store.select('categories').subscribe((categories: ICategory[]) => {
+      this.categories = categories;
+      this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense)
+      console.log('isExpense', this.isExpense);
+      console.log('categories', this.categories);
+    });
 
     this.store.dispatch(retrieveCategoryList());
   }
@@ -26,4 +33,14 @@ export class CategoriesPage implements OnInit {
   public addNewCategory(): void {
     this.router.navigate(['expenso/tabs/categories/create'])
   }
+
+  public expenseToggleSwitched(event: CustomEvent): void {
+    this.isExpense = event.detail.value === 'expense';
+    this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
+  }
+
+  private filterCategoriesOnTypChange(categories: ICategory[], isExpense: boolean): ICategory[] {
+      return categories.filter((category: ICategory) => category.isExpense === isExpense);
+  }
+
 }
