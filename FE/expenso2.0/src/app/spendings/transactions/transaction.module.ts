@@ -16,4 +16,4 @@ import { TransactionPage } from "./transaction.page";
   ],
   declarations: [TransactionPage]
 })
-export class SpendingsPageModule {}
+export class TransactionPageModule {}

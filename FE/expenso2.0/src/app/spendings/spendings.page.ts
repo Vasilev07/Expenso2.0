@@ -11,12 +11,12 @@ export class SpendingsPage {
   public isExpense: boolean;
 
   public constructor(private readonly router: Router) {
-
   }
 
   public onTransactionClick(value: string): void {
     this.isExpense = value === "expense";
+    console.log('DICK');
 
-
+    this.router.navigate(['/expenso/tabs/spendings/transaction']);
   }
 }
