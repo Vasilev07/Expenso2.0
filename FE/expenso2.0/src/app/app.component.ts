@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     private readonly store: Store<{ user: IUser }>) {
       this.usersService.setupFbLogin();
 
-      this.store.dispatch(userLoggedIn());
+      // this.store.dispatch(userLoggedIn());
   }
 
   public ngOnInit() {
