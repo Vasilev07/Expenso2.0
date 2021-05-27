@@ -3,11 +3,8 @@ interface IDbCollections {
 }
 
 export const dbCollections: IDbCollections = {
-    expenses: {
-        name: 'expenses',
-    },
-    income: {
-        name: 'income',
+    transactions: {
+        name: 'transactions',
     },
     categories: {
         schemaValidation: 'category'
