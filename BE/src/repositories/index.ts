@@ -4,9 +4,9 @@ import { ICategory } from '../models/category.interface';
 import { IRepository, mongoRepository } from './mongo.repository';
 
 export interface ICollections {
+    transactions: IRepository<any>;
     categories: IRepository<ICategory>;
-    expenses: IRepository<any>;
-    incomes: IRepository<any>;
+    users: IRepository<any>;
 }
 
 export const initizalizeCollections = async (db: Db): Promise<ICollections> => {
@@ -22,8 +22,8 @@ export const initizalizeCollections = async (db: Db): Promise<ICollections> => {
     });
 
     return {
-        categories: mongoRepository<ICategory>(db, 'categories'),
-        expenses: mongoRepository<any>(db, 'expenses'),
-        incomes: mongoRepository<any>(db, 'incomes')
+        transactions: mongoRepository<any>(db, 'transactions'),
+        categories: mongoRepository<any>(db, 'categories'),
+        users: mongoRepository<any>(db, 'users')
     }
 };

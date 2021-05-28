@@ -12,7 +12,7 @@ export const expressInit = (app: Application) => {
     }
 
     app.use(bodyParser.urlencoded({
-        extended: false,
+        extended: true,
     }));
 
     app.use(bodyParser.json());
