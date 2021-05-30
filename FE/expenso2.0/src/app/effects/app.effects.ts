@@ -1,17 +1,19 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Platform } from "@ionic/angular";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import {  exhaustMap, map, switchMap, tap } from "rxjs/operators";
+import { exhaustMap, map, switchMap, tap } from "rxjs/operators";
+
 import { StorageService } from "../services/storage.service";
 import { UsersFbService } from "../services/users-fb.service";
+import { UsersService } from "../services/users.service";
 
 @Injectable()
 export class AppEffect {
   private token;
 
   constructor(private actions$: Actions,
-    private readonly usersService: UsersFbService,
+    private readonly usersFbService: UsersFbService,
+    private readonly usersService: UsersService,
     private readonly http: HttpClient,
     private readonly storageService: StorageService) {
     }
@@ -19,8 +21,8 @@ export class AppEffect {
   loadUserWithFb$ = createEffect((): any => {
     return this.actions$.pipe(
       ofType('[User Login] Perform Login With FB'),
-      exhaustMap(() => this.usersService.login()),
-      switchMap(() => this.http.get(this.usersService.url)
+      exhaustMap(() => this.usersFbService.login()),
+      switchMap(() => this.http.get(this.usersFbService.url)
           .pipe(
             map((res: any) => ({id: res.id, name: res.name,pictureUrl: res.picture.data.url, birthday: res.birthday, email: res.email})),
             map((user) => ({ type: '[User Login Success] Performed Login With FB Success', user }))
@@ -32,13 +34,17 @@ export class AppEffect {
   loadUser$ = createEffect((): any => {
     return this.actions$.pipe(
       ofType('[User Login] Perform Login'),
-      exhaustMap(() => this.usersService.login()),
-      switchMap(() => this.http.get(this.usersService.url)
-          .pipe(
-            map((res: any) => ({id: res.id, name: res.name,pictureUrl: res.picture.data.url, birthday: res.birthday, email: res.email})),
-            map((user) => ({ type: '[User Login Success] Performed Login With FB Success', user }))
-          )
-      )
+      exhaustMap((userLoginType: any) => this.usersService.login(userLoginType.user)),
+      exhaustMap(async (response) => {
+        await Promise.all([this.storageService.init()]);
+        await this.storageService.set("token", `${response.token}`);
+
+        const user = {email: response.user.email, id: response.user.id };
+        console.log('user effect', user);
+        console.log('user effect', response);
+
+        return ({ type: '[User Login Success] Performed Login Success', user })
+      }),
     );
   })
 

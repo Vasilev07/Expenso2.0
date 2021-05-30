@@ -6,7 +6,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { filter } from 'rxjs/operators';
 import { loginUser, loginUserWithFb } from './actions/app.action';
-import { IUser } from './interfaces/user-fb.interface';
+import { IFbUser } from './interfaces/user-fb.interface';
+import { IUser } from './interfaces/user.interface';
 import { UsersFbService } from './services/users-fb.service';
 
 registerWebPlugin(FacebookLogin as any);
@@ -17,8 +18,8 @@ registerWebPlugin(FacebookLogin as any);
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public user$: Observable<IUser>;
-  public user: IUser;
+  public user$: Observable<IFbUser>;
+  public user: IFbUser;
   public shouldShowSlides: boolean = true;
   public readonly slideOpts = {
     initialSlide: 1,
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit {
 
   public constructor(private readonly usersService: UsersFbService,
     private readonly router: Router,
-    private readonly store: Store<{ user: IUser }>) {
+    private readonly store: Store<{ user: IFbUser }>) {
       this.usersService.setupFbLogin();
 
       // this.store.dispatch(userLoggedIn());
@@ -58,6 +59,7 @@ export class AppComponent implements OnInit {
   }
 
   public onLogin(): void {
-    this.store.dispatch(loginUser());
+    const user: IUser = { email: this.email, password: this. password };
+    this.store.dispatch(loginUser({ user }));
   }
 }

@@ -15,6 +15,7 @@ import { Facebook } from '@ionic-native/facebook/ngx';
 import { userReducer } from './reducers/app.reducer';
 import { AppEffect } from './effects/app.effects';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    FormsModule,
     StoreModule.forRoot(
       {
         categories: categoriesReducer,

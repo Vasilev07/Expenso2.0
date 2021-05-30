@@ -1,4 +1,4 @@
-export interface IUser {
+export interface IFbUser {
     id: string;
     name: string;
     pictureUrl: string;

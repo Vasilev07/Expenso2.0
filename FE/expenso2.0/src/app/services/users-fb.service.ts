@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { FacebookLoginPlugin } from "@capacitor-community/facebook-login";
 import { Plugins } from "@capacitor/core";
-import { IUser } from "../interfaces/user-fb.interface";
+import { IFbUser } from "../interfaces/user-fb.interface";
 import { StorageService } from "./storage.service";
 
 @Injectable({
@@ -9,7 +9,7 @@ import { StorageService } from "./storage.service";
 })
 export class UsersFbService {
   public fbLogin: FacebookLoginPlugin;
-  public user: IUser;
+  public user: IFbUser;
   public url: string;
   public token;
 

@@ -27,17 +27,21 @@ export const init = (app: any, collection: any): void => {
     response.status(Statuses.OK).send({});
   });
 
-  app.post('/login', async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+  app.post('/login', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
     const users = await findUserByEmail(collection, request.body.email);
 
     if (users.length < 1) {
-      response.status(401).json({ message: "Auth failed" });
+      return response.status(401).json({ message: "Auth failed" });
     }
+    console.log(users[0]);
+    console.log('body pass', request.body.password);
+    console.log('users pass', users[0].password);
 
     const doesPasswordMatch = await compare(request.body.password, users[0].password);
+    console.log('doesPasswordMatch', doesPasswordMatch);
 
     if (!doesPasswordMatch) {
-      response.status(401).json({ message: "Auth failed" });
+      return response.status(401).json({ message: "Auth failed" });
     }
     console.log(users[0]);
 
@@ -46,7 +50,8 @@ export const init = (app: any, collection: any): void => {
       'secred',
       { expiresIn: "1h" }
     );
+    console.log(token);
 
-    response.status(200).json({ message: 'Auth success', token });
+    return response.status(200).json({ message: 'Auth success', token, user: { email: users[0].email, id: users[0]._id }});
   });
 }

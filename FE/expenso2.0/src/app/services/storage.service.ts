@@ -8,10 +8,10 @@ import { Storage } from '@ionic/storage-angular';
 export class StorageService {
   private _storage: Storage | null = null;
 
-  constructor(private storage: Storage) {
+  constructor(private readonly storage: Storage) {
   }
 
-  public async init() {
+  public async init(): Promise<void> {
     // If using, define drivers here: await this.storage.defineDriver(/*...*/);
     const storage = await this.storage.create();
     console.log('Init Storage');
