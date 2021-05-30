@@ -6,6 +6,7 @@ export interface IRepository<T> {
     deleteById: (id: string) => Promise<void>;
     getById: (id: string) => Promise<T[]>;
     findBy: (criteria: any) => Promise<T[]>;
+    findAllForUser: (userId: ObjectId) => Promise<T[]>;
 }
 
 export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<T> => {
@@ -32,11 +33,16 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
       return collection.find({...criteria}).toArray();
     }
 
+    const findAllForUser = async (userId: ObjectId): Promise<T[]> => {
+      return collection.find({ userId }).toArray();
+    }
+
     return {
         create,
         findAll,
         deleteById,
         getById,
-        findBy
+        findBy,
+        findAllForUser
     }
 };

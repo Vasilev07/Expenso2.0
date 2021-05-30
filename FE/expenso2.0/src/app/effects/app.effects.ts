@@ -44,14 +44,12 @@ export class AppEffect {
     );
   })
 
+  // check if working
   userLoggedInWithFb$ = createEffect((): any => {
     return this.actions$.pipe(
       ofType('[User Login] Check If User Already Logged In With FB'),
       exhaustMap(() => this.storageService.get('fbToken')),
-      tap((token) => this.token = token),
-      tap(console.log
-      ),
-      exhaustMap(() => this.http.get(`https://graph.facebook.com/me?access_token=${this.token}`)),
+      exhaustMap((token) => this.http.get(`https://graph.facebook.com/me?access_token=${token}`)),
       switchMap((user: any) => this.http.get(`https://graph.facebook.com/${user.id}?fields=id,name,picture.width(720),birthday,email&access_token=${this.token}`)
           .pipe(
             map((res: any) => ({id: res.id, name: res.name,pictureUrl: res.picture.data.url, birthday: res.birthday, email: res.email})),
