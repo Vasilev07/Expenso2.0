@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Storage } from '@ionic/storage-angular';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +17,15 @@ export class StorageService {
     });
   }
 
-  public get(key: string): any {
+  public get(key: string): Observable<any> {
     console.log("STORAGE SERVICE KEY", key);
 
-    return this._storage.get(key);
+    return from(this._storage.get(key));
   }
 
-  public set(key: string, value: any): void {
+  public set(key: string, value: any): Observable<void> {
     console.log("STORAGE SERVICE KEY/VALUE", key, value);
 
-    this._storage?.set(key, value);
+    return from(this._storage?.set(key, value));
   }
 }

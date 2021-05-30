@@ -18,8 +18,16 @@ export const expressInit = (app: Application) => {
     app.use(bodyParser.json());
 
     app.use((req, res, next) => {
-        res.header("Access-Control-Allow-Origin", "http://localhost:8100"); // update to match the domain you will make the request from
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header("Access-Control-Allow-Origin", "http://localhost:8100");
+        res.header("Access-Control-Allow-Origin", "http://localhost:8100/");
+        res.header("Access-Control-Allow-Origin",  'capacitor://localhost');
+        res.header("Access-Control-Allow-Origin", 'ionic://localhost');
+        res.header("Access-Control-Allow-Origin", 'http://localhost');
+        res.header("Access-Control-Allow-Origin", 'http://localhost:8080');
+        res.header("Access-Control-Allow-Origin", 'http://localhost:8080/');
+        res.header("Access-Control-Allow-Origin", '*');
+        res.header("Access-Control-Allow-Headers", "*");
+
         next();
       });
 

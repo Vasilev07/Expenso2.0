@@ -17,10 +17,12 @@ export class UsersService {
   }
 
   public async storeToken(token): Promise<void> {
-    this.storageService.set("token", `${token}`);
+    this.storageService.set("token", `${token}`).subscribe();
   }
 
   public getToken(): any {
+    console.log('in userservice getToken');
+
     return this.storageService.get('token');
   }
 }
