@@ -4,7 +4,8 @@ export interface IRepository<T> {
     create: (entity: any) => Promise<any>;
     findAll: () => Promise<T[]>;
     deleteById: (id: string) => Promise<void>;
-    getById: (id: string) => Promise<T[]>
+    getById: (id: string) => Promise<T[]>;
+    findBy: (criteria: any) => Promise<T[]>;
 }
 
 export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<T> => {
@@ -25,12 +26,17 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
 
     const getById = async(id: string): Promise<T[]> => {
       return collection.find({ _id: new ObjectId(id) }).toArray();
-  }
+    }
+
+    const findBy = async(criteria: any): Promise<T[]> => {
+      return collection.find({...criteria}).toArray();
+    }
 
     return {
         create,
         findAll,
         deleteById,
-        getById
+        getById,
+        findBy
     }
 };
