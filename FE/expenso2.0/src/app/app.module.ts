@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { EffectsModule } from '@ngrx/effects';
@@ -16,6 +16,8 @@ import { userReducer } from './reducers/app.reducer';
 import { AppEffect } from './effects/app.effects';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { FormsModule } from '@angular/forms';
+import { AuthGuard } from './guards/auth.guard';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,9 +38,13 @@ import { FormsModule } from '@angular/forms';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
-  providers: [Facebook,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    Facebook,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    // { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

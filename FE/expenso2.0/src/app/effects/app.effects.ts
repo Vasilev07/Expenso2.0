@@ -36,8 +36,7 @@ export class AppEffect {
       ofType('[User Login] Perform Login'),
       exhaustMap((userLoginType: any) => this.usersService.login(userLoginType.user)),
       exhaustMap(async (response) => {
-        await Promise.all([this.storageService.init()]);
-        await this.storageService.set("token", `${response.token}`);
+        await this.usersService.storeToken(response.token);
 
         const user = {email: response.user.email, id: response.user.id };
         console.log('user effect', user);
