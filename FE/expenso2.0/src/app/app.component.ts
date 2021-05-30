@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { filter } from 'rxjs/operators';
 import { loginUser, loginUserWithFb } from './actions/app.action';
-import { IUser } from './interfaces/user.interface';
+import { IUser } from './interfaces/user-fb.interface';
 import { UsersFbService } from './services/users-fb.service';
 
 registerWebPlugin(FacebookLogin as any);
