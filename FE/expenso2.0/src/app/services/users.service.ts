@@ -16,13 +16,11 @@ export class UsersService {
     return this.httpService.post('http://localhost:3001/login', user);
   }
 
-  public async storeToken(token): Promise<void> {
-    this.storageService.set("token", `${token}`).subscribe();
+  public storeToken(token): void {
+    this.storageService.set("token", `${token}`);
   }
 
   public getToken(): any {
-    console.log('in userservice getToken');
-
     return this.storageService.get('token');
   }
 }

@@ -33,24 +33,18 @@ export const init = (app: any, collection: any): void => {
     if (users.length < 1) {
       return response.status(401).json({ message: "Auth failed" });
     }
-    console.log(users[0]);
-    console.log('body pass', request.body.password);
-    console.log('users pass', users[0].password);
 
     const doesPasswordMatch = await compare(request.body.password, users[0].password);
-    console.log('doesPasswordMatch', doesPasswordMatch);
 
     if (!doesPasswordMatch) {
       return response.status(401).json({ message: "Auth failed" });
     }
-    console.log(users[0]);
 
     const token = sign(
       { email: users[0].email, userId: users[0]._id?.toString() },
       'secred',
       { expiresIn: "1h" }
     );
-    console.log(token);
 
     return response.status(200).json({ message: 'Auth success', token, user: { email: users[0].email, id: users[0]._id }});
   });

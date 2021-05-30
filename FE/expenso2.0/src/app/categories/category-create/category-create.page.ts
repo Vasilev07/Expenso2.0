@@ -42,8 +42,6 @@ export class CategoryCreatePage implements OnInit {
     }
 
     public colorSelected(color: string): void {
-      console.log('IN COLOR', color);
-
         this.color = color;
     }
 }

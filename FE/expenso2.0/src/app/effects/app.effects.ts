@@ -34,13 +34,10 @@ export class AppEffect {
   loadUser$ = createEffect((): any => {
     return this.actions$.pipe(
       ofType('[User Login] Perform Login'),
-      exhaustMap((userLoginType: any) => this.usersService.login(userLoginType.user)),
-      exhaustMap(async (response) => {
-        await this.usersService.storeToken(response.token);
-
+      switchMap((userLoginType: any) => this.usersService.login(userLoginType.user)),
+      tap((response) => this.usersService.storeToken(response.token)),
+      switchMap(async (response) => {
         const user = {email: response.user.email, id: response.user.id };
-        console.log('user effect', user);
-        console.log('user effect', response);
 
         return ({ type: '[User Login Success] Performed Login Success', user })
       }),

@@ -15,7 +15,6 @@ export class SpendingsPage {
 
   public onTransactionClick(value: string): void {
     this.isExpense = value === "expense";
-    console.log('DICK');
 
     this.router.navigate(['/expenso/tabs/spendings/transaction']);
   }
