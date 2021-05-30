@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { Statuses } from '../enums/status.enum';
+import { checkAuth } from '../middleware/check-auth';
 import { ICategory } from '../models/category.interface';
 import { createCategory, deleteCategoryById, getAllCategories } from '../services/category.service';
 
 export const init = (app: any, collection: any): void => {
-    app.get('/category', async(request: Request, response: Response, next: NextFunction): Promise<void> => {
+    app.get('/category', checkAuth , async(request: Request, response: Response, next: NextFunction): Promise<void> => {
         const categories = await getAllCategories(collection);
 
         response.status(Statuses.OK).send(categories);
