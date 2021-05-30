@@ -5,10 +5,9 @@ import { registerWebPlugin } from '@capacitor/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { filter } from 'rxjs/operators';
-import { loginUserWithFb, userLoggedInWithFb } from './actions/app.action';
+import { loginUser, loginUserWithFb } from './actions/app.action';
 import { IUser } from './interfaces/user.interface';
-import { UsersService } from './services/users.service';
-import { Storage } from '@ionic/storage';
+import { UsersFbService } from './services/users-fb.service';
 
 registerWebPlugin(FacebookLogin as any);
 
@@ -25,8 +24,10 @@ export class AppComponent implements OnInit {
     initialSlide: 1,
     speed: 400
   };
+  public email: string;
+  public password: string;
 
-  public constructor(private readonly usersService: UsersService,
+  public constructor(private readonly usersService: UsersFbService,
     private readonly router: Router,
     private readonly store: Store<{ user: IUser }>) {
       this.usersService.setupFbLogin();
@@ -50,9 +51,13 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public onLogin(): void {
+  public onFbLogin(): void {
     this.store.dispatch(loginUserWithFb());
 
     this.router.navigate(['/expenso/spendings']);
+  }
+
+  public onLogin(): void {
+    this.store.dispatch(loginUser());
   }
 }
