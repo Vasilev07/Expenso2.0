@@ -42,6 +42,8 @@ export class AppComponent implements OnInit {
     this.user$.pipe(
       filter((user) => Object.keys(user).length > 0)
     ).subscribe((user) => {
+      console.log('USER USER', user);
+
       this.user = { ...user[0] };
     });
   }

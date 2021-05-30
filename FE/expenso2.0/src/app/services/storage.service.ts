@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Storage } from '@ionic/storage-angular';
+import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,26 +10,22 @@ export class StorageService {
   private _storage: Storage | null = null;
 
   constructor(private readonly storage: Storage) {
-  }
+    from(this.storage.create()).subscribe((storage) => {
+      console.log("STORAGE SERVICE", storage);
 
-  public async init(): Promise<void> {
-    // If using, define drivers here: await this.storage.defineDriver(/*...*/);
-    const storage = await this.storage.create();
-    console.log('Init Storage');
-
-    this._storage = storage;
+      this._storage = storage
+    });
   }
 
   public get(key: string): any {
-    console.log('Get Storage key', key);
+    console.log("STORAGE SERVICE KEY", key);
 
     return this._storage.get(key);
   }
 
-  // Create and expose methods that users of this service can
-  // call, for example:
   public set(key: string, value: any): void {
-    console.log('Set Storage key', key, value);
+    console.log("STORAGE SERVICE KEY/VALUE", key, value);
+
     this._storage?.set(key, value);
   }
 }

@@ -17,8 +17,7 @@ export class UsersService {
   }
 
   public async storeToken(token): Promise<void> {
-        await Promise.all([this.storageService.init()]);
-        await this.storageService.set("token", `${token}`);
+    this.storageService.set("token", `${token}`);
   }
 
   public getToken(): any {

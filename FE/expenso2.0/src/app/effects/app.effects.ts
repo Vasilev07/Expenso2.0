@@ -50,10 +50,7 @@ export class AppEffect {
   userLoggedInWithFb$ = createEffect((): any => {
     return this.actions$.pipe(
       ofType('[User Login] Check If User Already Logged In With FB'),
-      exhaustMap(async () => await Promise.all([this.storageService.init()])),
-      tap(console.log
-        ),
-      exhaustMap(async () => await this.storageService.get('fbToken')),
+      exhaustMap(() => this.storageService.get('fbToken')),
       tap((token) => this.token = token),
       tap(console.log
       ),

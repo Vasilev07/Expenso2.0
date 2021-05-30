@@ -45,7 +45,7 @@ export class UsersFbService {
 
     if (result.accessToken) {
       this.token = result.accessToken;
-      await this.storageService.set("fbToken", `${result.accessToken.token}`);
+      this.storageService.set("fbToken", `${result.accessToken.token}`);
       this.setLoginUrl();
     }
   }

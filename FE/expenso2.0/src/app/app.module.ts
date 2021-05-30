@@ -16,7 +16,6 @@ import { userReducer } from './reducers/app.reducer';
 import { AppEffect } from './effects/app.effects';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { FormsModule } from '@angular/forms';
-import { AuthGuard } from './guards/auth.guard';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
@@ -43,7 +42,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
   providers: [
     Facebook,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    // { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
 })
