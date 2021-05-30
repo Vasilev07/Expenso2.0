@@ -7,7 +7,8 @@
     "ts": "node -r ts-node/register"
   },
   "env": {
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
+    "JWT_KEY": "secred"
   },
   "ext": "js,json,ts"
 }

@@ -10,8 +10,8 @@ export const findUserByEmail = async (collection: IRepository<IUser>, email: str
 }
 
 export const getUserById = async (collection: IRepository<IUser>, entity: IUser): Promise<IUser[] | null> => {
-  if (entity.id) {
-    return await collection.getById(entity.id);
+  if (entity._id) {
+    return await collection.getById(entity._id);
   }
 
   return null;
