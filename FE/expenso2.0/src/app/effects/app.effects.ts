@@ -18,12 +18,12 @@ export class AppEffect {
 
   loadUser$ = createEffect((): any => {
     return this.actions$.pipe(
-      ofType('[User Login] Perform Login'),
+      ofType('[User Login] Perform Login With FB'),
       exhaustMap(() => this.usersService.login()),
       switchMap(() => this.http.get(this.usersService.url)
           .pipe(
             map((res: any) => ({id: res.id, name: res.name,pictureUrl: res.picture.data.url, birthday: res.birthday, email: res.email})),
-            map((user) => ({ type: '[User Login Success] Performed Login Success', user }))
+            map((user) => ({ type: '[User Login Success] Performed Login With FB Success', user }))
           )
       )
     );
@@ -31,7 +31,7 @@ export class AppEffect {
 
   userLoggedIn$ = createEffect((): any => {
     return this.actions$.pipe(
-      ofType('[User Login] Check If User Already Logged In'),
+      ofType('[User Login] Check If User Already Logged In With FB'),
       exhaustMap(async () => await Promise.all([this.storageService.init()])),
       tap(console.log
         ),
@@ -43,7 +43,7 @@ export class AppEffect {
       switchMap((user: any) => this.http.get(`https://graph.facebook.com/${user.id}?fields=id,name,picture.width(720),birthday,email&access_token=${this.token}`)
           .pipe(
             map((res: any) => ({id: res.id, name: res.name,pictureUrl: res.picture.data.url, birthday: res.birthday, email: res.email})),
-            map((user) => ({ type: '[User Login Success] Performed Login Success', user }))
+            map((user) => ({ type: '[User Login Success] Performed Login With FB Success', user }))
           )
       )
     );

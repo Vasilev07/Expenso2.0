@@ -5,7 +5,7 @@ import { registerWebPlugin } from '@capacitor/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { filter } from 'rxjs/operators';
-import { loginUser, userLoggedIn } from './actions/app.action';
+import { loginUserWithFb, userLoggedInWithFb } from './actions/app.action';
 import { IUser } from './interfaces/user.interface';
 import { UsersService } from './services/users.service';
 import { Storage } from '@ionic/storage';
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
   }
 
   public onLogin(): void {
-    this.store.dispatch(loginUser());
+    this.store.dispatch(loginUserWithFb());
 
     this.router.navigate(['/expenso/spendings']);
   }
