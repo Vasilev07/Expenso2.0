@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Store } from "@ngrx/store";
 import { ICategory } from "src/app/categories/category.interface";
 import { CategorySelectorService } from "./category-selector/category-selected.service";
 
