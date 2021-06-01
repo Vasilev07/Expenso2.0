@@ -8,7 +8,7 @@ import { CategorySelectorService } from "./category-selector/category-selected.s
 })
 export class TransactionPage implements OnInit {
   public isExpense: boolean;
-  public date = new Date().toLocaleDateString();
+  public date = new Date();
   public selectedCategory: ICategory;
 
   public constructor(private readonly router: Router,
@@ -18,8 +18,11 @@ export class TransactionPage implements OnInit {
   public ngOnInit(): void {
     this.categorySelectorService.categorySelected.subscribe((category: ICategory) => {
       this.selectedCategory = category;
-      console.log('selected category', this.selectedCategory);
     });
+    console.log('whole date', this.date);
+    console.log('month', this.date.getMonth());
+    console.log('year', this.date.getFullYear());
+
   }
 
   public expenseToggleSwitched(value: CustomEvent): void {

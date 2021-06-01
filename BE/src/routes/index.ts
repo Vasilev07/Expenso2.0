@@ -12,6 +12,7 @@ export const routesInit = (app: Application, collection: any) => {
             const route = require(modulePath);
             const controllerModulePath = modulePath.split('\\');
             const controllerName = controllerModulePath[controllerModulePath.length - 1].split('.')[0];
+            // console.log();
 
             if (collection[controllerName]) {
                 route.init(app, collection[controllerName]);

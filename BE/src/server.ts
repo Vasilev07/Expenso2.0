@@ -13,7 +13,7 @@ export const startServer = async (): Promise<any> => {
     expressInit(server);
 
     const collections = await initizalizeCollections(mongoClient);
-    
+
     routesInit(server, collections);
 
     return server;
