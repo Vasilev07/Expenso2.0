@@ -50,20 +50,10 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
       return collection.aggregate([
         {
           '$match': {
-            'userId': new ObjectId('60b3f2c0ae329307380afd58'),
-            'date': {
-              '$gte': new Date('Tue, 01 Jun 2021 21:00:00 GMT'),
-              '$lt': new Date('Thu, 01 Jul 2021 21:00:00 GMT')
-            }
-          }
-        }, {
-          '$addFields': {
-            'expences': {
-              'a': 1
-            }
+            'userId': new ObjectId('60b3f2c0ae329307380afd58')
           }
         }
-      ]);
+      ]).next().then(console.log);
     };
 
     return {
