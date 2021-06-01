@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { filter } from 'rxjs/operators';
 import { loginUser, loginUserWithFb } from './actions/app.action';
+import { retrieveCategoryList } from './categories/actions/categories.action';
 import { IFbUser } from './interfaces/user-fb.interface';
 import { IUser } from './interfaces/user.interface';
 import { UsersFbService } from './services/users-fb.service';
@@ -32,7 +33,6 @@ export class AppComponent implements OnInit {
     private readonly router: Router,
     private readonly store: Store<{ user: IFbUser }>) {
       this.usersService.setupFbLogin();
-
       // this.store.dispatch(userLoggedIn());
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 import { ICategory } from "../category.interface";
 
@@ -10,10 +10,10 @@ export class CategorySelectPage {
   @Input()
   public categories: ICategory[];
 
-  ngOnInit(): void {
-    console.log('hheheheh');
+  @Output()
+  public readonly categorySelected: EventEmitter<ICategory> = new EventEmitter<ICategory>();
 
-    console.log(this.categories);
-
+  public onCategorySelect(category: ICategory): void {
+    this.categorySelected.emit(category);
   }
 }

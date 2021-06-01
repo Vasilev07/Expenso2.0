@@ -24,8 +24,6 @@ export class CategoriesPage implements OnInit {
       this.categories = categories;
       this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
     });
-
-    this.store.dispatch(retrieveCategoryList());
   }
 
   public addNewCategory(): void {

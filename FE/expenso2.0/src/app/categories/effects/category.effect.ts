@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { EMPTY } from "rxjs";
-import { map, mergeMap, catchError, tap } from 'rxjs/operators';
+import { map, mergeMap, catchError, tap, distinctUntilChanged, distinct } from 'rxjs/operators';
 import { ICategory } from "../category.interface";
 import { CategoriesService } from "../services/categories.service";
 

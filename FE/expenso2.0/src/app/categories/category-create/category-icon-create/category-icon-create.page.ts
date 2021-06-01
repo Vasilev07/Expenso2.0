@@ -11,7 +11,7 @@ export class CategoryIconCreatePage {
   public readonly icons: ICategoryIcons[] = categoryIcons;
 
   public constructor(private readonly categoryIconService: CategoryIconService,
-    private navCtrl: NavController) {
+                      private readonly navCtrl: NavController) {
   }
 
   public onIconSelected(icon: ICategoryIcons): void {
