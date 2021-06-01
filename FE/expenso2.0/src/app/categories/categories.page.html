@@ -12,10 +12,6 @@
     <ion-segment-button value="expense">Expense</ion-segment-button>
     <ion-segment-button value="income">Income</ion-segment-button>
   </ion-segment>
-  <ion-list>
-    <ion-item *ngFor="let item of filteredCategories">
-      <ion-label>{{item.name}}</ion-label>
-      <ion-icon name="{{item.icon}}"></ion-icon>
-    </ion-item>
-  </ion-list>
+  <category-select [categories]="filteredCategories">
+  </category-select>
 </ion-content>
