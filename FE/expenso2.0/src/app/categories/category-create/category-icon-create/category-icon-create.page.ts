@@ -19,4 +19,8 @@ export class CategoryIconCreatePage {
 
     this.navCtrl.back();
   }
+
+  public onCancelClick(): void {
+    this.navCtrl.back();
+  }
 }

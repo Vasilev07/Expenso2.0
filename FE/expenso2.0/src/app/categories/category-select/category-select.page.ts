@@ -9,4 +9,11 @@ import { ICategory } from "../category.interface";
 export class CategorySelectPage {
   @Input()
   public categories: ICategory[];
+
+  ngOnInit(): void {
+    console.log('hheheheh');
+
+    console.log(this.categories);
+
+  }
 }
