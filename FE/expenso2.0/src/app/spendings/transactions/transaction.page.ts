@@ -3,7 +3,9 @@ import { Router } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { Store } from "@ngrx/store";
 import { ICategory } from "src/app/categories/category.interface";
+import { createTransaction } from "../actions/transaction.action";
 import { CategorySelectorService } from "./category-selector/category-selected.service";
+import { ITransaction } from "./interfaces/transaction.interface";
 
 @Component({
   templateUrl: './transaction.page.html'
@@ -12,6 +14,7 @@ export class TransactionPage implements OnInit {
   public isExpense: boolean;
   public date = new Date();
   public selectedCategory: ICategory;
+  public amount: number;
 
   public constructor(private readonly router: Router,
                     private readonly categorySelectorService: CategorySelectorService,
@@ -40,7 +43,19 @@ export class TransactionPage implements OnInit {
   }
 
   public onSaveClick(): void {
-    this.store.dispatch(saveTransaction())
+    const transaction: ITransaction = {
+        date: this.date,
+        amount: this.amount,
+        isExpese: this.isExpense,
+        category: {
+          categoryId: this.selectedCategory.id,
+          name: this.selectedCategory.name,
+          icon: this.selectedCategory.icon
+        }
+    };
+
+    this.store.dispatch(createTransaction({transaction}));
+
     this.navCtrl.back();
   }
 
