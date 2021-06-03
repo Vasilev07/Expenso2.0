@@ -43,7 +43,7 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
       console.log('toPushIn', toPushIn);
       console.log('entity', entity);
 
-      collection.updateMany({ ...criteria }, { $push: { [toPushIn]: entity } });
+      collection.updateMany({ ...criteria }, { $push: { [toPushIn]: entity } },{ upsert: true });
     };
 
     return {
