@@ -32,7 +32,6 @@ export class CategoriesPage implements OnInit {
 
   public expenseToggleSwitched(event: CustomEvent): void {
     this.isExpense = event.detail.value === 'expense';
-    console.log('isExpense', this.isExpense);
 
     this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
   }
