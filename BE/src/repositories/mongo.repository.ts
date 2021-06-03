@@ -7,8 +7,7 @@ export interface IRepository<T> {
     getById: (id: string) => Promise<T[]>;
     findBy: (criteria: any) => Promise<T[]>;
     findAllForUser: (userId: ObjectId) => Promise<T[]>;
-    updateManyArray: (criteria: any, toPushIn: string ,entity: T) => Promise<void>;
-    aggregate: (aggregation: any ) => Promise<any>;
+    updateManyArray: (criteria: any, toPushIn: string, entity: any) => Promise<void>;
 }
 
 export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<T> => {
@@ -39,21 +38,12 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
       return collection.find({ userId }).toArray();
     };
 
-    const updateManyArray = async (criteria: any, toPushIn: string ,entity: T): Promise<void> => {
-      console.log(criteria);
-      console.log(toPushIn);
-      console.log(entity);
-      console.log(await collection.findOne({ userId: new ObjectId('60b6985dd46c650df0eae849') }));
+    const updateManyArray = async (criteria: any, toPushIn: string, entity: T): Promise<void> => {
+      console.log('criteria', criteria);
+      console.log('toPushIn', toPushIn);
+      console.log('entity', entity);
+
       collection.updateMany({ ...criteria }, { $push: { [toPushIn]: entity } });
-    };
-    const aggregate = async (aggregation: any ): Promise<any> => {
-      return collection.aggregate([
-        {
-          '$match': {
-            'userId': new ObjectId('60b3f2c0ae329307380afd58')
-          }
-        }
-      ]).next().then(console.log);
     };
 
     return {
@@ -63,7 +53,6 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
         getById,
         findBy,
         findAllForUser,
-        updateManyArray,
-        aggregate
+        updateManyArray
     }
 };

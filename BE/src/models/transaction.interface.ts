@@ -6,25 +6,24 @@ export interface ITransaction {
   _id?: ObjectId;
   date: Date;
   totalBalance: number;
-  expences: IExpense[];
+  expenses: IExpense[];
   income: IIncome[];
 }
 
 export interface IExpense {
   date: Date;
   amount: number;
-  category: ICategory;
-  name: string;
-  icon: string;
-  color: string
+  category: IExpenseIncomeCategory;
 }
 
 export interface IIncome {
   date: Date;
   amount: number;
-  category: ICategory;
-  name: string;
-  icon: string;
-  color: string
+  category: IExpenseIncomeCategory;
 }
 
+export interface IExpenseIncomeCategory {
+    categoryId: ObjectId;
+    name: string;
+    icon: string;
+}
