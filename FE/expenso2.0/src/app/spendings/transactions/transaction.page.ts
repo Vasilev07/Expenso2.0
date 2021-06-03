@@ -11,7 +11,7 @@ import { ITransaction } from "./interfaces/transaction.interface";
   templateUrl: './transaction.page.html'
 })
 export class TransactionPage implements OnInit {
-  public isExpense: boolean;
+  public isExpense: boolean = true;
   public date = new Date();
   public selectedCategory: ICategory;
   public amount: number;
@@ -24,14 +24,9 @@ export class TransactionPage implements OnInit {
 
   public ngOnInit(): void {
     this.categorySelectorService.categorySelected.subscribe((category: ICategory) => {
-      console.log(category);
 
       this.selectedCategory = category;
     });
-    console.log('whole date', this.date);
-    console.log('month', this.date.getMonth());
-    console.log('year', this.date.getFullYear());
-
   }
 
   public expenseToggleSwitched(value: CustomEvent): void {
@@ -46,9 +41,9 @@ export class TransactionPage implements OnInit {
     const transaction: ITransaction = {
         date: this.date,
         amount: this.amount,
-        isExpese: this.isExpense,
+        isExpense: this.isExpense,
         category: {
-          categoryId: this.selectedCategory.id,
+          categoryId: this.selectedCategory._id,
           name: this.selectedCategory.name,
           icon: this.selectedCategory.icon
         }

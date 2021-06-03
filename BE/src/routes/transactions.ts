@@ -1,29 +1,56 @@
 import { NextFunction, Request, Response } from 'express';
+import { decode } from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
-import { addExpense } from '../services/transaction.service';
+import { addExpense, addIncome } from '../services/transaction.service';
 
 export const init = (app: any, collection: any): void => {
   app.post('/transaction', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+    const transaction = request.body;
+    console.log('BODy', transaction);
+    console.log('DATE', transaction.date);
+
+    const date = new Date(transaction.date);
+    console.log('DATE', date);
+
+    const token = request.headers.authorization as any;
+
+    const decodedToken = decode(token.split(' ')[1]) as any;
+    const userId = decodedToken.userId;
+
+    const isExpense = transaction.isExpense;
+
     const filter = {
-      userId: new ObjectId('60b3f2c0ae329307380afd58'),
+      userId: new ObjectId(userId),
       // because months starts from 0
-      month: new Date().getMonth() + 1
+      date: `${date.getMonth() + 1}-${date.getFullYear()}`
     };
-    const transaction = {
-      date: new Date(),
-      amount: 1,
+
+    console.log('filter', filter);
+
+    const transactionToSave = {
+      date: date.toString(),
+      amount: transaction.amount,
       category: {
-        categoryId: new ObjectId('60b403999b90911ed0273157'),
-        name: "12312312312",
-        icon: 'american-football-outline'
+        categoryId: new ObjectId(transaction.category.categoryId),
+        name: transaction.category.name,
+        icon: transaction.category.icon
       }
     };
 
-    await addExpense(
-      collection,
-      filter,
-      transaction
-    );
+    console.log('transaction', transaction);
+      console.log('isEspense', isExpense);
+
+    isExpense ?
+      await addExpense(
+        collection,
+        filter,
+        transactionToSave
+      ):
+      await addIncome(
+        collection,
+        filter,
+        transactionToSave
+      )
 
     return response.status(200).json();
   });

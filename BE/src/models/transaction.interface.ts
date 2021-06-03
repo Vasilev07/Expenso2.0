@@ -4,20 +4,20 @@ import { ICategory } from "./category.interface";
 export interface ITransaction {
   userId: ObjectId;
   _id?: ObjectId;
-  date: Date;
+  date: string;
   totalBalance: number;
   expenses?: IExpense[];
   income?: IIncome[];
 }
 
 export interface IExpense {
-  date: Date;
+  date: string;
   amount: number;
   category: IExpenseIncomeCategory;
 }
 
 export interface IIncome {
-  date: Date;
+  date: string;
   amount: number;
   category: IExpenseIncomeCategory;
 }
