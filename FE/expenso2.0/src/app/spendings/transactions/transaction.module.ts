@@ -2,9 +2,11 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
+import { EffectsModule } from "@ngrx/effects";
 import { CategoriesPageModule } from "src/app/categories/categories.module";
 import { ExploreContainerComponentModule } from "src/app/explore-container/explore-container.module";
 import { CategorySelectorPage } from "./category-selector/category-selector.page";
+import { TransactionsEffects } from "./effects/transactions.effect";
 import { TransactionPageRoutingModule } from "./transaction-routing.module";
 import { TransactionPage } from "./transaction.page";
 
@@ -15,7 +17,8 @@ import { TransactionPage } from "./transaction.page";
     FormsModule,
     ExploreContainerComponentModule,
     TransactionPageRoutingModule,
-    CategoriesPageModule
+    CategoriesPageModule,
+    EffectsModule.forFeature([TransactionsEffects]),
   ],
   declarations: [TransactionPage, CategorySelectorPage]
 })

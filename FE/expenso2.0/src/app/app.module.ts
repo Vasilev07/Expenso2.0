@@ -17,6 +17,7 @@ import { AppEffect } from './effects/app.effects';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { FormsModule } from '@angular/forms';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { transactionsReducer } from './spendings/transactions/reducers/transaction.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +30,8 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
     StoreModule.forRoot(
       {
         categories: categoriesReducer,
-        user: userReducer
+        user: userReducer,
+        transactions: transactionsReducer
       }
     ),
     EffectsModule.forRoot([AppEffect]),

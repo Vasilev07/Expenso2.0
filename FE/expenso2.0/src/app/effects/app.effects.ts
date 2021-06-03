@@ -16,7 +16,7 @@ export class AppEffect {
     private readonly usersService: UsersService,
     private readonly http: HttpClient,
     private readonly storageService: StorageService) {
-    }
+  }
 
   loadUserWithFb$ = createEffect((): any => {
     return this.actions$.pipe(
