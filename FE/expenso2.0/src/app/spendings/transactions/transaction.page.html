@@ -1,8 +1,18 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="onSaveClick()">
+        Save
+      </ion-button>
+    </ion-buttons>
     <ion-title>
       New Transaction
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onCancelClick()">
+        Cancel
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -26,6 +36,10 @@
   <ion-item (click)="onCategorySelect()">
     <ion-label>Category: </ion-label>
     <ion-input placeholde="Category">
+      <ng-container *ngIf="selectedCategory">
+        <ion-label>{{selectedCategory.name}}</ion-label>
+        <ion-icon name="{{selectedCategory.icon}}"></ion-icon>
+      </ng-container>
     </ion-input>
   </ion-item>
 </ion-content>

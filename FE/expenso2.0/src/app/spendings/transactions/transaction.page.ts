@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { NavController } from "@ionic/angular";
+import { Store } from "@ngrx/store";
 import { ICategory } from "src/app/categories/category.interface";
 import { CategorySelectorService } from "./category-selector/category-selected.service";
 
@@ -12,11 +14,15 @@ export class TransactionPage implements OnInit {
   public selectedCategory: ICategory;
 
   public constructor(private readonly router: Router,
-                    private readonly categorySelectorService: CategorySelectorService) {
+                    private readonly categorySelectorService: CategorySelectorService,
+                    private readonly navCtrl: NavController,
+                    private readonly store: Store) {
   }
 
   public ngOnInit(): void {
     this.categorySelectorService.categorySelected.subscribe((category: ICategory) => {
+      console.log(category);
+
       this.selectedCategory = category;
     });
     console.log('whole date', this.date);
@@ -31,5 +37,14 @@ export class TransactionPage implements OnInit {
 
   public onCategorySelect(): void {
     this.router.navigate(['/expenso/tabs/spendings/transaction/category-selector'], {queryParams: { isExpense: `true` }});
+  }
+
+  public onSaveClick(): void {
+    this.store.dispatch(saveTransaction())
+    this.navCtrl.back();
+  }
+
+  public onCancelClick(): void {
+    this.navCtrl.back();
   }
 }

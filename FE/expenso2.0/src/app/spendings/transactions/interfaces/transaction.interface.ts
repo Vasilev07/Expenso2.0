@@ -1,13 +1,8 @@
-import { ObjectId } from "mongodb";
-import { ICategory } from "./category.interface";
-
 export interface ITransaction {
-  userId: ObjectId;
-  _id?: ObjectId;
   date: Date;
   totalBalance: number;
-  expenses?: IExpense[];
-  income?: IIncome[];
+  data: IExpense | IIncome
+  isExpese: boolean;
 }
 
 export interface IExpense {
@@ -23,7 +18,7 @@ export interface IIncome {
 }
 
 export interface IExpenseIncomeCategory {
-    categoryId: ObjectId;
+    categoryId: string;
     name: string;
     icon: string;
 }
