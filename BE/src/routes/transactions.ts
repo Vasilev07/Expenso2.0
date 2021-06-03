@@ -6,11 +6,7 @@ import { addExpense, addIncome } from '../services/transaction.service';
 export const init = (app: any, collection: any): void => {
   app.post('/transaction', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
     const transaction = request.body;
-    console.log('BODy', transaction);
-    console.log('DATE', transaction.date);
-
     const date = new Date(transaction.date);
-    console.log('DATE', date);
 
     const token = request.headers.authorization as any;
 
@@ -25,8 +21,6 @@ export const init = (app: any, collection: any): void => {
       date: `${date.getMonth() + 1}-${date.getFullYear()}`
     };
 
-    console.log('filter', filter);
-
     const transactionToSave = {
       date: date.toString(),
       amount: transaction.amount,
@@ -36,9 +30,6 @@ export const init = (app: any, collection: any): void => {
         icon: transaction.category.icon
       }
     };
-
-    console.log('transaction', transaction);
-      console.log('isEspense', isExpense);
 
     isExpense ?
       await addExpense(
