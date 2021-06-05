@@ -17,13 +17,12 @@ export const init = (app: any, collection: any): void => {
 
     const filter = {
       userId: new ObjectId(userId),
-      // because months starts from 0
       date: `${date.getMonth() + 1}-${date.getFullYear()}`
     };
 
     const transactionToSave = {
       date: date.toString(),
-      amount: transaction.amount,
+      amount: parseFloat(transaction.amount),
       category: {
         categoryId: new ObjectId(transaction.category.categoryId),
         name: transaction.category.name,

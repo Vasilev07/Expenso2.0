@@ -1,5 +1,4 @@
 import { ObjectId } from "mongodb";
-import { ICategory } from "./category.interface";
 
 export interface ITransaction {
   userId: ObjectId;

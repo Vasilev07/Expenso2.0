@@ -14,6 +14,7 @@ export class CategoryCreatePage implements OnInit {
    public categoryName: string;
    public icon: ICategoryIcons;
    public color: string;
+   // TODO FIX THAT
    public isExpense: boolean = false;
 
    public constructor(private readonly router: Router,
