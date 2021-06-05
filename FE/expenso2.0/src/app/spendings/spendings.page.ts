@@ -10,6 +10,7 @@ import { retrieveTransactions } from './transactions/actions/transaction.action'
 })
 export class SpendingsPage implements OnInit {
   public isExpense: boolean;
+  public spendings: any;
 
   public constructor(private readonly router: Router,
                     private readonly store: Store<{ spendings: [] }>) {
@@ -18,7 +19,9 @@ export class SpendingsPage implements OnInit {
   public ngOnInit(): void {
     this.store.dispatch(retrieveTransactions());
 
-    this.store.select('spendings').subscribe(console.log);
+    this.store.select('spendings').subscribe((spendings) => {
+      this.spendings = spendings;
+    });
   }
 
   public onTransactionClick(value: string): void {
