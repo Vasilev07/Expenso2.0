@@ -15,7 +15,7 @@ export class TransactionsEffects {
     return this.actions$.pipe(
       ofType('[Transaction] Add Transaction'),
       switchMap((transactionAction: any) => this.transactionService.addNew(transactionAction.transaction).pipe(
-        map((transaction) => ({type: '[Transaction] Add Transaction Success', transaction})),
+        map(() => ({type: '[Transaction] Add Transaction Success'})),
         catchError(() => EMPTY)
       ))
     );

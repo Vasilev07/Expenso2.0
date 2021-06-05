@@ -38,5 +38,9 @@ export const transactionSpendingsAggregation = [
         '$first': '$balance'
       }
     }
+  }, {
+    '$sort': {
+      'expenses': -1
+    }
   }
 ];
