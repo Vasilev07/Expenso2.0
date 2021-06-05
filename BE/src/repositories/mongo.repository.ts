@@ -8,6 +8,7 @@ export interface IRepository<T> {
     findBy: (criteria: any) => Promise<T[]>;
     findAllForUser: (userId: ObjectId) => Promise<T[]>;
     updateManyArray: (criteria: any, toPushIn: string, entity: any) => Promise<void>;
+    performAggregation: (aggregation: any) => Promise<any>;
 }
 
 export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<T> => {
@@ -39,11 +40,11 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
     };
 
     const updateManyArray = async (criteria: any, toPushIn: string, entity: T): Promise<void> => {
-      console.log('criteria', criteria);
-      console.log('toPushIn', toPushIn);
-      console.log('entity', entity);
-
       collection.updateMany({ ...criteria }, { $push: { [toPushIn]: entity } },{ upsert: true });
+    };
+
+    const performAggregation = async (aggregation: any): Promise<any> => {
+        return collection.aggregate(aggregation);
     };
 
     return {
@@ -53,6 +54,7 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
         getById,
         findBy,
         findAllForUser,
-        updateManyArray
+        updateManyArray,
+        performAggregation
     }
 };

@@ -13,4 +13,10 @@ export class TransactionService {
   public addNew(transaction: ITransaction): Observable<ITransaction> {
     return this.httpClient.post<ITransaction>('http://localhost:3001/transaction', transaction);
   }
+
+  public getAll(isExpense: boolean): Observable<ITransaction[]> {
+    return isExpense ?
+      this.httpClient.get<ITransaction[]>('http://localhost:3001/transaction/expense'):
+      this.httpClient.get<ITransaction[]>('http://localhost:3001/transaction/income');
+  }
 }

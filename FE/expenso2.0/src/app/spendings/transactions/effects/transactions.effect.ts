@@ -20,4 +20,15 @@ export class TransactionsEffects {
       ))
     );
   });
+
+  $retrieveExpences = createEffect((): any => {
+    return this.actions$.pipe(
+      ofType('[Transaction List] Retrieve Transaction'),
+      switchMap((isExpense) => this.transactionService.getAll(isExpense).pipe(
+          map((transactions) => ({type: '[Transaction List] Retrieve Transaction Success', transactions})),
+          catchError(() => EMPTY)
+        )
+      )
+    );
+  });
 }
