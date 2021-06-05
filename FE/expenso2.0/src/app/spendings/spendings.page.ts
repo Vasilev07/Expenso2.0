@@ -1,16 +1,24 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { retrieveTransactions } from './transactions/actions/transaction.action';
 
 @Component({
   selector: 'app-spendings',
   templateUrl: 'spendings.page.html',
   styleUrls: ['spendings.page.scss']
 })
-export class SpendingsPage {
+export class SpendingsPage implements OnInit {
   public isExpense: boolean;
 
-  public constructor(private readonly router: Router) {
+  public constructor(private readonly router: Router,
+                    private readonly store: Store<{ spendings: [] }>) {
+  }
+
+  public ngOnInit(): void {
+    this.store.dispatch(retrieveTransactions());
+
+    this.store.select('spendings').subscribe(console.log);
   }
 
   public onTransactionClick(value: string): void {

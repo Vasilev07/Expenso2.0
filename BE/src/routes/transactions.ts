@@ -6,6 +6,8 @@ import { addExpense, addIncome, getSpendings } from '../services/transaction.ser
 
 export const init = (app: any, collection: any): void => {
   app.get('/transaction/spendings', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+    console.log(transactionSpendingsAggregation);
+
     const transaction = await getSpendings(collection, transactionSpendingsAggregation);
 
     response.send(transaction);

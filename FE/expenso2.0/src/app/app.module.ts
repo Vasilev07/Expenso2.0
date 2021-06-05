@@ -31,7 +31,7 @@ import { transactionsReducer } from './spendings/transactions/reducers/transacti
       {
         categories: categoriesReducer,
         user: userReducer,
-        transactions: transactionsReducer
+        spendings: transactionsReducer
       }
     ),
     EffectsModule.forRoot([AppEffect]),

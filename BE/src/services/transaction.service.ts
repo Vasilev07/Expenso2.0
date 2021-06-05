@@ -11,5 +11,7 @@ export const addIncome = async (collection: IRepository<ITransaction>, criteria:
 };
 
 export const getSpendings =  async (collection: IRepository<ITransaction>, aggregation: any): Promise<ITransaction[]> => {
+  console.log(aggregation);
+
   return await collection.performAggregation(aggregation);
 };
