@@ -11,6 +11,7 @@ import { retrieveTransactions } from './transactions/actions/transaction.action'
 export class SpendingsPage implements OnInit {
   public isExpense: boolean;
   public spendings: any;
+  public date = new Date().toISOString();
 
   public constructor(private readonly router: Router,
                     private readonly store: Store<{ spendings: [] }>) {

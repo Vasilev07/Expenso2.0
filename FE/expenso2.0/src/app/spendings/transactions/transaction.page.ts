@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { Store } from "@ngrx/store";
 import { ICategory } from "src/app/categories/category.interface";
-import { createTransaction } from "./actions/transaction.action";
+import { createTransaction, retrieveTransactions } from "./actions/transaction.action";
 import { CategorySelectorService } from "./category-selector/category-selected.service";
 import { ITransaction } from "./interfaces/transaction.interface";
 
