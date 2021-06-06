@@ -12,7 +12,7 @@ import { ITransaction } from "./interfaces/transaction.interface";
 })
 export class TransactionPage implements OnInit {
   public isExpense: boolean = true;
-  public date = new Date();
+  public date = new Date().toISOString();
   public selectedCategory: ICategory;
   public amount: number;
 

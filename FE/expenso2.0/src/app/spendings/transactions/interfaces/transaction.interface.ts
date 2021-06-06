@@ -1,5 +1,5 @@
 export interface ITransaction {
-  date: Date;
+  date: string;
   amount: number;
   category: IExpenseIncomeCategory;
   isExpense: boolean;
