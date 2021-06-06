@@ -28,6 +28,6 @@ export class SpendingsPage implements OnInit {
   public onTransactionClick(value: string): void {
     this.isExpense = value === "expense";
 
-    this.router.navigate(['/expenso/tabs/spendings/transaction']);
+    this.router.navigate(['/expenso/tabs/spendings/transaction'], {queryParams: { isExpense: this.isExpense }});
   }
 }

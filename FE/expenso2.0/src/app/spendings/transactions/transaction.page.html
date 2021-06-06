@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment value="expense" (ionChange)="expenseToggleSwitched($event)">
+  <ion-segment value="{{expenseSelector}}" (ionChange)="expenseToggleSwitched($event)">
     <ion-segment-button value="expense">Expense</ion-segment-button>
     <ion-segment-button value="income">Income</ion-segment-button>
   </ion-segment>

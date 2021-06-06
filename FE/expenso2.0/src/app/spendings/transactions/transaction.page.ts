@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { Store } from "@ngrx/store";
 import { ICategory } from "src/app/categories/category.interface";
@@ -11,20 +11,25 @@ import { ITransaction } from "./interfaces/transaction.interface";
   templateUrl: './transaction.page.html'
 })
 export class TransactionPage implements OnInit {
-  public isExpense: boolean = true;
+  public isExpense: boolean;
   public date = new Date().toISOString();
   public selectedCategory: ICategory;
   public amount: number;
+  public expenseSelector: string;
 
   public constructor(private readonly router: Router,
                     private readonly categorySelectorService: CategorySelectorService,
                     private readonly navCtrl: NavController,
-                    private readonly store: Store) {
+                    private readonly store: Store,
+                    private readonly activatedRoute: ActivatedRoute) {
   }
 
   public ngOnInit(): void {
-    this.categorySelectorService.categorySelected.subscribe((category: ICategory) => {
+    this.isExpense = this.activatedRoute.snapshot.queryParams.isExpense === 'true';
 
+    this.expenseSelector = this.isExpense ? 'expense' : 'income';
+
+    this.categorySelectorService.categorySelected.subscribe((category: ICategory) => {
       this.selectedCategory = category;
     });
   }
