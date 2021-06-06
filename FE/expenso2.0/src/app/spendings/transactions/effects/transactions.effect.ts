@@ -17,18 +17,22 @@ export class TransactionsEffects {
       switchMap((transactionAction: any) => this.transactionService.addNew(transactionAction.transaction).pipe(
         map(() => ({type: '[Transaction] Add Transaction Success'})),
         catchError(() => EMPTY)
-      ))
+      )),
+      switchMap(() => this.getAllTransactions())
     );
   });
 
   $retrieveExpences = createEffect((): any => {
     return this.actions$.pipe(
       ofType('[Transaction List] Retrieve Transaction Spendings'),
-      switchMap(() => this.transactionService.getAll().pipe(
-          map((transactions) => ({type: '[Transaction List] Retrieve Transaction Spendings Success', transactions})),
-          catchError(() => EMPTY)
-        )
-      )
+      switchMap(() => this.getAllTransactions())
     );
   });
+
+  private getAllTransactions() {
+    return this.transactionService.getAll().pipe(
+      map((transactions) => ({type: '[Transaction List] Retrieve Transaction Spendings Success', transactions})),
+      catchError(() => EMPTY)
+    );
+  }
 }

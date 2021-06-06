@@ -5,7 +5,7 @@ export const initialState = [];
 
 const _transactionsReducer = createReducer(
     initialState,
-    on(retrieveTransactionsSuccess, (state, { transactions }) => [...state, ...transactions])
+    on(retrieveTransactionsSuccess, (state, { transactions }) => [...transactions]),
 )
 
 export const transactionsReducer = (state, action) => {
