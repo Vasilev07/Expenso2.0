@@ -24,7 +24,6 @@ export class CategorySelectorPage implements OnInit {
     this.store.select('categories').subscribe((categories: ICategory[]) => {
       this.filteredCategories = categories.filter((category: ICategory) => category.isExpense === this.isExpense);
     });
-
   }
 
   public onCancelClick(): void {
