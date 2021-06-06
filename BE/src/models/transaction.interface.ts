@@ -6,7 +6,7 @@ export interface ITransaction {
   date: string;
   totalBalance: number;
   expenses?: IExpense[];
-  income?: IIncome[];
+  incomes?: IIncome[];
 }
 
 export interface IExpense {

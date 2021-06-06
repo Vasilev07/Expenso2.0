@@ -44,8 +44,6 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
     };
 
     const performAggregation = async (aggregation: any): Promise<any> => {
-      console.log(aggregation);
-
         return collection.aggregate(aggregation).toArray();
     };
 
