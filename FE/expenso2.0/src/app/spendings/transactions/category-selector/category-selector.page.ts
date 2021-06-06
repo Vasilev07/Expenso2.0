@@ -19,10 +19,10 @@ export class CategorySelectorPage implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.isExpense = this.activatedRoute.snapshot.queryParams.isExpense;
+    this.isExpense = this.activatedRoute.snapshot.queryParams.isExpense === 'true';
 
     this.store.select('categories').subscribe((categories: ICategory[]) => {
-      this.filteredCategories = categories.filter((category: ICategory) => category.isExpense !== this.isExpense);
+      this.filteredCategories = categories.filter((category: ICategory) => category.isExpense === this.isExpense);
     });
 
   }

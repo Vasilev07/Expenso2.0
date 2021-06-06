@@ -39,7 +39,7 @@ export class TransactionPage implements OnInit {
   }
 
   public onCategorySelect(): void {
-    this.router.navigate(['/expenso/tabs/spendings/transaction/category-selector'], {queryParams: { isExpense: `true` }});
+    this.router.navigate(['/expenso/tabs/spendings/transaction/category-selector'], {queryParams: { isExpense: this.isExpense }});
   }
 
   public onSaveClick(): void {
