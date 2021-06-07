@@ -2,15 +2,19 @@ import { NextFunction, Request, Response } from 'express';
 import { decode } from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
 import { transactionSpendingsAggregation } from '../repositories/spendings';
-import { addExpense, addIncome, getSpendings } from '../services/transaction.service';
+import { addExpense, addIncome, getAllTransactions, getSpendings } from '../services/transaction.service';
 
 export const init = (app: any, collection: any): void => {
   app.get('/transaction/spendings', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
-    console.log(transactionSpendingsAggregation);
-
     const transaction = await getSpendings(collection, transactionSpendingsAggregation);
 
     response.send(transaction);
+  });
+
+  app.get('/transaction', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+    const transactions = await getAllTransactions(collection, "6-2021");
+
+    response.send(transactions);
   });
 
   app.post('/transaction', async (request: Request, response: Response, next: NextFunction): Promise<any> => {

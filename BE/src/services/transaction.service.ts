@@ -15,3 +15,7 @@ export const getSpendings =  async (collection: IRepository<ITransaction>, aggre
 
   return await collection.performAggregation(aggregation);
 };
+
+export const getAllTransactions = async (collection: IRepository<ITransaction>, criteria: {}): Promise<ITransaction[]> => {
+  return await collection.findBy(criteria);
+};
