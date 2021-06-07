@@ -7,6 +7,8 @@ import { TransactionsPage } from './transactions.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { TransactionsPageRoutingModule } from './transactions-routing.module';
+import { EffectsModule } from '@ngrx/effects';
+import { TransactionsEffects } from './effects/transactions.effect';
 
 @NgModule({
   imports: [
@@ -16,6 +18,7 @@ import { TransactionsPageRoutingModule } from './transactions-routing.module';
     ExploreContainerComponentModule,
     RouterModule.forChild([{ path: '', component: TransactionsPage }]),
     TransactionsPageRoutingModule,
+    EffectsModule.forFeature([TransactionsEffects]),
   ],
   declarations: [TransactionsPage]
 })

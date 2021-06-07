@@ -5,7 +5,7 @@ import { catchError, map, switchMap } from "rxjs/operators";
 import { TransactionService } from "../services/transaction.service";
 
 @Injectable()
-export class TransactionsEffects {
+export class TransactionEffects {
 
   constructor(private readonly actions$: Actions,
               private readonly transactionService: TransactionService) {
@@ -30,7 +30,7 @@ export class TransactionsEffects {
   });
 
   private getAllTransactions() {
-    return this.transactionService.getAll().pipe(
+    return this.transactionService.getAllSpendings().pipe(
       map((transactions) => ({type: '[Transaction Spendings] Retrieve Transaction Spendings Success', transactions})),
       catchError(() => EMPTY)
     );

@@ -6,7 +6,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { CategoriesPageModule } from "src/app/categories/categories.module";
 import { ExploreContainerComponentModule } from "src/app/explore-container/explore-container.module";
 import { CategorySelectorPage } from "./category-selector/category-selector.page";
-import { TransactionsEffects } from "./effects/transactions.effect";
+import { TransactionEffects } from "./effects/transactions.effect";
 import { TransactionPageRoutingModule } from "./transaction-routing.module";
 import { TransactionPage } from "./transaction.page";
 
@@ -18,7 +18,7 @@ import { TransactionPage } from "./transaction.page";
     ExploreContainerComponentModule,
     TransactionPageRoutingModule,
     CategoriesPageModule,
-    EffectsModule.forFeature([TransactionsEffects]),
+    EffectsModule.forFeature([TransactionEffects]),
   ],
   declarations: [TransactionPage, CategorySelectorPage]
 })

@@ -3,11 +3,11 @@ import { retrieveTransactionsSuccess } from "../actions/transaction.action";
 
 export const initialState = [];
 
-const _transactionsReducer = createReducer(
+const _transactionReducer = createReducer(
     initialState,
     on(retrieveTransactionsSuccess, (state, { transactions }) => [...transactions]),
 )
 
-export const transactionsReducer = (state, action) => {
-    return _transactionsReducer(state, action);
+export const transactionReducer = (state, action) => {
+    return _transactionReducer(state, action);
 }

@@ -5,4 +5,5 @@ export interface IAppState {
     categories: ReadonlyArray<ICategory>;
     user: IFbUser;
     spendings: any;
+    transactions: any;
 }

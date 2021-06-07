@@ -6,7 +6,6 @@ import { SpendingsPage } from './spendings.page';
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { SpendingsPageRoutingModule } from './spendings-routing.module';
-import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   imports: [
