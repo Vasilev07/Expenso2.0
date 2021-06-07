@@ -24,14 +24,14 @@ export class TransactionsEffects {
 
   $retrieveExpences = createEffect((): any => {
     return this.actions$.pipe(
-      ofType('[Transaction List] Retrieve Transaction Spendings'),
+      ofType('[Transaction Spendings] Retrieve Transaction Spendings'),
       switchMap(() => this.getAllTransactions())
     );
   });
 
   private getAllTransactions() {
     return this.transactionService.getAll().pipe(
-      map((transactions) => ({type: '[Transaction List] Retrieve Transaction Spendings Success', transactions})),
+      map((transactions) => ({type: '[Transaction Spendings] Retrieve Transaction Spendings Success', transactions})),
       catchError(() => EMPTY)
     );
   }
