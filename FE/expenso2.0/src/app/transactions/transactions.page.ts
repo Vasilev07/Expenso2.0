@@ -12,16 +12,18 @@ export class TransactionsPage implements OnInit {
   private transactions: any;
   public mergedTransactions: any;
 
-  constructor(private readonly store: Store<{ transactions: [] }>) {}
+  constructor(private readonly store: Store<{ transactions: [] }>) { }
 
   public ngOnInit(): void {
     this.store.select('transactions').subscribe((transactions: any) => {
       this.transactions = transactions[0];
 
       if (this.transactions) {
-        this.mergedTransactions = [...this.transactions.expenses, ...this.transactions.incomes];
-        console.log(this.mergedTransactions);
+        const expences = this.transactions.expenses.map((expense) => ({ ...expense, isExpense: true }));
+        const incomes = this.transactions.incomes.map((expense) => ({ ...expense, isExpense: false }));
 
+        this.mergedTransactions = [...expences, ...incomes];
+        console.log(this.mergedTransactions);
       }
     });
 
