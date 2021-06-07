@@ -22,7 +22,7 @@ const routes: Routes = [
       },
       {
         path: 'transactions',
-        loadChildren: () => import('../tab3/transactions.module').then(m => m.TransactionsPageModule)
+        loadChildren: () => import('../transactions/transactions.module').then(m => m.TransactionsPageModule)
       },
     ]
   }
