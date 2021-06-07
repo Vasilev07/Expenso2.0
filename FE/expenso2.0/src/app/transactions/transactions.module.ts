@@ -18,7 +18,7 @@ import { TransactionsEffects } from './effects/transactions.effect';
     ExploreContainerComponentModule,
     RouterModule.forChild([{ path: '', component: TransactionsPage }]),
     TransactionsPageRoutingModule,
-    EffectsModule.forFeature([TransactionsEffects]),
+    EffectsModule.forFeature([TransactionsEffects])
   ],
   declarations: [TransactionsPage]
 })
