@@ -16,7 +16,6 @@ import { TransactionsEffects } from './effects/transactions.effect';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    RouterModule.forChild([{ path: '', component: TransactionsPage }]),
     TransactionsPageRoutingModule,
     EffectsModule.forFeature([TransactionsEffects])
   ],
