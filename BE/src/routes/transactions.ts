@@ -12,7 +12,8 @@ export const init = (app: any, collection: any): void => {
   });
 
   app.get('/transaction', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
-    const transactions = await getAllTransactions(collection, "6-2021");
+    const transactions = await getAllTransactions(collection, { date: "6-2021" });
+    console.log('transactions', transactions);
 
     response.send(transactions);
   });

@@ -7,5 +7,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item></ion-item>
+  <ion-list>
+    <ion-item *ngFor="let transaction of mergedTransactions">
+      <ion-avatar slot="start">
+        <ion-icon name="{{transaction.category.icon}}"></ion-icon>
+      </ion-avatar>
+      <ion-label>
+        <h2>
+          <div>{{transaction.category.name}}</div>
+          <div>{{transaction.amount}}</div>
+        </h2>
+        <p> {{transaction.date | date: 'short'}}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
