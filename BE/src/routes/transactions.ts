@@ -35,6 +35,7 @@ export const init = (app: any, collection: any): void => {
     };
 
     const transactionToSave = {
+      _id: new ObjectId(),
       date: date.toString(),
       amount: parseFloat(transaction.amount),
       category: {

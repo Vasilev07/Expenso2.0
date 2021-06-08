@@ -2,6 +2,8 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+import { TransactionEditPageRoutingModule } from './transaction-edit-routing.module';
 import { TransactionEditPage } from './transaction-edit.page';
 
 
@@ -10,8 +12,9 @@ import { TransactionEditPage } from './transaction-edit.page';
     IonicModule,
     CommonModule,
     FormsModule,
-    TransactionEditPageModule
+    TransactionEditPageRoutingModule
   ],
-  declarations: [TransactionEditPage]
+  declarations: [TransactionEditPage],
+  exports: [TransactionEditPage]
 })
 export class TransactionEditPageModule {}

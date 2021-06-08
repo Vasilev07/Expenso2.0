@@ -6,6 +6,12 @@ const routes: Routes = [
   {
     path: '',
     component: TransactionsPage,
+    children: [
+      {
+        path: '/edit/:id',
+        loadChildren: () => import('./transaction-edit/transaction-edit.module').then((m) => m.TransactionEditPageModule)
+      }
+    ]
   }
 ];
 
@@ -13,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TransactionsPageRoutingModule {}
+export class TransactionsPageRoutingModule { }

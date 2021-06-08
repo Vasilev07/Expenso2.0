@@ -2,8 +2,7 @@ import { Component } from "@angular/core";
 
 @Component({
   selector: 'transactions-edit',
-  templateUrl: 'transaction-edit.page.html',
-  styleUrls: ['transaction-edit.page.scss']
+  templateUrl: './transaction-edit.page.html'
 })
 export class TransactionEditPage {
 

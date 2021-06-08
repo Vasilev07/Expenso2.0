@@ -8,7 +8,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-item *ngFor="let transaction of mergedTransactions">
+    <ion-item *ngFor="let transaction of mergedTransactions" (click)="onTransactionEdit(transaction)">
       <ion-avatar slot="start">
         <ion-icon name="{{transaction.category.icon}}"></ion-icon>
       </ion-avatar>
