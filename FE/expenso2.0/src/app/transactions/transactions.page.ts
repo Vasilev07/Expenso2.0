@@ -34,7 +34,8 @@ export class TransactionsPage implements OnInit {
   }
 
   public onTransactionEdit(transaction): void {
+    console.log(transaction);
 
-    this.router.navigate(['/expenso/tabs/transactions/edit/']);
+    this.router.navigate([`/expenso/tabs/transactions/${transaction.transactionId}/edit/${transaction._id}`]);
   }
 }

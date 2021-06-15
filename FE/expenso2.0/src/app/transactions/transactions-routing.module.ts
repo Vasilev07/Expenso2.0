@@ -10,7 +10,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'edit',
+    path: ':transactionId/edit/:currentTransaction',
     component: TransactionEditPage,
     pathMatch: 'full'
   }
