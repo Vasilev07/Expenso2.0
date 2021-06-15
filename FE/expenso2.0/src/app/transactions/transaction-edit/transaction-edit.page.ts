@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
+import { ICategory } from "src/app/categories/category.interface";
 
 @Component({
   selector: 'transactions-edit',
@@ -13,6 +14,9 @@ export class TransactionEditPage implements OnInit {
   public foundTransaction: any;
   public expenseSelector: string;
   public isExpense: boolean;
+  public date: string = new Date().toISOString();
+  public amount: number;
+  public selectedCategory: ICategory;
 
   public constructor(private readonly store: Store<{ transactions: [] }>,
                     private readonly router: Router,
@@ -40,6 +44,9 @@ export class TransactionEditPage implements OnInit {
         this.foundTransaction = spendings.find((spending) => spending._id === this.currentTransactionId);
 
         this.expenseSelector = this.foundTransaction.isExpense ? 'expense' : 'income';
+        this.date = this.foundTransaction.date;
+        this.amount = this.foundTransaction.amount;
+        this.selectedCategory = this.foundTransaction.category;
         console.log('this.expenseSelector', this.expenseSelector);
 
         console.log('this.foundTransaction', this.foundTransaction);
