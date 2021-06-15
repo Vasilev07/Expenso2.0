@@ -1,1 +1,45 @@
-asd
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSaveClick()">
+        Save
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Edit Transaction
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="onCancelClick()">
+        Cancel
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment value="{{expenseSelector}}" (ionChange)="expenseToggleSwitched($event)">
+    <ion-segment-button value="expense">Expense</ion-segment-button>
+    <ion-segment-button value="income">Income</ion-segment-button>
+  </ion-segment>
+  <ion-item>
+    <ion-label>Date: </ion-label>
+    <ion-datetime value="date" display-timezone="utc" [(ngModel)]="date">
+    </ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Amount: </ion-label>
+    <ion-input placeholde="Amount" [(ngModel)]="amount">
+    </ion-input>
+  </ion-item>
+
+  <ion-item (click)="onCategorySelect()">
+    <ion-label>Category: </ion-label>
+    <ion-input placeholde="Category">
+      <ng-container *ngIf="selectedCategory">
+        <ion-label>{{selectedCategory.name}}</ion-label>
+        <ion-icon name="{{selectedCategory.icon}}"></ion-icon>
+      </ng-container>
+    </ion-input>
+  </ion-item>
+</ion-content>

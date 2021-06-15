@@ -23,10 +23,9 @@ export class TransactionsPage implements OnInit {
       if (this.transactions) {
         const transactionId = this.transactions._id;
         const expences = this.transactions.expenses.map((expense) => ({ ...expense, isExpense: true, transactionId }));
-        const incomes = this.transactions.incomes.map((expense) => ({ ...expense, isExpense: false, transactionId  }));
+        const incomes = this.transactions.incomes.map((income) => ({ ...income, isExpense: false, transactionId  }));
 
         this.mergedTransactions = [...expences, ...incomes];
-        console.log(this.mergedTransactions);
       }
     });
 
@@ -34,7 +33,6 @@ export class TransactionsPage implements OnInit {
   }
 
   public onTransactionEdit(transaction): void {
-    console.log(transaction);
     this.router.navigate([`/expenso/tabs/transactions/${transaction.transactionId}/edit/${transaction._id}`]);
   }
 }
