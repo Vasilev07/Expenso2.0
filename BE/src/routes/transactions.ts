@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { decode } from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
 import { transactionSpendingsAggregation } from '../repositories/spendings';
-import { addExpense, addIncome, getAllTransactions, getSpendings } from '../services/transaction.service';
+import { addExpense, addIncome, getAllTransactions, getSpendings, updateTransaction } from '../services/transaction.service';
 
 export const init = (app: any, collection: any): void => {
   app.get('/transaction/spendings', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
@@ -58,5 +58,14 @@ export const init = (app: any, collection: any): void => {
       )
 
     return response.status(200).json();
+  });
+
+  app.post('/transaction/:transactionsId/:currentTransactionId', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+    console.log('asdasdasd');
+
+    const transactions = await updateTransaction(collection, 'expenses', {transactionId: '1', currentTransactionId: '1'}, null);
+    console.log('transactions', transactions);
+
+    response.send(transactions);
   });
 };

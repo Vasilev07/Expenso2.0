@@ -3,11 +3,11 @@ import { IExpense, IIncome, ITransaction } from "../models/transaction.interface
 import { IRepository } from "../repositories/mongo.repository";
 
 export const addExpense = async (collection: IRepository<ITransaction>, criteria: { userId: ObjectId, date: string }, entity: IExpense): Promise<void> => {
-  await collection.updateManyArray(criteria, 'expenses', entity);
+  await collection.updateManyAddInArray(criteria, 'expenses', entity);
 };
 
 export const addIncome = async (collection: IRepository<ITransaction>, criteria: { userId: ObjectId, date: string }, entity: IIncome): Promise<void> => {
-  await collection.updateManyArray(criteria, 'incomes', entity);
+  await collection.updateManyAddInArray(criteria, 'incomes', entity);
 };
 
 export const getSpendings =  async (collection: IRepository<ITransaction>, aggregation: any): Promise<ITransaction[]> => {
@@ -18,4 +18,8 @@ export const getSpendings =  async (collection: IRepository<ITransaction>, aggre
 
 export const getAllTransactions = async (collection: IRepository<ITransaction>, criteria: {}): Promise<ITransaction[]> => {
   return await collection.findBy(criteria);
+};
+
+export const updateTransaction = async (collection: IRepository<ITransaction>, toUpdate: string, criteria: {transactionId: string, currentTransactionId: string}, entity: any) => {
+  return await collection.updateManyArray(criteria, toUpdate, entity);
 };

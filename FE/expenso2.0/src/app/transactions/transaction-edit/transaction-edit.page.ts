@@ -33,12 +33,9 @@ export class TransactionEditPage implements OnInit {
       this.transactions = transactions;
 
       if (this.transactions && this.transactions.length > 0) {
-
         const foundTransaction = this.transactions.find((transaction) => transaction._id === this.transactionId);
         const expences = foundTransaction.expenses.map((expense) => ({ ...expense, isExpense: true }));
         const incomes = foundTransaction.incomes.map((expense) => ({ ...expense, isExpense: false  }));
-        console.log('expences', expences);
-        console.log('incomes', incomes);
 
         const spendings = [...expences, ...incomes];
         this.foundTransaction = spendings.find((spending) => spending._id === this.currentTransactionId);
@@ -47,9 +44,6 @@ export class TransactionEditPage implements OnInit {
         this.date = this.foundTransaction.date;
         this.amount = this.foundTransaction.amount;
         this.selectedCategory = this.foundTransaction.category;
-        console.log('this.expenseSelector', this.expenseSelector);
-
-        console.log('this.foundTransaction', this.foundTransaction);
       } else {
           this.router.navigate(['/expenso/tabs/transactions/']);
       }
