@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ITransaction } from '../spendings/transactions/interfaces/transaction.interface';
-import { retrieveTransactions } from './actions/transactions.action';
+import { deleteTransaction, retrieveTransactions } from './actions/transactions.action';
 
 @Component({
   selector: 'transactions',
@@ -34,5 +34,9 @@ export class TransactionsPage implements OnInit {
 
   public onTransactionEdit(transaction): void {
     this.router.navigate([`/expenso/tabs/transactions/${transaction.transactionId}/edit/${transaction._id}`]);
+  }
+
+  public onDeleteTransaction(transaction): void {
+    this.store.dispatch(deleteTransaction({transactionId: transaction.transactionId, currentTransactionId: transaction._id }));
   }
 }

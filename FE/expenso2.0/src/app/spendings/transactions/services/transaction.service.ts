@@ -23,10 +23,10 @@ export class TransactionService {
   }
 
   public edit(transaction: ITransaction, transactionId: string, currentTransactionId: string): any {
-    console.log(transaction);
-    console.log(transactionId);
-    console.log(currentTransactionId);
-
     return this.httpClient.post<ITransaction>(`http://localhost:3001/transaction/${transactionId}/${currentTransactionId}`, transaction);
+  }
+
+  public delete(transactionId: string, currentTransactionId: string): any {
+    return this.httpClient.delete<ITransaction>(`http://localhost:3001/transaction/${transactionId}/${currentTransactionId}`);
   }
 }
