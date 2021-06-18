@@ -11,6 +11,7 @@ export interface IRepository<T> {
   performAggregation: (aggregation: any) => Promise<any>;
   updateMany: (criteria: any, entity: T) => Promise<any>;
   updateManyArray: (criteria: any, toPushIn: string, entity: any) => Promise<void>;
+  removeFromArray: (criteria: any, removeFrom: string, removedItemId: ObjectId) => Promise<any>;
 }
 
 export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<T> => {
@@ -67,6 +68,10 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
     return collection.aggregate(aggregation).toArray();
   };
 
+  const removeFromArray = async (criteria: any, removeFrom: string, removedItemId: ObjectId): Promise<any> => {
+    return collection.updateMany(criteria, { $pull: {[removeFrom]: { _id: removedItemId }}})
+  };
+
   return {
     create,
     findAll,
@@ -77,6 +82,7 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
     updateManyAddInArray,
     performAggregation,
     updateMany,
-    updateManyArray
+    updateManyArray,
+    removeFromArray
   }
 };

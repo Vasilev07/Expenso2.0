@@ -21,3 +21,8 @@ export const getAllTransactions = async (collection: IRepository<ITransaction>, 
 export const updateTransaction = async (collection: IRepository<ITransaction>, toUpdate: string, criteria: {transactionId: string, currentTransactionId: string}, entity: any) => {
   return await collection.updateManyArray(criteria, toUpdate, entity);
 };
+
+export const removeTransaction = async (collection: IRepository<ITransaction>, removeFrom: string ,transactionId: string, currentTransactionId: string) => {
+  const criteria = { _id: new ObjectId(transactionId)};
+  collection.removeFromArray(criteria, removeFrom, new ObjectId(currentTransactionId));
+};

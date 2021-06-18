@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { decode } from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
 import { transactionSpendingsAggregation } from '../repositories/spendings';
-import { addExpense, addIncome, getAllTransactions, getSpendings, updateTransaction } from '../services/transaction.service';
+import { addExpense, addIncome, getAllTransactions, getSpendings, removeTransaction, updateTransaction } from '../services/transaction.service';
 
 export const init = (app: any, collection: any): void => {
   app.get('/transaction/spendings', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
@@ -60,12 +60,24 @@ export const init = (app: any, collection: any): void => {
   });
 
   app.post('/transaction/:transactionsId/:currentTransactionId', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
-    console.log('asdasdasd');
-    console.log(request.body);
+    const transaction = request.body;
 
-    const transactions = await updateTransaction(collection, 'expenses', {transactionId: '1', currentTransactionId: '1'}, null);
-    console.log('transactions', transactions);
+    const transactionId = request.params.transactionsId;
+    const currentTransactionId = request.params.currentTransactionId;
+    const isExpense = transaction.isExpense;
+    const transactionToSave = {
+      date: transaction.date,
+      amount: transaction.amount,
+      category: transaction.category
+    };
 
-    response.send(transactions);
+    const removeFrom = isExpense ? 'expense': 'incomes';
+    console.log(removeFrom);
+
+    await removeTransaction(collection, removeFrom, transactionId, currentTransactionId);
+    // const transactions = await updateTransaction(collection, 'expenses', {transactionId: '1', currentTransactionId: '1'}, null);
+    // console.log('transactions', transactions);
+
+    // response.send(transactions);
   });
 };

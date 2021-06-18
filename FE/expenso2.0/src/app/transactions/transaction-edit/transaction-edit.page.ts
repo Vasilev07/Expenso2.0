@@ -66,7 +66,7 @@ export class TransactionEditPage implements OnInit {
       date: this.date,
       amount: this.amount,
       category: this.selectedCategory,
-      isExpense: this.isExpense
+      isExpense: this.isExpense || this.expenseSelector === 'expense'
     };
 
     this.store.dispatch(editTransaction({
