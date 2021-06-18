@@ -15,7 +15,6 @@ export class TransactionsEffects {
     return this.actions$.pipe(
       ofType('[Transaction] Retrieve Transactions'),
       switchMap(() => this.transactionService.getAllTransactions().pipe(
-          tap(console.log),
           map((transactions) => ({type: '[Transaction] Retrieve Transactions Success', transactions})),
           catchError(() => EMPTY)
       )
