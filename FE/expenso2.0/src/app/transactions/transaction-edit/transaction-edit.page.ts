@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { ICategory } from "src/app/categories/category.interface";
+import { IExpenseIncomeCategory, ITransaction } from "src/app/spendings/transactions/interfaces/transaction.interface";
+import { editTransaction } from "./actions/transaction-edit.action";
 
 @Component({
   selector: 'transactions-edit',
@@ -16,11 +18,11 @@ export class TransactionEditPage implements OnInit {
   public isExpense: boolean;
   public date: string = new Date().toISOString();
   public amount: number;
-  public selectedCategory: ICategory;
+  public selectedCategory: IExpenseIncomeCategory;
 
   public constructor(private readonly store: Store<{ transactions: [] }>,
-                    private readonly router: Router,
-                    private readonly activatedRoute: ActivatedRoute) {
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute) {
 
   }
 
@@ -35,7 +37,7 @@ export class TransactionEditPage implements OnInit {
       if (this.transactions && this.transactions.length > 0) {
         const foundTransaction = this.transactions.find((transaction) => transaction._id === this.transactionId);
         const expences = foundTransaction.expenses.map((expense) => ({ ...expense, isExpense: true }));
-        const incomes = foundTransaction.incomes.map((expense) => ({ ...expense, isExpense: false  }));
+        const incomes = foundTransaction.incomes.map((expense) => ({ ...expense, isExpense: false }));
 
         const spendings = [...expences, ...incomes];
         this.foundTransaction = spendings.find((spending) => spending._id === this.currentTransactionId);
@@ -45,7 +47,7 @@ export class TransactionEditPage implements OnInit {
         this.amount = this.foundTransaction.amount;
         this.selectedCategory = this.foundTransaction.category;
       } else {
-          this.router.navigate(['/expenso/tabs/transactions/']);
+        this.router.navigate(['/expenso/tabs/transactions/']);
       }
     });
   }
@@ -57,5 +59,20 @@ export class TransactionEditPage implements OnInit {
 
   public onCancelClick(): void {
     this.router.navigate(['/expenso/tabs/transactions/']);
+  }
+
+  public onSaveClick(): void {
+    const transaction: ITransaction = {
+      date: this.date,
+      amount: this.amount,
+      category: this.selectedCategory,
+      isExpense: this.isExpense
+    };
+
+    this.store.dispatch(editTransaction({
+      transaction,
+      transactionId: this.transactionId,
+      currentTransactionId: this.currentTransactionId
+    }));
   }
 }

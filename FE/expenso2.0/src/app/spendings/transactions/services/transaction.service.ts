@@ -21,4 +21,12 @@ export class TransactionService {
   public getAllTransactions(): Observable<ITransaction[]> {
     return this.httpClient.get<ITransaction[]>('http://localhost:3001/transaction');
   }
+
+  public edit(transaction: ITransaction, transactionId: string, currentTransactionId: string): any {
+    console.log(transaction);
+    console.log(transactionId);
+    console.log(currentTransactionId);
+
+    return this.httpClient.post<ITransaction>(`http://localhost:3001/transaction/${transactionId}/${currentTransactionId}`, transaction);
+  }
 }

@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 
 import { TransactionEditPageRoutingModule } from './transaction-edit-routing.module';
 import { TransactionEditPage } from './transaction-edit.page';
+import { EffectsModule } from '@ngrx/effects';
+import { TransactionEditEffects } from './effects/transaction-edit.effect';
 
 
 @NgModule({
@@ -12,7 +14,8 @@ import { TransactionEditPage } from './transaction-edit.page';
     IonicModule,
     CommonModule,
     FormsModule,
-    TransactionEditPageRoutingModule
+    TransactionEditPageRoutingModule,
+    EffectsModule.forFeature([TransactionEditEffects]),
   ],
   declarations: [TransactionEditPage],
   exports: [TransactionEditPage]

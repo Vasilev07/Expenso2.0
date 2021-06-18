@@ -10,11 +10,11 @@
   <ion-list>
     <ion-item *ngFor="let transaction of mergedTransactions" (click)="onTransactionEdit(transaction)">
       <ion-avatar slot="start">
-        <ion-icon name="{{transaction.category.icon}}"></ion-icon>
+        <ion-icon name="{{transaction?.category?.icon}}"></ion-icon>
       </ion-avatar>
       <ion-label>
         <h2>
-          <div>{{transaction.category.name}}</div>
+          <div>{{transaction?.category?.name}}</div>
           <div [ngClass]="{'expense': transaction.isExpense, 'income': !transaction.isExpense}">{{transaction.amount}}</div>
         </h2>
         <p> {{transaction.date | date: 'short'}}</p>

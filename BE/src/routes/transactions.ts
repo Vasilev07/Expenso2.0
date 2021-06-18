@@ -62,6 +62,7 @@ export const init = (app: any, collection: any): void => {
 
   app.post('/transaction/:transactionsId/:currentTransactionId', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
     console.log('asdasdasd');
+    console.log(request.body);
 
     const transactions = await updateTransaction(collection, 'expenses', {transactionId: '1', currentTransactionId: '1'}, null);
     console.log('transactions', transactions);
