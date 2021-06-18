@@ -18,7 +18,7 @@ export class TransactionEditEffects {
       switchMap((transactionAction: { transaction: ITransaction, transactionId: string, currentTransactionId: string }) =>
         this.transactionService.edit(transactionAction.transaction, transactionAction.transactionId, transactionAction.currentTransactionId).pipe(
           tap(console.log),
-          map(() => ({type: '[Transaction] Add Transaction Success'})),
+          map(() => ({type: '[Transaction] Retrieve Transactions'})),
           catchError(() => EMPTY)
       ))
     );
