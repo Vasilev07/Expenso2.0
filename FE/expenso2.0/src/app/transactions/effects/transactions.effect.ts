@@ -27,7 +27,7 @@ export class TransactionsEffects {
       ofType('[Transaction] Delete Transactions'),
       tap(console.log),
       switchMap((transactionAction: any) => this.transactionService.delete(transactionAction.transaction.transactionId, transactionAction.transaction._id, transactionAction.transaction.isExpense).pipe(
-        map((transactions) => ({type: '[Transaction] Retrieve Transactions Success', transactions})),
+        map(() => ({type: '[Transaction] Retrieve Transactions'})),
         catchError(() => EMPTY)
       ))
     )
