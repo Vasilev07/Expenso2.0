@@ -25,7 +25,8 @@ const addTransaction = async (collection:any, transaction: any, token: any, curr
       category: {
         categoryId: new ObjectId(transaction.category.categoryId),
         name: transaction.category.name,
-        icon: transaction.category.icon
+        icon: transaction.category.icon,
+        color: transaction.category.color
       }
     };
 

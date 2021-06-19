@@ -43,6 +43,9 @@ export const transactionSpendingsAggregation = [
             '$expenses.amount', '$balance'
           ]
         }
+      },
+      'color': {
+        '$first': '$expenses.category.color'
       }
     }
   }, {

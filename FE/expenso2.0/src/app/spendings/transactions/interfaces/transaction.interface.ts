@@ -9,4 +9,5 @@ export interface IExpenseIncomeCategory {
     categoryId: string;
     name: string;
     icon: string;
+    color: string;
 }

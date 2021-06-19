@@ -50,7 +50,8 @@ export class TransactionPage implements OnInit {
         category: {
           categoryId: this.selectedCategory._id,
           name: this.selectedCategory.name,
-          icon: this.selectedCategory.icon
+          icon: this.selectedCategory.icon,
+          color: this.selectedCategory.color
         }
     };
 

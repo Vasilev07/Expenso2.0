@@ -25,8 +25,6 @@ export class StatisticsPage implements OnInit {
         this.createBarChart();
       }
     });
-
-
   }
 
   public createBarChart() {
@@ -37,12 +35,8 @@ export class StatisticsPage implements OnInit {
         datasets: [{
           label: 'Viewers in millions',
           data: [...this.expenses.map((expense) => expense.expencePercent * 100)],
-          // backgroundColor:
+          backgroundColor: [...this.expenses.map((expense) => expense.color)]
         }]
-      },
-      options: {
-        scales: {
-        }
       }
     });
   }
