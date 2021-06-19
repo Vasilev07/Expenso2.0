@@ -75,4 +75,16 @@ export const init = (app: any, collection: any): void => {
 
     return response.status(200).json();
   });
+
+  app.delete('/transaction/:transactionsId/:currentTransactionId/:isExpense', async (request: Request, response: Response, next: NextFunction) => {
+    const transactionId = request.params.transactionsId;
+    const currentTransactionId = request.params.currentTransactionId;
+    const isExpense = request.params.isExpense;
+    const removeFrom = isExpense === 'true' ? 'expenses' : 'incomes';
+    console.log('params', request.params);
+
+    await removeTransaction(collection, removeFrom, transactionId, currentTransactionId);
+
+    return response.status(200).json();
+  });
 };

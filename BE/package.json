@@ -31,6 +31,7 @@
   "dependencies": {
     "@types/jsonwebtoken": "^8.5.1",
     "@typescript-eslint/parser": "^4.15.1",
+    "cors": "^2.8.5",
     "eslint-config-airbnb": "^18.2.1",
     "express": "^4.17.1",
     "jest": "^26.6.3",

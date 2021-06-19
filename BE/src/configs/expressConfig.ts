@@ -4,6 +4,7 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 export const expressInit = (app: Application) => {
     if (typeof app.use !== 'function'
@@ -25,11 +26,13 @@ export const expressInit = (app: Application) => {
         res.header("Access-Control-Allow-Origin", 'http://localhost');
         res.header("Access-Control-Allow-Origin", 'http://localhost:8080');
         res.header("Access-Control-Allow-Origin", 'http://localhost:8080/');
+        res.header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS")
         res.header("Access-Control-Allow-Origin", '*');
         res.header("Access-Control-Allow-Headers", "*");
 
         next();
       });
 
+    app.use(cors());
     app.use('/static', express.static(path.join(__dirname, '../../public')));
 };

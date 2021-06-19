@@ -3,4 +3,4 @@ import { ITransaction } from "src/app/spendings/transactions/interfaces/transact
 
 export const retrieveTransactions = createAction('[Transaction] Retrieve Transactions');
 export const retrieveTransactionsSucess = createAction('[Transaction] Retrieve Transactions Success', props<{ transactions: ITransaction[] }>());
-export const deleteTransaction = createAction('[Transaction] Delete Transactions', props<{transactionId: string, currentTransactionId: string}>());
+export const deleteTransaction = createAction('[Transaction] Delete Transactions', props<{ transaction: ITransaction }>());

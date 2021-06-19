@@ -37,6 +37,6 @@ export class TransactionsPage implements OnInit {
   }
 
   public onDeleteTransaction(transaction): void {
-    this.store.dispatch(deleteTransaction({transactionId: transaction.transactionId, currentTransactionId: transaction._id }));
+    this.store.dispatch(deleteTransaction({ transaction: transaction }));
   }
 }

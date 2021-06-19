@@ -26,7 +26,7 @@ export class TransactionService {
     return this.httpClient.post<ITransaction>(`http://localhost:3001/transaction/${transactionId}/${currentTransactionId}`, transaction);
   }
 
-  public delete(transactionId: string, currentTransactionId: string): any {
-    return this.httpClient.delete<ITransaction>(`http://localhost:3001/transaction/${transactionId}/${currentTransactionId}`);
+  public delete(transactionId: string, currentTransactionId: string, isExpense: boolean): any {
+    return this.httpClient.delete<ITransaction>(`http://localhost:3001/transaction/${transactionId}/${currentTransactionId}/${isExpense}`);
   }
 }
