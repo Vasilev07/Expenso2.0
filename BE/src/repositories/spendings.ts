@@ -36,6 +36,13 @@ export const transactionSpendingsAggregation = [
       },
       'balance': {
         '$first': '$balance'
+      },
+      'expencePercent': {
+        '$first': {
+          '$divide': [
+            '$expenses.amount', '$balance'
+          ]
+        }
       }
     }
   }, {
