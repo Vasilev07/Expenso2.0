@@ -1,42 +1,47 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { Store } from "@ngrx/store";
 import { Chart, registerables } from 'chart.js';
 
 @Component({
   templateUrl: './statistics.page.html'
 })
-export class StatisticsPage {
+export class StatisticsPage implements OnInit {
   @ViewChild('barChart', {static: true}) public barChart;
 
   public bars: any;
   public colorArray: any;
-  constructor() {
+  private expenses;
+
+  constructor(private readonly store: Store<{ spendings: [] }>) {
     Chart.register(...registerables);
   }
 
-  ionViewDidEnter() {
-    this.createBarChart();
+  public ngOnInit() {
+    this.store.select('spendings').subscribe((spendings: any) => {
+      console.log(spendings);
+
+      if(spendings[0]) {
+        this.expenses = spendings;
+        this.createBarChart();
+      }
+    });
+
+
   }
 
-  createBarChart() {
+  public createBarChart() {
     this.bars = new Chart(this.barChart.nativeElement, {
-      type: 'bar',
+      type: 'doughnut',
       data: {
-        labels: ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8'],
+        labels: [...this.expenses.map((expense) => expense.name)],
         datasets: [{
           label: 'Viewers in millions',
-          data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17],
-          backgroundColor: 'rgb(38, 194, 129)', // array should have same number of elements as number of dataset
-          borderColor: 'rgb(38, 194, 129)',// array should have same number of elements as number of dataset
-          borderWidth: 1
+          data: [...this.expenses.map((expense) => expense.expencePercent * 100)],
+          // backgroundColor:
         }]
       },
       options: {
         scales: {
-          // yAxes: [{
-          //   ticks: {
-          //     beginAtZero: true
-          //   }
-          // }]
         }
       }
     });
