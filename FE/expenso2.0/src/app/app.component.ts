@@ -10,6 +10,7 @@ import { retrieveCategoryList } from './categories/actions/categories.action';
 import { IFbUser } from './interfaces/user-fb.interface';
 import { IUser } from './interfaces/user.interface';
 import { UsersFbService } from './services/users-fb.service';
+import { retrieveTransactions } from './spendings/transactions/actions/transaction.action';
 
 registerWebPlugin(FacebookLogin as any);
 
@@ -44,6 +45,8 @@ export class AppComponent implements OnInit {
     ).subscribe((user) => {
       this.user = { ...user[0] };
     });
+
+    this.store.dispatch(retrieveTransactions());
   }
 
   public afterViewInit(): void {
