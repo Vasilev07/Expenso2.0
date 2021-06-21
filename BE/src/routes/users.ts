@@ -19,7 +19,8 @@ export const init = (app: any, collection: any): void => {
     const user: IUser = {
       email: request.body.email,
       password,
-      name: request.body.email
+      name: request.body.email,
+      darkMode: request.body.dakrMode
     };
 
     registerUser(collection, user);
@@ -46,6 +47,6 @@ export const init = (app: any, collection: any): void => {
       { expiresIn: "1h" }
     );
 
-    return response.status(200).json({ message: 'Auth success', token, user: { email: users[0].email, id: users[0]._id }});
+    return response.status(200).json({ message: 'Auth success', token, user: { email: users[0].email, id: users[0]._id, darkMode: users[0].darkMode }});
   });
 }

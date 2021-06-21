@@ -37,7 +37,7 @@ export class AppEffect {
       switchMap((userLoginType: any) => this.usersService.login(userLoginType.user)),
       tap((response) => this.usersService.storeToken(response.token)),
       switchMap(async (response) => {
-        const user = {email: response.user.email, id: response.user.id };
+        const user = {email: response.user.email, id: response.user.id, darkMode: response.user.darkMode };
 
         return ({ type: '[User Login Success] Performed Login Success', user })
       }),

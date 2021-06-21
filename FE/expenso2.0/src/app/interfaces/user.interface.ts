@@ -6,4 +6,5 @@ export interface IUser {
 export interface IUserDetails {
   email: string;
   id: string;
+  darkMode: boolean;
 }
