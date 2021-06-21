@@ -13,6 +13,10 @@ const routes: Routes = [
     // canActivate: [AuthGuard]
   },
   {
+    path: 'user-settings',
+    loadChildren: () => import('./user-settings/user-settings.module').then(m => m.UserSettingsModule),
+  },
+  {
     path: '**',
     redirectTo: 'expenso'
   }

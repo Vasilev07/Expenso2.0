@@ -30,4 +30,12 @@ export class SpendingsPage implements OnInit {
 
     this.router.navigate(['/expenso/tabs/spendings/transaction'], {queryParams: { isExpense: this.isExpense }});
   }
+
+  public onUserSettingsClick(): void {
+    console.log('asdasdas');
+    console.log(this.router);
+
+
+    this.router.navigate(['/user-settings']);
+  }
 }

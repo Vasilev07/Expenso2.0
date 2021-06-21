@@ -3,11 +3,15 @@
     <ion-title>
       Spendings
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button  (click)="onUserSettingsClick()">
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- <ion-list></ion-list> -->
   <ion-item>
     <ion-datetime displayFormat="MMM YYYY" display-timezone="utc" [(ngModel)]="date">
     </ion-datetime>
