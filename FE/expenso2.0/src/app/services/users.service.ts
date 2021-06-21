@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IUser } from "../interfaces/user.interface";
+import { IUser, IUserDetails } from "../interfaces/user.interface";
 import { StorageService } from "./storage.service";
 
 @Injectable({
@@ -22,5 +22,9 @@ export class UsersService {
 
   public getToken(): any {
     return this.storageService.get('token');
+  }
+
+  public updateUserPreferences(userDetails: IUserDetails): any {
+    return this.httpService.post<IUserDetails>('http://localhost:3001/userPrefferences', userDetails);
   }
 }

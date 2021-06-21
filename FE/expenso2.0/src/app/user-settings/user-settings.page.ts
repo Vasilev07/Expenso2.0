@@ -24,4 +24,8 @@ export class UserSettingsPage implements OnInit {
       this.themeService.enableDarkMode() :
       this.themeService.enableLightMode();
   }
+
+  public onSaveClick(): void {
+
+  }
 }
