@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { EMPTY } from "rxjs";
-import { catchError, map, switchMap } from "rxjs/operators";
+import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { UsersService } from "src/app/services/users.service";
 
 @Injectable()
@@ -15,6 +15,7 @@ export class UserSettingsEffects {
     return this.actions$.pipe(
       ofType('[User Details] Update User Details'),
       switchMap((userDetals) => this.userService.updateUserPreferences(userDetals).pipe(
+        tap(console.log),
         map(() => ({type: '[User Details] Update User Details Success'})),
         catchError(() => EMPTY)
       ))

@@ -8,6 +8,7 @@ const _userReducer = createReducer(
     initialState,
     on(loginUserSuccessWithFB, (state, { user }) => [...state, {...user}]),
     on(loginUserSuccess, (state, { user }) => [...state, {...user}]),
+    on(updateUserDetailsSuccess, (state, { users }) => [...users]),
 )
 
 export const userReducer = (state, action) => {
