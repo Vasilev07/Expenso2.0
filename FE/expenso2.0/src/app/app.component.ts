@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { filter } from 'rxjs/operators';
 import { loginUser, loginUserWithFb } from './actions/app.action';
-import { retrieveCategoryList } from './categories/actions/categories.action';
 import { IFbUser } from './interfaces/user-fb.interface';
 import { IUser } from './interfaces/user.interface';
 import { ThemeService } from './services/theme.service';

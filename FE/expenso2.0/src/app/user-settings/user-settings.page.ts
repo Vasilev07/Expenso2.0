@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { NavController } from "@ionic/angular";
 import { Store } from "@ngrx/store";
 import { IUserDetails } from "../interfaces/user.interface";
 import { ThemeService } from "../services/theme.service";
@@ -12,7 +13,8 @@ export class UserSettingsPage implements OnInit {
   public userPrefferences: IUserDetails;
 
   constructor(private readonly store: Store<{user: IUserDetails}>,
-              private readonly themeService: ThemeService) {
+              private readonly themeService: ThemeService,
+              private readonly navCtrl: NavController) {
   }
 
   public ngOnInit(): void {
@@ -42,5 +44,9 @@ export class UserSettingsPage implements OnInit {
     console.log(this.darkMode);
 
     this.store.dispatch(updateUserDetails({users: [{ ...this.userPrefferences, darkMode: this.darkMode }]}));
+  }
+
+  public onCancelClick(): void {
+    this.navCtrl.back();
   }
 }
