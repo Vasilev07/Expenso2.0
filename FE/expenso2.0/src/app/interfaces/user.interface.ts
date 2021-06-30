@@ -1,6 +1,7 @@
 export interface IUser {
   email: string;
   password: string;
+  darkMode?: boolean;
 }
 
 export interface IUserDetails {

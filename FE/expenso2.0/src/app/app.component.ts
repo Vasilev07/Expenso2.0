@@ -9,6 +9,7 @@ import { loginUser, loginUserWithFb } from './actions/app.action';
 import { retrieveCategoryList } from './categories/actions/categories.action';
 import { IFbUser } from './interfaces/user-fb.interface';
 import { IUser } from './interfaces/user.interface';
+import { ThemeService } from './services/theme.service';
 import { UsersFbService } from './services/users-fb.service';
 import { retrieveTransactions } from './spendings/transactions/actions/transaction.action';
 
@@ -20,8 +21,9 @@ registerWebPlugin(FacebookLogin as any);
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public user$: Observable<IFbUser>;
-  public user: IFbUser;
+  public user$: Observable<unknown>;
+
+  public user: IFbUser | IUser;
   public shouldShowSlides: boolean = true;
   public readonly slideOpts = {
     initialSlide: 1,
@@ -32,7 +34,8 @@ export class AppComponent implements OnInit {
 
   public constructor(private readonly usersService: UsersFbService,
     private readonly router: Router,
-    private readonly store: Store<{ user: IFbUser }>) {
+    private readonly store: Store<{ user: unknown }>,
+    private readonly themeService: ThemeService) {
       this.usersService.setupFbLogin();
       // this.store.dispatch(userLoggedIn());
   }
@@ -44,6 +47,14 @@ export class AppComponent implements OnInit {
       filter((user) => Object.keys(user).length > 0)
     ).subscribe((user) => {
       this.user = { ...user[0] };
+
+      if("darkMode" in this.user) {
+        console.log(this.user);
+
+        (this.user as IUser).darkMode ?
+          this.themeService.enableDarkMode() :
+          this.themeService.enableLightMode();
+      }
     });
 
     this.store.dispatch(retrieveTransactions());
