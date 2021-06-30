@@ -32,7 +32,6 @@ export class SpendingsPage implements OnInit {
   }
 
   public onUserSettingsClick(): void {
-    console.log('asdasdas');
     console.log(this.router);
 
 

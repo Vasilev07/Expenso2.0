@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { Store } from "@ngrx/store";
 import { IUserDetails } from "../interfaces/user.interface";
@@ -11,10 +12,12 @@ import { updateUserDetails } from "./actions/user-settings.action";
 export class UserSettingsPage implements OnInit {
   public darkMode: boolean;
   public userPrefferences: IUserDetails;
+  public currency = 'USD';
 
   constructor(private readonly store: Store<{user: IUserDetails}>,
               private readonly themeService: ThemeService,
-              private readonly navCtrl: NavController) {
+              private readonly navCtrl: NavController,
+              private readonly router: Router) {
   }
 
   public ngOnInit(): void {
@@ -48,5 +51,10 @@ export class UserSettingsPage implements OnInit {
 
   public onCancelClick(): void {
     this.navCtrl.back();
+  }
+
+  public onCurrencySelect(): void {
+    console.log(this.router)
+    this.router.navigate(['/user-settings/currency']);
   }
 }

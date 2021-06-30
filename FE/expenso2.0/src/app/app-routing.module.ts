@@ -8,13 +8,13 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'user-settings',
+    loadChildren: () => import('./user-settings/user-settings.module').then(m => m.UserSettingsModule),
+  },
+  {
     path: 'expenso',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
     // canActivate: [AuthGuard]
-  },
-  {
-    path: 'user-settings',
-    loadChildren: () => import('./user-settings/user-settings.module').then(m => m.UserSettingsModule),
   },
   {
     path: '**',

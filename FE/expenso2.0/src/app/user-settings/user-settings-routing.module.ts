@@ -6,6 +6,11 @@ const routes: Routes = [{
   path: '',
   component: UserSettingsPage,
   pathMatch: 'full'
+},
+{
+  path: 'currency',
+  loadChildren: () => import('./currencies/currency.module').then(m => m.CurrencyModule),
+  pathMatch: 'full'
 }];
 
 @NgModule({
