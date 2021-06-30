@@ -2,12 +2,14 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { IUserDetails } from "../interfaces/user.interface";
 import { ThemeService } from "../services/theme.service";
+import { updateUserDetails } from "./actions/user-settings.action";
 
 @Component({
   templateUrl: './user-settings.page.html'
 })
 export class UserSettingsPage implements OnInit {
   public darkMode: boolean;
+  public userPrefferences: IUserDetails;
 
   constructor(private readonly store: Store<{user: IUserDetails}>,
               private readonly themeService: ThemeService) {
@@ -15,17 +17,30 @@ export class UserSettingsPage implements OnInit {
 
   public ngOnInit(): void {
     this.store.select('user').subscribe((userDetail) => {
-      this.darkMode = userDetail[0].darkMode;
+      this.userPrefferences = userDetail[0];
+      this.darkMode = this.userPrefferences.darkMode;
     });
   }
 
   public onDarkModeChange(event): void {
     event ?
-      this.themeService.enableDarkMode() :
-      this.themeService.enableLightMode();
+      this.enableDarkMode() :
+      this.enableLightMode();
+  }
+
+  public enableDarkMode(): void {
+    this.darkMode = true;
+    this.themeService.enableDarkMode();
+  }
+
+  public enableLightMode(): void {
+    this.darkMode = false;
+    this.themeService.enableLightMode();
   }
 
   public onSaveClick(): void {
+    console.log(this.darkMode);
 
+    this.store.dispatch(updateUserDetails({users: [{ ...this.userPrefferences, darkMode: this.darkMode }]}));
   }
 }

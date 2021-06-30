@@ -4,7 +4,7 @@ import { sign } from 'jsonwebtoken';
 
 import { Statuses } from '../enums/status.enum';
 import { IUser } from '../models/user.interface';
-import { findUserByEmail, registerUser } from '../services/user.service';
+import { findUserByEmail, registerUser, updateUser } from '../services/user.service';
 
 export const init = (app: any, collection: any): void => {
   app.post('/signup', async (request: Request, response: Response, next: NextFunction): Promise<void> => {
@@ -48,5 +48,22 @@ export const init = (app: any, collection: any): void => {
     );
 
     return response.status(200).json({ message: 'Auth success', token, user: { email: users[0].email, id: users[0]._id, darkMode: users[0].darkMode }});
+  });
+
+  app.post('/userPrefferences', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+    const requestUsers = request.body.users[0];
+    const users = await findUserByEmail(collection, requestUsers.email);
+
+    if (users.length < 1) {
+      return response.status(401).json({ message: "Auth failed" });
+    }
+
+    console.log(users);
+    console.log(request.body);
+
+
+    await updateUser(collection, users[0]._id as any, { darkMode: request.body.users[0].darkMode });
+
+    return response.status(200).json();
   });
 }

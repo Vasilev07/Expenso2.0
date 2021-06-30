@@ -61,7 +61,10 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
   };
 
   const updateMany = async (criteria: any, entity: T): Promise<any> => {
-    collection.updateMany({ ...criteria }, entity);
+    console.log(criteria);
+    console.log(entity);
+
+    return collection.updateMany({ ...criteria }, {"$set": { ...entity }});
   };
 
   const performAggregation = async (aggregation: any): Promise<any> => {

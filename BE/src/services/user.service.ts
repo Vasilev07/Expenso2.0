@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { IUser } from "../models/user.interface";
 import { IRepository } from "../repositories/mongo.repository";
 
@@ -7,7 +8,7 @@ export const registerUser = async (collection: IRepository<IUser>, entity: IUser
 
 export const findUserByEmail = async (collection: IRepository<IUser>, email: string): Promise<IUser[]> => {
   return await collection.findBy({email});
-}
+};
 
 export const getUserById = async (collection: IRepository<IUser>, entity: IUser): Promise<IUser[] | null> => {
   if (entity._id) {
@@ -15,4 +16,11 @@ export const getUserById = async (collection: IRepository<IUser>, entity: IUser)
   }
 
   return null;
-}
+};
+
+export const updateUser = async (collection: IRepository<IUser>, userId: string, entity: any): Promise<IUser[]> => {
+  console.log(userId);
+  console.log(entity);
+
+  return collection.updateMany({_id: new ObjectId(userId)}, entity);
+};
