@@ -64,6 +64,6 @@ export const init = (app: any, collection: any): void => {
 
     await updateUser(collection, users[0]._id as any, { darkMode: request.body.users[0].darkMode });
 
-    return response.status(200).json({});
+    return response.status(200).json([]);
   });
 }

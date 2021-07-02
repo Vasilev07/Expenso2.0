@@ -1,1 +1,21 @@
-asdasdas
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Select Currency
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="onCancelClick()">
+        Cancel
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let currency of currencies">
+      <ion-label>{{ currency.symbol | currencySymbol }}</ion-label>
+      <ion-note slot="end">{{ currency.name }}</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-content>

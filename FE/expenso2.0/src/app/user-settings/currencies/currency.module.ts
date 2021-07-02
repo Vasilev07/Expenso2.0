@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
+import { CurrencySymbolPipe } from "src/app/user-settings/currency.pipe";
 import { CurrencyRoutingModule } from "./currency-routing.module";
 import { CurrencyPage } from "./currency.page";
 
@@ -11,9 +12,9 @@ import { CurrencyPage } from "./currency.page";
     CurrencyRoutingModule,
     CommonModule,
     IonicModule,
-    FormsModule,
+    FormsModule
   ],
-  declarations: [CurrencyPage]
+  declarations: [CurrencyPage, CurrencySymbolPipe]
 })
 export class CurrencyModule {
 }
