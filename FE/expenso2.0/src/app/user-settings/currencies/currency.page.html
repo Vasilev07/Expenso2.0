@@ -14,7 +14,7 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let currency of currencies">
-      <ion-label>{{ currency.symbol | currencySymbol }}</ion-label>
+      <ion-label>{{ currency.currency | currencySymbol }}</ion-label>
       <ion-note slot="end">{{ currency.name }}</ion-note>
     </ion-item>
   </ion-list>

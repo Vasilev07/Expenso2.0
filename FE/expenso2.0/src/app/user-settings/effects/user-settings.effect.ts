@@ -14,7 +14,7 @@ export class UserSettingsEffects {
   $updateUserSettings = createEffect((): any => {
     return this.actions$.pipe(
       ofType('[User Details] Update User Details'),
-      switchMap((userDetals) => this.userService.updateUserPreferences(userDetals).pipe(
+      switchMap((userDetails) => this.userService.updateUserPreferences(userDetails).pipe(
         tap(console.log),
         map(() => ({type: '[User Details] Update User Details Success'})),
         catchError(() => EMPTY)

@@ -8,4 +8,5 @@ export interface IUserDetails {
   email: string;
   id: string;
   darkMode: boolean;
+  currency: string;
 }

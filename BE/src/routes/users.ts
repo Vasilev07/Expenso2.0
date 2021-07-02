@@ -47,7 +47,7 @@ export const init = (app: any, collection: any): void => {
       { expiresIn: "1h" }
     );
 
-    return response.status(200).json({ message: 'Auth success', token, user: { email: users[0].email, id: users[0]._id, darkMode: users[0].darkMode }});
+    return response.status(200).json({ message: 'Auth success', token, user: { email: users[0].email, id: users[0]._id, darkMode: users[0].darkMode } });
   });
 
   app.post('/userPrefferences', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
@@ -62,7 +62,11 @@ export const init = (app: any, collection: any): void => {
     console.log(request.body);
 
 
-    await updateUser(collection, users[0]._id as any, { darkMode: request.body.users[0].darkMode });
+    await updateUser(collection, users[0]._id as any, {
+      darkMode: request.body.users[0].darkMode,
+      currency: request.body.users[0].currency
+    }
+    );
 
     return response.status(200).json([]);
   });
