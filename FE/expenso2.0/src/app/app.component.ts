@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
   };
   public email: string;
   public password: string;
+  public currency: string;
 
   public constructor(private readonly usersService: UsersFbService,
     private readonly router: Router,
@@ -71,7 +72,7 @@ export class AppComponent implements OnInit {
   }
 
   public onLogin(): void {
-    const user: IUser = { email: this.email, password: this. password };
+    const user: IUser = { email: this.email, password: this.password, currency: this.currency };
     this.store.dispatch(loginUser({ user }));
   }
 }

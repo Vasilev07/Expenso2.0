@@ -20,7 +20,8 @@ export const init = (app: any, collection: any): void => {
       email: request.body.email,
       password,
       name: request.body.email,
-      darkMode: request.body.dakrMode
+      darkMode: request.body.dakrMode,
+      currency: request.body.currency
     };
 
     registerUser(collection, user);
@@ -47,27 +48,34 @@ export const init = (app: any, collection: any): void => {
       { expiresIn: "1h" }
     );
 
-    return response.status(200).json({ message: 'Auth success', token, user: { email: users[0].email, id: users[0]._id, darkMode: users[0].darkMode } });
+    return response.status(200).json({ message: 'Auth success', token, user: { email: users[0].email, id: users[0]._id, darkMode: users[0].darkMode, currency: users[0].currency } });
   });
 
   app.post('/userPrefferences', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
     const requestUsers = request.body.users[0];
-    const users = await findUserByEmail(collection, requestUsers.email);
+    const foundUser = await findUserByEmail(collection, requestUsers.email);
 
-    if (users.length < 1) {
+    if (foundUser.length < 1) {
       return response.status(401).json({ message: "Auth failed" });
     }
 
-    console.log(users);
+    console.log(foundUser);
     console.log(request.body);
+    const userMode =  request.body.users[0].darkMode;
+    const userCurrency = request.body.users[0].currency
 
+    const users = [{
+      ...foundUser[0],
+      currency: userCurrency,
+      darkMode: userMode
+    }];
 
     await updateUser(collection, users[0]._id as any, {
-      darkMode: request.body.users[0].darkMode,
-      currency: request.body.users[0].currency
+      darkMode: userMode,
+      currency: userCurrency
     }
     );
 
-    return response.status(200).json([]);
+    return response.status(200).json([...users]);
   });
 }
