@@ -15,8 +15,7 @@ export class UserSettingsEffects {
     return this.actions$.pipe(
       ofType('[User Details] Update User Details'),
       switchMap((userDetails) => this.userService.updateUserPreferences(userDetails).pipe(
-        tap(console.log),
-        map(() => ({type: '[User Details] Update User Details Success'})),
+        map((users) => ({type: '[User Details] Update User Details Success', users})),
         catchError(() => EMPTY)
       ))
     );

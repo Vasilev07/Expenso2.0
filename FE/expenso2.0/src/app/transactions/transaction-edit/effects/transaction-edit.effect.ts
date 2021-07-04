@@ -17,7 +17,6 @@ export class TransactionEditEffects {
       ofType('[Transaction Edit] Edit Transaction'),
       switchMap((transactionAction: { transaction: ITransaction, transactionId: string, currentTransactionId: string }) =>
         this.transactionService.edit(transactionAction.transaction, transactionAction.transactionId, transactionAction.currentTransactionId).pipe(
-          tap(console.log),
           map(() => ({type: '[Transaction] Retrieve Transactions'})),
           catchError(() => EMPTY)
       ))
