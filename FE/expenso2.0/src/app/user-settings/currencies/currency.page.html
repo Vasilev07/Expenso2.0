@@ -13,7 +13,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let currency of currencies">
+    <ion-item *ngFor="let currency of currencies" (click)="onCurrencySelect(currency)">
       <ion-label>{{ currency.currency | currencySymbol }}</ion-label>
       <ion-note slot="end">{{ currency.name }}</ion-note>
     </ion-item>

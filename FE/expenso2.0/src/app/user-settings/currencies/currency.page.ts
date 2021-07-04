@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { NavController } from "@ionic/angular";
+import { UserSettingsService } from "../services/user-settings.service";
 
 @Component({
   templateUrl: './currency.page.html',
@@ -10,7 +11,8 @@ export class CurrencyPage implements OnInit {
   public currencies: any;
 
   constructor(private readonly http: HttpClient,
-              private readonly navCtrl: NavController) {
+              private readonly navCtrl: NavController,
+              private readonly usersSettingsService: UserSettingsService) {
   }
 
   public ngOnInit(): void {
@@ -21,10 +23,15 @@ export class CurrencyPage implements OnInit {
           name: currency[1]
         };
       });
-
-      console.log(this.currencies);
-
     });
+  }
+
+  public onCurrencySelect(currency): void {
+    console.log(currency);
+
+    this.usersSettingsService.settings.next(currency);
+
+    this.onCancelClick();
   }
 
   public onCancelClick(): void {

@@ -5,6 +5,7 @@ import { Store } from "@ngrx/store";
 import { IUserDetails } from "../interfaces/user.interface";
 import { ThemeService } from "../services/theme.service";
 import { updateUserDetails } from "./actions/user-settings.action";
+import { UserSettingsService } from "./services/user-settings.service";
 
 @Component({
   templateUrl: './user-settings.page.html'
@@ -12,18 +13,27 @@ import { updateUserDetails } from "./actions/user-settings.action";
 export class UserSettingsPage implements OnInit {
   public darkMode: boolean;
   public userPrefferences: IUserDetails;
-  public currency = 'USD';
+  public currency;
+  public currencyName: string = 'USD';
 
   constructor(private readonly store: Store<{user: IUserDetails}>,
               private readonly themeService: ThemeService,
               private readonly navCtrl: NavController,
-              private readonly router: Router) {
+              private readonly router: Router,
+              private readonly usersSettingsService: UserSettingsService) {
   }
 
   public ngOnInit(): void {
     this.store.select('user').subscribe((userDetail) => {
       this.userPrefferences = userDetail[0];
       this.darkMode = this.userPrefferences.darkMode;
+    });
+
+    this.usersSettingsService.settings.subscribe((currency) => {
+      if (currency) {
+        this.currency = currency;
+        this.currencyName = currency.currency;
+      }
     });
   }
 
