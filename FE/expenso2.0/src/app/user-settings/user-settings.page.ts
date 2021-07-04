@@ -14,7 +14,6 @@ export class UserSettingsPage implements OnInit {
   public darkMode: boolean;
   public userPrefferences: IUserDetails;
   public currency;
-  public currencyName: string = 'USD';
 
   constructor(private readonly store: Store<{user: IUserDetails}>,
               private readonly themeService: ThemeService,
@@ -31,8 +30,7 @@ export class UserSettingsPage implements OnInit {
 
     this.usersSettingsService.settings.subscribe((currency) => {
       if (currency) {
-        this.currency = currency;
-        this.currencyName = currency.currency;
+        this.currency = currency.currency;
       }
     });
   }
@@ -54,8 +52,6 @@ export class UserSettingsPage implements OnInit {
   }
 
   public onSaveClick(): void {
-    console.log(this.darkMode);
-    console.log(this.currency);
     this.store.dispatch(updateUserDetails({users: [{ ...this.userPrefferences, darkMode: this.darkMode, currency: this.currency }]}));
   }
 
@@ -64,7 +60,6 @@ export class UserSettingsPage implements OnInit {
   }
 
   public onCurrencySelect(): void {
-    console.log(this.router)
     this.router.navigate(['/user-settings/currency']);
   }
 }

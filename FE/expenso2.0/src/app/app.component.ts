@@ -48,8 +48,6 @@ export class AppComponent implements OnInit {
       this.user = { ...user[0] };
 
       if("darkMode" in this.user) {
-        console.log(this.user);
-
         (this.user as IUser).darkMode ?
           this.themeService.enableDarkMode() :
           this.themeService.enableLightMode();
