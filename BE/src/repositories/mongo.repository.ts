@@ -61,9 +61,6 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
   };
 
   const updateMany = async (criteria: any, entity: T): Promise<any> => {
-    console.log(criteria);
-    console.log(entity);
-
     return collection.updateMany({ ...criteria }, {"$set": { ...entity }});
   };
 
@@ -72,10 +69,6 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
   };
 
   const removeFromArray = async (criteria: any, removeFrom: string, removedItemId: ObjectId): Promise<any> => {
-    console.log(criteria);
-    console.log(removeFrom);
-    console.log(removedItemId);
-
     return collection.updateMany(criteria, { $pull: {[removeFrom]: { _id: removedItemId }}})
   };
 
