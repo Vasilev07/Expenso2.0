@@ -26,6 +26,7 @@ export class UserSettingsPage implements OnInit {
     this.store.select('user').subscribe((userDetail) => {
       this.userPrefferences = userDetail[0];
       this.darkMode = this.userPrefferences.darkMode;
+      this.currency = this.userPrefferences.currency;
     });
 
     this.usersSettingsService.settings.subscribe((currency) => {
