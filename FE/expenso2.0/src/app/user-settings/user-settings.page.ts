@@ -53,6 +53,8 @@ export class UserSettingsPage implements OnInit {
 
   public onSaveClick(): void {
     this.store.dispatch(updateUserDetails({users: [{ ...this.userPrefferences, darkMode: this.darkMode, currency: this.currency }]}));
+
+    this.onCancelClick();
   }
 
   public onCancelClick(): void {
