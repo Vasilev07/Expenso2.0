@@ -82,7 +82,6 @@ export const init = (app: any, collection: any): void => {
     const currentTransactionId = request.params.currentTransactionId;
     const isExpense = request.params.isExpense;
     const removeFrom = isExpense === 'true' ? 'expenses' : 'incomes';
-    console.log('params', request.params);
 
     await removeTransaction(collection, removeFrom, transactionId, currentTransactionId);
 

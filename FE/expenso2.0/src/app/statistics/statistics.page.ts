@@ -18,8 +18,6 @@ export class StatisticsPage implements OnInit {
 
   public ngOnInit() {
     this.store.select('spendings').subscribe((spendings: any) => {
-      console.log(spendings);
-
       if(spendings[0]) {
         this.expenses = spendings;
         this.createBarChart();

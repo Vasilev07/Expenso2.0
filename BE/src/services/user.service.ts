@@ -19,8 +19,5 @@ export const getUserById = async (collection: IRepository<IUser>, entity: IUser)
 };
 
 export const updateUser = async (collection: IRepository<IUser>, userId: string, entity: any): Promise<IUser[]> => {
-  console.log(userId);
-  console.log(entity);
-
   return collection.updateMany({_id: new ObjectId(userId)}, entity);
 };

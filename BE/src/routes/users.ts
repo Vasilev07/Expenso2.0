@@ -59,8 +59,6 @@ export const init = (app: any, collection: any): void => {
       return response.status(401).json({ message: "Auth failed" });
     }
 
-    console.log(foundUser);
-    console.log(request.body);
     const userMode =  request.body.users[0].darkMode;
     const userCurrency = request.body.users[0].currency
 

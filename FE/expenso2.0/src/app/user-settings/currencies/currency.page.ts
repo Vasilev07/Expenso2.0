@@ -27,8 +27,6 @@ export class CurrencyPage implements OnInit {
   }
 
   public onCurrencySelect(currency): void {
-    console.log(currency);
-
     this.usersSettingsService.settings.next(currency);
 
     this.onCancelClick();
