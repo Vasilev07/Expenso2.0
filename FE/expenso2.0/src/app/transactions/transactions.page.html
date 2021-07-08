@@ -7,8 +7,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-toolbar>
+    <ion-searchbar (ionChange)="onSearchTriggered($event)"></ion-searchbar>
+  </ion-toolbar>
   <ion-list>
-    <ion-item *ngFor="let transaction of mergedTransactions">
+    <ion-item *ngFor="let transaction of filteredData">
       <ion-avatar slot="start" (click)="onTransactionEdit(transaction)">
         <ion-icon name="{{transaction?.category?.icon}}"></ion-icon>
       </ion-avatar>

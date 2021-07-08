@@ -13,6 +13,7 @@ export class TransactionsPage implements OnInit {
   private transactions: any;
   public mergedTransactions: any;
   public user;
+  public filteredData: any;
 
   constructor(private readonly store: Store<{ transactions: [], user: [] }>,
               private readonly router: Router) { }
@@ -28,6 +29,8 @@ export class TransactionsPage implements OnInit {
 
         this.mergedTransactions = [...expences, ...incomes];
       }
+
+      this.filteredData = this.mergedTransactions;
     });
 
     this.store.select('user').subscribe((user: any) => {
@@ -43,5 +46,13 @@ export class TransactionsPage implements OnInit {
 
   public onDeleteTransaction(transaction): void {
     this.store.dispatch(deleteTransaction({ transaction: transaction }));
+  }
+
+  public onSearchTriggered(event): void {
+    const searchTerm = event.detail.value;
+
+    this.filteredData = this.mergedTransactions.filter((transaction) => {
+      return transaction.category.name.toLowerCase().includes(searchTerm)
+    });
   }
 }

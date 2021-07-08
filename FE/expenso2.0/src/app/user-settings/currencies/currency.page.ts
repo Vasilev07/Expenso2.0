@@ -39,10 +39,7 @@ export class CurrencyPage implements OnInit {
   }
 
   public onSearchTriggered(event): void {
-    console.log(event);
     const searchTerm = event.detail.value;
-
-    console.log(this.filteredData);
 
     this.filteredData = this.currencies.filter((currency) => {
       return currency.name.toLowerCase().includes(searchTerm)
