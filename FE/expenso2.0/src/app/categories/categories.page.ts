@@ -14,6 +14,7 @@ export class CategoriesPage implements OnInit {
   private categories: ICategory[];
   public filteredCategories: ICategory[];
   public isExpense: boolean = true;
+  public filteredData;
 
   constructor(private readonly store: Store<{ categories: [] }>,
               private readonly router: Router) {
@@ -23,6 +24,7 @@ export class CategoriesPage implements OnInit {
     this.store.select('categories').subscribe((categories: ICategory[]) => {
       this.categories = categories;
       this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
+      this.filteredData = this.filteredCategories;
     });
   }
 
@@ -34,6 +36,14 @@ export class CategoriesPage implements OnInit {
     this.isExpense = event.detail.value === 'expense';
 
     this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
+  }
+
+  public onSearchTriggered(event): void {
+    const searchTerm = event.detail.value;
+
+    this.filteredData = this.filteredCategories.filter((category) => {
+      return category.name.toLowerCase().includes(searchTerm);
+    });
   }
 
   private filterCategoriesOnTypChange(categories: ICategory[], isExpense: boolean): ICategory[] {
