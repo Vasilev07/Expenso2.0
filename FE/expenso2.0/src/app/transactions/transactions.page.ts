@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActionSheetController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
 import { ITransaction } from '../spendings/transactions/interfaces/transaction.interface';
 import { deleteTransaction, retrieveTransactions } from './actions/transactions.action';
@@ -16,7 +17,8 @@ export class TransactionsPage implements OnInit {
   public filteredData: any;
 
   constructor(private readonly store: Store<{ transactions: [], user: [] }>,
-              private readonly router: Router) { }
+              private readonly router: Router,
+              public actionSheetController: ActionSheetController) { }
 
   public ngOnInit(): void {
     this.store.select('transactions').subscribe((transactions: any) => {
@@ -54,5 +56,45 @@ export class TransactionsPage implements OnInit {
     this.filteredData = this.mergedTransactions.filter((transaction) => {
       return transaction.category.name.toLowerCase().includes(searchTerm)
     });
+  }
+
+  public async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Albums',
+      cssClass: 'my-custom-class',
+      buttons: [{
+        text: 'Date (Newest First)',
+        role: 'destructive',
+        handler: () => {
+          console.log('Delete clicked');
+        }
+      }, {
+        text: 'Date (Oldest First)',
+        handler: () => {
+          console.log('Share clicked');
+        }
+      }, {
+        text: 'Amount (Highest First)',
+        handler: () => {
+          console.log('Play clicked');
+        }
+      }, {
+        text: 'Amount (Lowest First)',
+        handler: () => {
+          console.log('Favorite clicked');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
+
+    const { role } = await actionSheet.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
 }

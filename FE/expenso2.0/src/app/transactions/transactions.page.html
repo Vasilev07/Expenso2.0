@@ -9,6 +9,7 @@
 <ion-content [fullscreen]="true">
   <ion-toolbar>
     <ion-searchbar (ionChange)="onSearchTriggered($event)"></ion-searchbar>
+    <ion-button expand="full" (click)="presentActionSheet()">Sort</ion-button>
   </ion-toolbar>
   <ion-list>
     <ion-item *ngFor="let transaction of filteredData">
