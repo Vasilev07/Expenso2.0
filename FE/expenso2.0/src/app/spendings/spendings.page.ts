@@ -12,9 +12,10 @@ export class SpendingsPage implements OnInit {
   public isExpense: boolean;
   public spendings: any;
   public date = new Date().toISOString();
+  public user: any[];
 
   public constructor(private readonly router: Router,
-                    private readonly store: Store<{ spendings: [] }>) {
+                    private readonly store: Store<{ spendings: [], user: [] }>) {
   }
 
   public ngOnInit(): void {
@@ -22,6 +23,10 @@ export class SpendingsPage implements OnInit {
 
     this.store.select('spendings').subscribe((spendings) => {
       this.spendings = spendings;
+    });
+
+    this.store.select('user').subscribe((user: any) => {
+      this.user = user[0];
     });
   }
 

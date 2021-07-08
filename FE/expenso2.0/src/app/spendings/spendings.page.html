@@ -22,11 +22,12 @@
         {{item.name}}
         <ion-icon name={{item.icon}}></ion-icon>
       </ion-label>
-      <ion-label slot="end">{{item.expenses}}</ion-label>
+      <ion-label slot="end">{{item.expenses}} {{ user.currency }}</ion-label>
   </ion-item>
   <ion-item>
     <ion-label>
         Balance: {{ spendings[0]?.balance }}
+        {{ user.currency }}
     </ion-label>
   </ion-item>
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">

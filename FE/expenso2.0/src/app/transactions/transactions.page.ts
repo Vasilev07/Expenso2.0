@@ -12,8 +12,9 @@ import { deleteTransaction, retrieveTransactions } from './actions/transactions.
 export class TransactionsPage implements OnInit {
   private transactions: any;
   public mergedTransactions: any;
+  public user;
 
-  constructor(private readonly store: Store<{ transactions: [] }>,
+  constructor(private readonly store: Store<{ transactions: [], user: [] }>,
               private readonly router: Router) { }
 
   public ngOnInit(): void {
@@ -27,6 +28,10 @@ export class TransactionsPage implements OnInit {
 
         this.mergedTransactions = [...expences, ...incomes];
       }
+    });
+
+    this.store.select('user').subscribe((user: any) => {
+      this.user = user[0];
     });
 
     this.store.dispatch(retrieveTransactions())
