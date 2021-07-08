@@ -12,8 +12,11 @@
 </ion-header>
 
 <ion-content>
+  <ion-toolbar>
+    <ion-searchbar (ionChange)="onSearchTriggered($event)"></ion-searchbar>
+  </ion-toolbar>
   <ion-list>
-    <ion-item *ngFor="let currency of currencies" (click)="onCurrencySelect(currency)">
+    <ion-item *ngFor="let currency of filteredData" (click)="onCurrencySelect(currency)">
       <ion-label>{{ currency.currency | currencySymbol }}</ion-label>
       <ion-note slot="end">{{ currency.name }}</ion-note>
     </ion-item>

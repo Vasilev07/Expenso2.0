@@ -9,6 +9,7 @@ import { UserSettingsService } from "../services/user-settings.service";
 })
 export class CurrencyPage implements OnInit {
   public currencies: any;
+  public filteredData: any;
 
   constructor(private readonly http: HttpClient,
               private readonly navCtrl: NavController,
@@ -23,6 +24,7 @@ export class CurrencyPage implements OnInit {
           name: currency[1]
         };
       });
+      this.filteredData = this.currencies;
     });
   }
 
@@ -34,5 +36,16 @@ export class CurrencyPage implements OnInit {
 
   public onCancelClick(): void {
     this.navCtrl.back();
+  }
+
+  public onSearchTriggered(event): void {
+    console.log(event);
+    const searchTerm = event.detail.value;
+
+    console.log(this.filteredData);
+
+    this.filteredData = this.currencies.filter((currency) => {
+      return currency.name.toLowerCase().includes(searchTerm)
+    });
   }
 }
