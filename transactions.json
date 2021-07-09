@@ -1,0 +1,58 @@
+[{
+  "_id": {
+    "$oid": "60ce39127e382cf71fac0e50"
+  },
+  "date": "6-2021",
+  "userId": {
+    "$oid": "60b3f2c0ae329307380afd58"
+  },
+  "incomes": [
+    {
+      "_id": {
+        "$oid": "60ce39121de1114784077cd9"
+      },
+      "date": "Sat Jun 19 2021 21:35:55 GMT+0300 (Eastern European Summer Time)",
+      "amount": 1000,
+      "category": {
+        "categoryId": {
+          "$oid": "60b9416be1b5af4414cc908b"
+        },
+        "name": "Salary",
+        "icon": "cash-outline",
+        "color": "#33e436"
+      }
+    }
+  ],
+  "expenses": [
+    {
+      "_id": {
+        "$oid": "60ce39181de1114784077cda"
+      },
+      "date": "Sat Jun 19 2021 21:36:03 GMT+0300 (Eastern European Summer Time)",
+      "amount": 100,
+      "category": {
+        "categoryId": {
+          "$oid": "60b940def76f1130c8f19ceb"
+        },
+        "name": "Bike",
+        "icon": "bicycle-outline",
+        "color": "#59e433"
+      }
+    },
+    {
+      "_id": {
+        "$oid": "60ce3a448604a7168c79cb43"
+      },
+      "date": "Sat Jun 19 2021 21:41:03 GMT+0300 (Eastern European Summer Time)",
+      "amount": 100,
+      "category": {
+        "categoryId": {
+          "$oid": "60b940d4f76f1130c8f19cea"
+        },
+        "name": "Sport",
+        "icon": "american-football-outline",
+        "color": "#e433b4"
+      }
+    }
+  ]
+}]

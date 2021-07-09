@@ -1,0 +1,56 @@
+[{
+  "_id": {
+    "$oid": "60b940b9f76f1130c8f19ce8"
+  },
+  "icon": "hammer-outline",
+  "name": "Home",
+  "isExpense": true,
+  "userId": {
+    "$oid": "60b3f2c0ae329307380afd58"
+  },
+  "color": "#e433f3"
+},{
+  "_id": {
+    "$oid": "60b940c7f76f1130c8f19ce9"
+  },
+  "color": "#337ae4",
+  "icon": "fast-food-outline",
+  "name": "Food",
+  "isExpense": true,
+  "userId": {
+    "$oid": "60b3f2c0ae329307380afd58"
+  }
+},{
+  "_id": {
+    "$oid": "60b940d4f76f1130c8f19cea"
+  },
+  "color": "#e433b4",
+  "icon": "american-football-outline",
+  "name": "Sport",
+  "isExpense": true,
+  "userId": {
+    "$oid": "60b3f2c0ae329307380afd58"
+  }
+},{
+  "_id": {
+    "$oid": "60b940def76f1130c8f19ceb"
+  },
+  "color": "#59e433",
+  "icon": "bicycle-outline",
+  "name": "Bike",
+  "isExpense": true,
+  "userId": {
+    "$oid": "60b3f2c0ae329307380afd58"
+  }
+},{
+  "_id": {
+    "$oid": "60b9416be1b5af4414cc908b"
+  },
+  "color": "#33e436",
+  "icon": "cash-outline",
+  "name": "Salary",
+  "isExpense": false,
+  "userId": {
+    "$oid": "60b3f2c0ae329307380afd58"
+  }
+}]
