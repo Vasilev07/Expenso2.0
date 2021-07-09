@@ -63,25 +63,14 @@ export class TransactionsPage implements OnInit {
       header: 'Albums',
       cssClass: 'my-custom-class',
       buttons: [{
-        text: 'Date (Newest First)',
-        role: 'destructive',
-        handler: () => {
-          console.log('Delete clicked');
-        }
-      }, {
-        text: 'Date (Oldest First)',
-        handler: () => {
-          console.log('Share clicked');
-        }
-      }, {
         text: 'Amount (Highest First)',
         handler: () => {
-          console.log('Play clicked');
+          this.filteredData.sort((first, second) => second.amount - first.amount);
         }
       }, {
         text: 'Amount (Lowest First)',
         handler: () => {
-          console.log('Favorite clicked');
+          this.filteredData.sort((first, second) => first.amount - second.amount);
         }
       }, {
         text: 'Cancel',
