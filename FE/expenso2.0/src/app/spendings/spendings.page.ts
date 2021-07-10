@@ -11,6 +11,7 @@ import { retrieveTransactions } from './transactions/actions/transaction.action'
 export class SpendingsPage implements OnInit {
   public isExpense: boolean;
   public spendings: any;
+  public filteredSpendings;
   public date = new Date().toISOString();
   public user: any[];
 
@@ -23,6 +24,7 @@ export class SpendingsPage implements OnInit {
 
     this.store.select('spendings').subscribe((spendings) => {
       this.spendings = spendings;
+      this.filteredSpendings = this.spendings;
     });
 
     this.store.select('user').subscribe((user: any) => {
@@ -37,9 +39,26 @@ export class SpendingsPage implements OnInit {
   }
 
   public onUserSettingsClick(): void {
-    console.log(this.router);
-
-
     this.router.navigate(['/user-settings']);
+  }
+
+  public onDateChanged(): void {
+    const date = new Date(this.date)
+
+    this.filteredSpendings = this.filterSpendigs(this.spendings, date);
+  }
+
+  private filterSpendigs(spendgins, date): any {
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+
+    return spendgins.filter((spending) => {
+      const spendingDate = new Date(spending.date);
+      const spendingMonth = spendingDate.getMonth();
+      const spendingYear = spendingDate.getFullYear();
+
+      return spendingMonth + 1 === month && spendingYear === year;
+    });
   }
 }

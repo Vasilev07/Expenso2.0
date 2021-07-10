@@ -12,12 +12,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
+  <ion-item (ionChange)="onDateChanged()">
     <ion-datetime displayFormat="MMM YYYY" display-timezone="utc" [(ngModel)]="date">
     </ion-datetime>
   </ion-item>
 
-  <ion-item *ngFor="let item of spendings">
+  <ion-item *ngFor="let item of filteredSpendings">
       <ion-label>
         {{item.name}}
         <ion-icon name={{item.icon}}></ion-icon>
