@@ -34,8 +34,12 @@ export class CategoriesPage implements OnInit {
 
   public expenseToggleSwitched(event: CustomEvent): void {
     this.isExpense = event.detail.value === 'expense';
+    console.log(event.detail.value);
+
+    console.log(this.categories, this.isExpense);
 
     this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
+    this.filteredData = this.filteredCategories;
   }
 
   public onSearchTriggered(event): void {
@@ -47,6 +51,8 @@ export class CategoriesPage implements OnInit {
   }
 
   private filterCategoriesOnTypChange(categories: ICategory[], isExpense: boolean): ICategory[] {
+    console.log(categories);
+
       return categories.filter((category: ICategory) => category.isExpense === isExpense);
   }
 
