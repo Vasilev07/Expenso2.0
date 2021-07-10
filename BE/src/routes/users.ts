@@ -20,8 +20,8 @@ export const init = (app: any, collection: any): void => {
       email: request.body.email,
       password,
       name: request.body.email,
-      darkMode: request.body.dakrMode,
-      currency: request.body.currency
+      darkMode: request.body.dakrMode || false,
+      currency: request.body.currency || 'USD'
     };
 
     registerUser(collection, user);
