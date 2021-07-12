@@ -51,7 +51,11 @@ export const init = (app: any, collection: any): void => {
   });
 
   app.get('/transaction', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
-    const transactions = await getAllTransactions(collection, { date: "6-2021" });
+    const date = new Date();
+    const currentMonth = date.getMonth() + 1;
+    const currentYear = date.getFullYear();
+
+    const transactions = await getAllTransactions(collection, { date: `${currentMonth}-${currentYear}` });
 
     response.send(transactions);
   });
