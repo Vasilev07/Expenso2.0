@@ -20,8 +20,6 @@ export class SpendingsPage implements OnInit {
     }
 
     public ngOnInit(): void {
-        console.log('heheh');
-
         this.store.dispatch(retrieveTransactions({ date: this.date }));
 
         this.store.select('spendings').subscribe((spendings) => {
@@ -48,22 +46,5 @@ export class SpendingsPage implements OnInit {
         const date = new Date(this.date).toISOString()
 
         this.store.dispatch(retrieveTransactions({ date: date }));
-
-
-        // this.filteredSpendings = this.filterSpendigs(this.spendings, date);
-    }
-
-    private filterSpendigs(spendgins, date): any {
-        const month = date.getMonth();
-        const year = date.getFullYear();
-
-
-        return spendgins.filter((spending) => {
-            const spendingDate = new Date(spending.date);
-            const spendingMonth = spendingDate.getMonth();
-            const spendingYear = spendingDate.getFullYear();
-
-            return spendingMonth + 1 === month && spendingYear === year;
-        });
     }
 }
