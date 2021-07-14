@@ -8,40 +8,40 @@ import { ICategory } from '../models/category.interface';
 import { createCategory, deleteCategoryById, getAllCategories } from '../services/category.service';
 
 export const init = (app: any, collection: any): void => {
-  app.get('/category', checkAuth, async (request: Request, response: Response, next: NextFunction): Promise<void> => {
-    const token = request.headers.authorization as any;
-    const decodedToken = decode(token.split(' ')[1]) as any;
+    app.get('/category', checkAuth, async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+        const token = request.headers.authorization as any;
+        const decodedToken = decode(token.split(' ')[1]) as any;
 
-    const categories = await getAllCategories(collection, new ObjectId(decodedToken.userId));
+        const categories = await getAllCategories(collection, new ObjectId(decodedToken.userId));
 
-    response.status(Statuses.OK).send(categories);
-  });
+        response.status(Statuses.OK).send(categories);
+    });
 
-  app.post('/category', checkAuth, async (request: Request, response: Response, next: NextFunction): Promise<void> => {
-    const categoryFromUser = request.body as ICategory;
-    const token = request.headers.authorization as any;
-    const decodedToken = decode(token.split(' ')[1]) as any;
+    app.post('/category', checkAuth, async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+        const categoryFromUser = request.body as ICategory;
+        const token = request.headers.authorization as any;
+        const decodedToken = decode(token.split(' ')[1]) as any;
 
-    const category = {
-      ...categoryFromUser,
-      userId: new ObjectId(decodedToken.userId)
-    };
+        const category = {
+            ...categoryFromUser,
+            userId: new ObjectId(decodedToken.userId)
+        };
 
-    await createCategory(collection, category);
+        await createCategory(collection, category);
 
-    response.status(Statuses.OK).send(category);
-  });
+        response.status(Statuses.OK).send(category);
+    });
 
-  app.delete('/category', checkAuth, async (request: Request, response: Response, next: NextFunction): Promise<void> => {
-    const category = request.body as { id: string };
+    app.delete('/category', checkAuth, async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+        const category = request.body as { id: string };
 
-    try {
-      const test = await deleteCategoryById(collection, category?.id);
+        try {
+            const test = await deleteCategoryById(collection, category?.id);
 
-    } catch (error) {
-      console.log(error);
-    }
+        } catch (error) {
+            console.log(error);
+        }
 
-    response.status(Statuses.OK).send({});
-  });
+        response.status(Statuses.OK).send({});
+    });
 };

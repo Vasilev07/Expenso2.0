@@ -5,23 +5,23 @@ import { CategoryCreatePage } from './category-create/category-create.page';
 import { CategoryIconCreatePage } from './category-create/category-icon-create/category-icon-create.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: CategoriesPage,
-    pathMatch: 'full',
-  },
-  {
-    path: 'create',
-    component: CategoryCreatePage,
-  },
-  {
-    path: 'icon/create',
-    component: CategoryIconCreatePage
-  }
+    {
+        path: '',
+        component: CategoriesPage,
+        pathMatch: 'full',
+    },
+    {
+        path: 'create',
+        component: CategoryCreatePage,
+    },
+    {
+        path: 'icon/create',
+        component: CategoryIconCreatePage
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class CategoriesPageRoutingModule {}
+export class CategoriesPageRoutingModule { }

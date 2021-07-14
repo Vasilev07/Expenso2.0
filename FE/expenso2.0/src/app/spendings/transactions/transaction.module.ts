@@ -11,15 +11,15 @@ import { TransactionPageRoutingModule } from "./transaction-routing.module";
 import { TransactionPage } from "./transaction.page";
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    ExploreContainerComponentModule,
-    TransactionPageRoutingModule,
-    CategoriesPageModule,
-    EffectsModule.forFeature([TransactionEffects]),
-  ],
-  declarations: [TransactionPage, CategorySelectorPage]
+    imports: [
+        IonicModule,
+        CommonModule,
+        FormsModule,
+        ExploreContainerComponentModule,
+        TransactionPageRoutingModule,
+        CategoriesPageModule,
+        EffectsModule.forFeature([TransactionEffects]),
+    ],
+    declarations: [TransactionPage, CategorySelectorPage]
 })
-export class TransactionPageModule {}
+export class TransactionPageModule { }

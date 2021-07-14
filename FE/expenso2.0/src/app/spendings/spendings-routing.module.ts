@@ -4,17 +4,17 @@ import { SpendingsPage } from './spendings.page';
 
 const routes: Routes = [
     {
-      path: '',
-      component: SpendingsPage,
+        path: '',
+        component: SpendingsPage,
     },
     {
-      path: 'transaction',
-      loadChildren: () => import('./transactions/transaction.module').then(m => m.TransactionPageModule)
+        path: 'transaction',
+        loadChildren: () => import('./transactions/transaction.module').then(m => m.TransactionPageModule)
     }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class SpendingsPageRoutingModule {}
+export class SpendingsPageRoutingModule { }

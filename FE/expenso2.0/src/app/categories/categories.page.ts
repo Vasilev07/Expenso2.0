@@ -6,54 +6,54 @@ import { retrieveCategoryList } from './actions/categories.action';
 import { ICategory } from './category.interface';
 
 @Component({
-  selector: 'app-categories',
-  templateUrl: 'categories.page.html',
-  styleUrls: ['categories.page.scss']
+    selector: 'app-categories',
+    templateUrl: 'categories.page.html',
+    styleUrls: ['categories.page.scss']
 })
 export class CategoriesPage implements OnInit {
-  private categories: ICategory[];
-  public filteredCategories: ICategory[];
-  public isExpense: boolean = true;
-  public filteredData;
+    private categories: ICategory[];
+    public filteredCategories: ICategory[];
+    public isExpense: boolean = true;
+    public filteredData;
 
-  constructor(private readonly store: Store<{ categories: [] }>,
-              private readonly router: Router) {
-  }
+    constructor(private readonly store: Store<{ categories: [] }>,
+        private readonly router: Router) {
+    }
 
-  public ngOnInit(): void {
-    this.store.select('categories').subscribe((categories: ICategory[]) => {
-      this.categories = categories;
-      this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
-      this.filteredData = this.filteredCategories;
-    });
-  }
+    public ngOnInit(): void {
+        this.store.select('categories').subscribe((categories: ICategory[]) => {
+            this.categories = categories;
+            this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
+            this.filteredData = this.filteredCategories;
+        });
+    }
 
-  public addNewCategory(): void {
-    this.router.navigate(['expenso/tabs/categories/create'])
-  }
+    public addNewCategory(): void {
+        this.router.navigate(['expenso/tabs/categories/create'])
+    }
 
-  public expenseToggleSwitched(event: CustomEvent): void {
-    this.isExpense = event.detail.value === 'expense';
-    console.log(event.detail.value);
+    public expenseToggleSwitched(event: CustomEvent): void {
+        this.isExpense = event.detail.value === 'expense';
+        console.log(event.detail.value);
 
-    console.log(this.categories, this.isExpense);
+        console.log(this.categories, this.isExpense);
 
-    this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
-    this.filteredData = this.filteredCategories;
-  }
+        this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
+        this.filteredData = this.filteredCategories;
+    }
 
-  public onSearchTriggered(event): void {
-    const searchTerm = event.detail.value;
+    public onSearchTriggered(event): void {
+        const searchTerm = event.detail.value;
 
-    this.filteredData = this.filteredCategories.filter((category) => {
-      return category.name.toLowerCase().includes(searchTerm);
-    });
-  }
+        this.filteredData = this.filteredCategories.filter((category) => {
+            return category.name.toLowerCase().includes(searchTerm);
+        });
+    }
 
-  private filterCategoriesOnTypChange(categories: ICategory[], isExpense: boolean): ICategory[] {
-    console.log(categories);
+    private filterCategoriesOnTypChange(categories: ICategory[], isExpense: boolean): ICategory[] {
+        console.log(categories);
 
-      return categories.filter((category: ICategory) => category.isExpense === isExpense);
-  }
+        return categories.filter((category: ICategory) => category.isExpense === isExpense);
+    }
 
 }

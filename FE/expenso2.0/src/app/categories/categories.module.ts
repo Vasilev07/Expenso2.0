@@ -14,16 +14,16 @@ import { CategoryIconCreatePage } from './category-create/category-icon-create/c
 import { CategorySelectPage } from './category-select/category-select.page';
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    ExploreContainerComponentModule,
-    CategoriesPageRoutingModule,
-    EffectsModule.forFeature([CategoryEffect]),
-    ColorPickerModule
-  ],
-  declarations: [CategoriesPage, CategoryCreatePage, CategoryIconCreatePage, CategorySelectPage],
-  exports: [CategorySelectPage]
+    imports: [
+        IonicModule,
+        CommonModule,
+        FormsModule,
+        ExploreContainerComponentModule,
+        CategoriesPageRoutingModule,
+        EffectsModule.forFeature([CategoryEffect]),
+        ColorPickerModule
+    ],
+    declarations: [CategoriesPage, CategoryCreatePage, CategoryIconCreatePage, CategorySelectPage],
+    exports: [CategorySelectPage]
 })
-export class CategoriesPageModule {}
+export class CategoriesPageModule { }

@@ -4,20 +4,20 @@ import { CategorySelectorPage } from './category-selector/category-selector.page
 import { TransactionPage } from './transaction.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: TransactionPage,
-    pathMatch: 'full'
-  },
-  {
-    path: 'category-selector',
-    component: CategorySelectorPage,
-    pathMatch: 'full'
-  }
+    {
+        path: '',
+        component: TransactionPage,
+        pathMatch: 'full'
+    },
+    {
+        path: 'category-selector',
+        component: CategorySelectorPage,
+        pathMatch: 'full'
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class TransactionPageRoutingModule {}
+export class TransactionPageRoutingModule { }

@@ -1,8 +1,8 @@
 export interface ITransaction {
-  date: string;
-  amount: number;
-  category: IExpenseIncomeCategory;
-  isExpense: boolean;
+    date: string;
+    amount: number;
+    category: IExpenseIncomeCategory;
+    isExpense: boolean;
 }
 
 export interface IExpenseIncomeCategory {

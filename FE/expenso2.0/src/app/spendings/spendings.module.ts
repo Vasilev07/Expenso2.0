@@ -8,13 +8,13 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { SpendingsPageRoutingModule } from './spendings-routing.module';
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    ExploreContainerComponentModule,
-    SpendingsPageRoutingModule,
-  ],
-  declarations: [SpendingsPage]
+    imports: [
+        IonicModule,
+        CommonModule,
+        FormsModule,
+        ExploreContainerComponentModule,
+        SpendingsPageRoutingModule,
+    ],
+    declarations: [SpendingsPage]
 })
-export class SpendingsPageModule {}
+export class SpendingsPageModule { }

@@ -1,16 +1,17 @@
 <ion-header [translucent]="true">
-  <ion-toolbar size="small">
-    <ion-buttons slot="secondary">
-      <ion-button (click)="onCancelClick()">
-        Cancel
-      </ion-button>
-    </ion-buttons>
-    <ion-title>
-      Select Category
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar size="small">
+        <ion-buttons slot="secondary">
+            <ion-button (click)="onCancelClick()">
+                Cancel
+            </ion-button>
+        </ion-buttons>
+        <ion-title>
+            Select Category
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <category-select (categorySelected)="onCategorySelected($event)" [categories]="filteredCategories"></category-select>
+    <category-select (categorySelected)="onCategorySelected($event)" [categories]="filteredCategories">
+    </category-select>
 </ion-content>

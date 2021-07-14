@@ -1,20 +1,20 @@
 <ion-header collapse="condense">
-  <ion-toolbar>
-    <ion-title size="medium">Categories</ion-title>
-    <ion-fab-button size="small" (click)="addNewCategory()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title size="medium">Categories</ion-title>
+        <ion-fab-button size="small" (click)="addNewCategory()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-toolbar>
-    <ion-searchbar (ionChange)="onSearchTriggered($event)"></ion-searchbar>
-  </ion-toolbar>
-  <ion-segment value="expense" (ionChange)="expenseToggleSwitched($event)">
-    <ion-segment-button value="expense">Expense</ion-segment-button>
-    <ion-segment-button value="income">Income</ion-segment-button>
-  </ion-segment>
-  <category-select [categories]="filteredData">
-  </category-select>
+    <ion-toolbar>
+        <ion-searchbar (ionChange)="onSearchTriggered($event)"></ion-searchbar>
+    </ion-toolbar>
+    <ion-segment value="expense" (ionChange)="expenseToggleSwitched($event)">
+        <ion-segment-button value="expense">Expense</ion-segment-button>
+        <ion-segment-button value="income">Income</ion-segment-button>
+    </ion-segment>
+    <category-select [categories]="filteredData">
+    </category-select>
 </ion-content>

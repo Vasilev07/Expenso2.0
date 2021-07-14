@@ -5,21 +5,21 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { SpendingsPage } from './spendings.page';
 
 describe('SpendingsPage', () => {
-  let component: SpendingsPage;
-  let fixture: ComponentFixture<SpendingsPage>;
+    let component: SpendingsPage;
+    let fixture: ComponentFixture<SpendingsPage>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [SpendingsPage],
-      imports: [IonicModule.forRoot(), ExploreContainerComponentModule]
-    }).compileComponents();
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [SpendingsPage],
+            imports: [IonicModule.forRoot(), ExploreContainerComponentModule]
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(SpendingsPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+        fixture = TestBed.createComponent(SpendingsPage);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

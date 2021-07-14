@@ -5,21 +5,21 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 import { CategoriesPage } from './categories.page';
 
 describe('Tab2Page', () => {
-  let component: CategoriesPage;
-  let fixture: ComponentFixture<CategoriesPage>;
+    let component: CategoriesPage;
+    let fixture: ComponentFixture<CategoriesPage>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [CategoriesPage],
-      imports: [IonicModule.forRoot(), ExploreContainerComponentModule]
-    }).compileComponents();
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [CategoriesPage],
+            imports: [IonicModule.forRoot(), ExploreContainerComponentModule]
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(CategoriesPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
+        fixture = TestBed.createComponent(CategoriesPage);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

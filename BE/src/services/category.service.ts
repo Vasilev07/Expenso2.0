@@ -6,10 +6,10 @@ export const createCategory = async (collection: IRepository<ICategory>, entity:
     await collection.create(entity);
 };
 
-export const getAllCategories = async(collection: IRepository<ICategory>, userId: ObjectId) => {
+export const getAllCategories = async (collection: IRepository<ICategory>, userId: ObjectId) => {
     return await collection.findAllForUser(userId);
 };
 
-export const deleteCategoryById = async(collection: IRepository<ICategory>, id: string) => {
+export const deleteCategoryById = async (collection: IRepository<ICategory>, id: string) => {
     return await collection.deleteById(id);
 }

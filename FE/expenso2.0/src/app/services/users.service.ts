@@ -5,26 +5,26 @@ import { IUser, IUserDetails } from "../interfaces/user.interface";
 import { StorageService } from "./storage.service";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UsersService {
-  public constructor(private readonly httpService: HttpClient,
-                    private storageService: StorageService) {
-  }
+    public constructor(private readonly httpService: HttpClient,
+        private storageService: StorageService) {
+    }
 
-  public login(user: IUser): Observable<any> {
-    return this.httpService.post('http://localhost:3001/login', user);
-  }
+    public login(user: IUser): Observable<any> {
+        return this.httpService.post('http://localhost:3001/login', user);
+    }
 
-  public storeToken(token): void {
-    this.storageService.set("token", `${token}`);
-  }
+    public storeToken(token): void {
+        this.storageService.set("token", `${token}`);
+    }
 
-  public getToken(): any {
-    return this.storageService.get('token');
-  }
+    public getToken(): any {
+        return this.storageService.get('token');
+    }
 
-  public updateUserPreferences(userDetails: IUserDetails): any {
-    return this.httpService.post<IUserDetails>('http://localhost:3001/userPrefferences', userDetails);
-  }
+    public updateUserPreferences(userDetails: IUserDetails): any {
+        return this.httpService.post<IUserDetails>('http://localhost:3001/userPrefferences', userDetails);
+    }
 }
