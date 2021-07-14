@@ -21,7 +21,7 @@ export const expressInit = (app: Application) => {
     app.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "http://localhost:8100");
         res.header("Access-Control-Allow-Origin", "http://localhost:8100/");
-        res.header("Access-Control-Allow-Origin",  'capacitor://localhost');
+        res.header("Access-Control-Allow-Origin", 'capacitor://localhost');
         res.header("Access-Control-Allow-Origin", 'ionic://localhost');
         res.header("Access-Control-Allow-Origin", 'http://localhost');
         res.header("Access-Control-Allow-Origin", 'http://localhost:8080');
@@ -31,7 +31,7 @@ export const expressInit = (app: Application) => {
         res.header("Access-Control-Allow-Headers", "*");
 
         next();
-      });
+    });
 
     app.use(cors());
     app.use('/static', express.static(path.join(__dirname, '../../public')));

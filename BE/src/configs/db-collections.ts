@@ -7,8 +7,8 @@ export const dbCollections: IDbCollections = {
         name: 'transactions',
     },
     users: {
-      name: 'users',
-  },
+        name: 'users',
+    },
     categories: {
         schemaValidation: 'categories'
     }
