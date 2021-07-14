@@ -20,6 +20,8 @@ export class SpendingsPage implements OnInit {
     }
 
     public ngOnInit(): void {
+        console.log('heheh');
+
         this.store.dispatch(retrieveTransactions({ date: this.date }));
 
         this.store.select('spendings').subscribe((spendings) => {
