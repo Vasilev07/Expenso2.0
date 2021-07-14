@@ -20,7 +20,7 @@ export class SpendingsPage implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.store.dispatch(retrieveTransactions());
+    this.store.dispatch(retrieveTransactions({ date: this.date }));
 
     this.store.select('spendings').subscribe((spendings) => {
       this.spendings = spendings;
@@ -43,9 +43,12 @@ export class SpendingsPage implements OnInit {
   }
 
   public onDateChanged(): void {
-    const date = new Date(this.date)
+    const date = new Date(this.date).toISOString()
 
-    this.filteredSpendings = this.filterSpendigs(this.spendings, date);
+    this.store.dispatch(retrieveTransactions({ date: date }));
+
+
+    // this.filteredSpendings = this.filterSpendigs(this.spendings, date);
   }
 
   private filterSpendigs(spendgins, date): any {

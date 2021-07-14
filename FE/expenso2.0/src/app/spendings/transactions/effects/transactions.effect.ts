@@ -18,19 +18,19 @@ export class TransactionEffects {
         map(() => ({type: '[Transaction] Add Transaction Success'})),
         catchError(() => EMPTY)
       )),
-      switchMap(() => this.getAllTransactions())
+      switchMap(() => this.getAllTransactions(new Date().toISOString()))
     );
   });
 
   $retrieveExpences = createEffect((): any => {
     return this.actions$.pipe(
       ofType('[Transaction Spendings] Retrieve Transaction Spendings'),
-      switchMap(() => this.getAllTransactions())
+      switchMap((data: {type: string, date: string}) => this.getAllTransactions(data.date))
     );
   });
 
-  private getAllTransactions() {
-    return this.transactionService.getAllSpendings().pipe(
+  private getAllTransactions(date: string) {
+    return this.transactionService.getAllSpendings(date).pipe(
       map((transactions) => ({type: '[Transaction Spendings] Retrieve Transaction Spendings Success', transactions})),
       catchError(() => EMPTY)
     );

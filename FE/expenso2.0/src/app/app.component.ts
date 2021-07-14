@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
       }
     });
 
-    this.store.dispatch(retrieveTransactions());
+    this.store.dispatch(retrieveTransactions({date :new Date().toISOString() }));
   }
 
   public afterViewInit(): void {

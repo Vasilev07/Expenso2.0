@@ -44,8 +44,14 @@ const addTransaction = async (collection:any, transaction: any, token: any, curr
 }
 
 export const init = (app: any, collection: any): void => {
-  app.get('/transaction/spendings', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
-    const transaction = await getSpendings(collection, transactionSpendingsAggregation);
+  app.get('/transaction/spendings/:date', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+    const date = request.params.date;
+    const year = date.substring(0, 4);
+    const month = date.substring(6, 7);
+
+    // posible bug when months become two numbers
+
+    const transaction = await getSpendings(collection, transactionSpendingsAggregation(`${month}-${year}`));
 
     response.send(transaction);
   });
