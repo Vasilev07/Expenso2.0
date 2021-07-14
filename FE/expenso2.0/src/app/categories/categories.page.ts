@@ -14,7 +14,7 @@ export class CategoriesPage implements OnInit {
     private categories: ICategory[];
     public filteredCategories: ICategory[];
     public isExpense: boolean = true;
-    public filteredData;
+    public filteredData: ICategory[];
 
     constructor(private readonly store: Store<{ categories: [] }>,
         private readonly router: Router) {
