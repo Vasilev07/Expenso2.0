@@ -11,7 +11,7 @@ import { ICategory } from './category.interface';
     styleUrls: ['categories.page.scss']
 })
 export class CategoriesPage implements OnInit {
-    private categories: ICategory[];
+    public categories: ICategory[];
     public filteredCategories: ICategory[];
     public isExpense: boolean = true;
     public filteredData: ICategory[];
@@ -34,9 +34,6 @@ export class CategoriesPage implements OnInit {
 
     public expenseToggleSwitched(event: CustomEvent): void {
         this.isExpense = event.detail.value === 'expense';
-        console.log(event.detail.value);
-
-        console.log(this.categories, this.isExpense);
 
         this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);
         this.filteredData = this.filteredCategories;
