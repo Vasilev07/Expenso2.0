@@ -6,84 +6,85 @@ import { ITransaction } from '../spendings/transactions/interfaces/transaction.i
 import { deleteTransaction, retrieveTransactions } from './actions/transactions.action';
 
 @Component({
-  selector: 'transactions',
-  templateUrl: 'transactions.page.html',
-  styleUrls: ['transactions.page.scss']
+    selector: 'transactions',
+    templateUrl: 'transactions.page.html',
+    styleUrls: ['transactions.page.scss']
 })
 export class TransactionsPage implements OnInit {
-  private transactions: any;
-  public mergedTransactions: any;
-  public user;
-  public filteredData: any;
+    public transactions: any;
+    public mergedTransactions: any;
+    public user;
+    public filteredData: any;
 
-  constructor(private readonly store: Store<{ transactions: [], user: [] }>,
-              private readonly router: Router,
-              public actionSheetController: ActionSheetController) { }
+    constructor(private readonly store: Store<{ transactions: [], user: [] }>,
+        private readonly router: Router,
+        public actionSheetController: ActionSheetController) { }
 
-  public ngOnInit(): void {
-    this.store.select('transactions').subscribe((transactions: any) => {
-      this.transactions = transactions[0];
+    public ngOnInit(): void {
+        this.store.select('transactions').subscribe((transactions: any) => {
+            this.transactions = transactions[0];
 
-      if (this.transactions) {
-        const transactionId = this.transactions._id;
-        const expences = this.transactions.expenses.map((expense) => ({ ...expense, isExpense: true, transactionId }));
-        const incomes = this.transactions.incomes.map((income) => ({ ...income, isExpense: false, transactionId  }));
+            if (this.transactions) {
+                console.log(this.transactions);
 
-        this.mergedTransactions = [...expences, ...incomes];
-      }
+                const transactionId = this.transactions._id;
+                const expences = this.transactions.expenses.map((expense) => ({ ...expense, isExpense: true, transactionId }));
+                const incomes = this.transactions.incomes.map((income) => ({ ...income, isExpense: false, transactionId }));
 
-      this.filteredData = this.mergedTransactions;
-    });
+                this.mergedTransactions = [...expences, ...incomes];
+            }
 
-    this.store.select('user').subscribe((user: any) => {
-      this.user = user[0];
-    });
+            this.filteredData = this.mergedTransactions;
+        });
 
-    this.store.dispatch(retrieveTransactions())
-  }
+        this.store.select('user').subscribe((user: any) => {
+            this.user = user[0];
+        });
 
-  public onTransactionEdit(transaction): void {
-    this.router.navigate([`/expenso/tabs/transactions/${transaction.transactionId}/edit/${transaction._id}`]);
-  }
+        this.store.dispatch(retrieveTransactions())
+    }
 
-  public onDeleteTransaction(transaction): void {
-    this.store.dispatch(deleteTransaction({ transaction: transaction }));
-  }
+    public onTransactionEdit(transaction): void {
+        this.router.navigate([`/expenso/tabs/transactions/${transaction.transactionId}/edit/${transaction._id}`]);
+    }
 
-  public onSearchTriggered(event): void {
-    const searchTerm = event.detail.value;
+    public onDeleteTransaction(transaction): void {
+        this.store.dispatch(deleteTransaction({ transaction: transaction }));
+    }
 
-    this.filteredData = this.mergedTransactions.filter((transaction) => {
-      return transaction.category.name.toLowerCase().includes(searchTerm)
-    });
-  }
+    public onSearchTriggered(event): void {
+        const searchTerm = event.detail.value;
 
-  public async presentActionSheet() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Albums',
-      cssClass: 'my-custom-class',
-      buttons: [{
-        text: 'Amount (Highest First)',
-        handler: () => {
-          this.filteredData.sort((first, second) => second.amount - first.amount);
-        }
-      }, {
-        text: 'Amount (Lowest First)',
-        handler: () => {
-          this.filteredData.sort((first, second) => first.amount - second.amount);
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }]
-    });
-    await actionSheet.present();
+        this.filteredData = this.mergedTransactions.filter((transaction) => {
+            return transaction.category.name.toLowerCase().includes(searchTerm)
+        });
+    }
 
-    const { role } = await actionSheet.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
-  }
+    public async presentActionSheet() {
+        const actionSheet = await this.actionSheetController.create({
+            header: 'Albums',
+            cssClass: 'my-custom-class',
+            buttons: [{
+                text: 'Amount (Highest First)',
+                handler: () => {
+                    this.filteredData.sort((first, second) => second.amount - first.amount);
+                }
+            }, {
+                text: 'Amount (Lowest First)',
+                handler: () => {
+                    this.filteredData.sort((first, second) => first.amount - second.amount);
+                }
+            }, {
+                text: 'Cancel',
+                icon: 'close',
+                role: 'cancel',
+                handler: () => {
+                    console.log('Cancel clicked');
+                }
+            }]
+        });
+        await actionSheet.present();
+
+        await actionSheet.onDidDismiss();
+    }
 }
