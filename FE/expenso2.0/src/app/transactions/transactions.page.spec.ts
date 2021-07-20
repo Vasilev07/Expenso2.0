@@ -2,7 +2,6 @@ import { Router } from "@angular/router";
 import { ActionSheetController } from "@ionic/angular";
 import { Store } from "@ngrx/store";
 import { of } from "rxjs";
-import { CategoriesPage } from "../categories/categories.page";
 import { TransactionsPage } from "./transactions.page";
 
 const transactions = [
