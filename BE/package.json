@@ -1,59 +1,55 @@
 {
-  "name": "be",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --config nodemon.json src\\index.ts",
-    "dev:debug": "nodemon --config nodemon.json --inspect-brk src\\index.ts",
-    "lint": "eslint . --ext .ts",
-    "lint-fix": "npm run lint -- --fix"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@angular-builders/jest": "^12.1.0",
-    "@types/bcrypt": "^5.0.0",
-    "@types/express": "^4.17.11",
-    "@types/jest": "^26.0.24",
-    "@types/mongodb": "^3.6.7",
-    "@types/node": "^14.14.28",
-    "@typescript-eslint/eslint-plugin": "^4.15.1",
-    "bcrypt": "^5.0.1",
-    "eslint": "^7.20.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.22.0",
-    "jest": "^26.6.3",
-    "jest-preset-angular": "^9.0.4",
-    "jsonwebtoken": "^8.5.1",
-    "nodemon": "^2.0.7",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.1.5"
-  },
-  "dependencies": {
-    "@types/jsonwebtoken": "^8.5.1",
-    "@typescript-eslint/parser": "^4.15.1",
-    "cors": "^2.8.5",
-    "eslint-config-airbnb": "^18.2.1",
-    "express": "^4.17.1",
-    "mongodb": "^3.6.4"
-  },
-  "jest": {
-    "preset": "jest-preset-angular",
-    "setupFilesAfterEnv": [
-      "./setupJest.ts"
-    ],
-    "testPathIgnorePatterns": [
-      "./node_modules",
-      "./dist/"
-    ],
-    "globals": {
-      "ts-jest": {
-        "tsConfig": "./tsconfig.spec.json",
-        "stringifyContentPathRegex": "\\.html$"
-      }
+    "name": "be",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest --coverage",
+        "dev": "nodemon --config nodemon.json src\\index.ts",
+        "dev:debug": "nodemon --config nodemon.json --inspect-brk src\\index.ts",
+        "lint": "eslint . --ext .ts",
+        "lint-fix": "npm run lint -- --fix"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@angular-builders/jest": "^12.1.0",
+        "@types/bcrypt": "^5.0.0",
+        "@types/express": "^4.17.11",
+        "@types/jest": "^26.0.24",
+        "@types/mongodb": "^3.6.7",
+        "@types/node": "^14.14.28",
+        "@typescript-eslint/eslint-plugin": "^4.15.1",
+        "bcrypt": "^5.0.1",
+        "eslint": "^7.20.0",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-react": "^7.22.0",
+        "jest": "^26.6.3",
+        "jest-preset-angular": "^9.0.4",
+        "jsonwebtoken": "^8.5.1",
+        "nodemon": "^2.0.7",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.1.5"
+    },
+    "dependencies": {
+        "@types/jsonwebtoken": "^8.5.1",
+        "@typescript-eslint/parser": "^4.15.1",
+        "cors": "^2.8.5",
+        "eslint-config-airbnb": "^18.2.1",
+        "express": "^4.17.1",
+        "mongodb": "^3.6.4"
+    },
+    "jest": {
+        "testPathIgnorePatterns": [
+            "./node_modules",
+            "./dist/"
+        ],
+        "globals": {
+            "ts-jest": {
+                "tsConfig": "./tsconfig.spec.json",
+                "stringifyContentPathRegex": "\\.html$"
+            }
+        }
     }
-  }
 }
