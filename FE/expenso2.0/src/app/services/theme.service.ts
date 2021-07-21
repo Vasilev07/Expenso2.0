@@ -6,7 +6,7 @@ import { Inject, Injectable, Renderer2, RendererFactory2 } from "@angular/core";
 })
 export class ThemeService {
 
-    private renderer: Renderer2;
+    public renderer: Renderer2;
 
     constructor(private readonly rendererFactory: RendererFactory2,
         @Inject(DOCUMENT) private readonly document: Document) {
