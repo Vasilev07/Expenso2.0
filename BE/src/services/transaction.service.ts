@@ -3,6 +3,8 @@ import { IExpense, IIncome, ITransaction } from "../models/transaction.interface
 import { IRepository } from "../repositories/mongo.repository";
 
 export const addExpense = async (collection: IRepository<ITransaction>, criteria: { userId: ObjectId, date: string }, entity: IExpense): Promise<void> => {
+    console.log(entity);
+
     await collection.updateManyAddInArray(criteria, 'expenses', entity);
 };
 
@@ -25,4 +27,8 @@ export const updateTransaction = async (collection: IRepository<ITransaction>, t
 export const removeTransaction = async (collection: IRepository<ITransaction>, removeFrom: string, transactionId: string, currentTransactionId: string) => {
     const criteria = { _id: new ObjectId(transactionId) };
     collection.removeFromArray(criteria, removeFrom, new ObjectId(currentTransactionId));
+};
+
+export const deleteAll = async (collection: IRepository<ITransaction>) => {
+    collection.deleteAll();
 };
