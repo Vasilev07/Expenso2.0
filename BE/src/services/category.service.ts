@@ -12,4 +12,8 @@ export const getAllCategories = async (collection: IRepository<ICategory>, userI
 
 export const deleteCategoryById = async (collection: IRepository<ICategory>, id: string) => {
     return await collection.deleteById(id);
-}
+};
+
+export const deleteAll = async (collection: IRepository<ICategory>) => {
+    return await collection.deleteAll();
+};

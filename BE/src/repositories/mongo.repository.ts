@@ -5,6 +5,7 @@ export interface IRepository<T> {
     findAll: () => Promise<T[]>;
     deleteById: (id: string) => Promise<void>;
     getById: (id: string) => Promise<T[]>;
+    deleteAll: () => Promise<any>;
     findBy: (criteria: any) => Promise<T[]>;
     findAllForUser: (userId: ObjectId) => Promise<T[]>;
     updateManyAddInArray: (criteria: any, toPushIn: string, entity: any) => Promise<void>;
@@ -27,7 +28,14 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
     };
 
     const deleteById = async (id: string): Promise<void> => {
+        console.log('repo', new ObjectId(id));
+        console.log('repo', id);
+
         collection.deleteOne({ _id: new ObjectId(id) });
+    };
+
+    const deleteAll = async () => {
+        collection.deleteMany({});
     };
 
     const getById = async (id: string): Promise<T[]> => {
@@ -83,6 +91,7 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
         performAggregation,
         updateMany,
         updateManyArray,
-        removeFromArray
+        removeFromArray,
+        deleteAll
     }
 };
