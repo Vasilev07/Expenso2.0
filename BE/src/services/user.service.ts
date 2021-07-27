@@ -3,6 +3,8 @@ import { IUser } from "../models/user.interface";
 import { IRepository } from "../repositories/mongo.repository";
 
 export const registerUser = async (collection: IRepository<IUser>, entity: IUser): Promise<void> => {
+    console.log(entity);
+
     await collection.create(entity);
 };
 
@@ -20,4 +22,8 @@ export const getUserById = async (collection: IRepository<IUser>, entity: IUser)
 
 export const updateUser = async (collection: IRepository<IUser>, userId: string, entity: any): Promise<IUser[]> => {
     return collection.updateMany({ _id: new ObjectId(userId) }, entity);
+};
+
+export const deleteAll = (collection: IRepository<IUser>) => {
+    collection.deleteAll();
 };
