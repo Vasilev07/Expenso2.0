@@ -45,11 +45,12 @@ const addTransaction = async (collection: any, transaction: any, token: any, cur
 
 export const init = (app: any, collection: any): void => {
     app.get('/transaction/spendings/:date', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
-        const date = request.params.date;
-        const year = date.substring(0, 4);
-        const month = date.substring(6, 7);
+        const date = new Date(request.params.date);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
 
-        // posible bug when months become two numbers
+        console.log(month);
+        console.log(year);
 
         const transaction = await getSpendings(collection, transactionSpendingsAggregation(`${month}-${year}`));
 
