@@ -41,7 +41,7 @@ export class TransactionsPage implements OnInit {
             this.user = user[0];
         });
 
-        this.store.dispatch(retrieveTransactions())
+        this.store.dispatch(retrieveTransactions());
     }
 
     public onTransactionEdit(transaction): void {
