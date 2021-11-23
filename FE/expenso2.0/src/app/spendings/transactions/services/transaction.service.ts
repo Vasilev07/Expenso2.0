@@ -14,8 +14,8 @@ export class TransactionService {
         return this.httpClient.post<ITransaction>('http://localhost:3001/transaction', transaction);
     }
 
-    public getAllSpendings(date: string): Observable<ITransaction[]> {
-        return this.httpClient.get<ITransaction[]>(`http://localhost:3001/transaction/spendings/${date}`,);
+    public getAllSpendings(date: string, wholeYearSelected: boolean): Observable<ITransaction[]> {
+        return this.httpClient.get<ITransaction[]>(`http://localhost:3001/transaction/spendings/${date}/?wholeYearSelected=${wholeYearSelected}`);
     }
 
     public getAllTransactions(): Observable<ITransaction[]> {

@@ -17,6 +17,11 @@
         </ion-datetime>
     </ion-item>
 
+    <ion-item>
+        <ion-label>Show whole selected year</ion-label>
+        <ion-toggle slot="start" name="blueberry" (ionChange)="handleWholeYear($event)" [checked]="wholeYearSelected"></ion-toggle>
+    </ion-item>
+
     <ion-item *ngFor="let item of filteredSpendings">
         <ion-label>
             {{item.name}}
