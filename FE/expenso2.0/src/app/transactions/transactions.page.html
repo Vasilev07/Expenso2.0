@@ -1,30 +1,33 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-    Transactions
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Transactions
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-toolbar>
-    <ion-searchbar (ionChange)="onSearchTriggered($event)"></ion-searchbar>
-    <ion-button expand="full" (click)="presentActionSheet()">Sort</ion-button>
-  </ion-toolbar>
-  <ion-list>
-    <ion-item *ngFor="let transaction of filteredData">
-    <ion-avatar slot="start" (click)="onTransactionEdit(transaction)">
-        <ion-icon name="{{transaction?.category?.icon}}"></ion-icon>
-    </ion-avatar>
-    <ion-label>
-        <h2>
-        <div (click)="onTransactionEdit(transaction)">{{transaction?.category?.name}}</div>
-        <div (click)="onTransactionEdit(transaction)" [ngClass]="{'expense': transaction.isExpense, 'income': !transaction.isExpense}">{{transaction.amount}} {{user.currency}}</div>
-        <div (click)="onDeleteTransaction(transaction)"><ion-icon name="trash-outline"></ion-icon></div>
-        </h2>
-        <p> {{transaction.date | date: 'short'}}</p>
-    </ion-label>
+    <ion-toolbar>
+        <ion-searchbar (ionChange)="onSearchTriggered($event)"></ion-searchbar>
+        <ion-button expand="full" (click)="presentActionSheet()">Sort</ion-button>
+    </ion-toolbar>
+    <ion-list>
+        <ion-item *ngFor="let transaction of filteredData">
+            <ion-avatar slot="start" (click)="onTransactionEdit(transaction)">
+                <ion-icon name="{{transaction?.category?.icon}}"></ion-icon>
+            </ion-avatar>
+            <ion-label>
+                <h2>
+                    <div (click)="onTransactionEdit(transaction)">{{transaction?.category?.name}}</div>
+                    <div (click)="onTransactionEdit(transaction)"
+                        [ngClass]="{'expense': transaction.isExpense, 'income': !transaction.isExpense}">{{transaction.amount}} {{user.currency}}</div>
+                    <div (click)="onDeleteTransaction(transaction)">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </div>
+                </h2>
+                <p> {{transaction.date | date: 'short'}}</p>
+            </ion-label>
 
-    </ion-item>
-  </ion-list>
+        </ion-item>
+    </ion-list>
 </ion-content>

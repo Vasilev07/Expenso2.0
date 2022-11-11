@@ -4,20 +4,20 @@ import { TransactionEditPage } from './transaction-edit/transaction-edit.page';
 import { TransactionsPage } from './transactions.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: TransactionsPage,
-    pathMatch: 'full'
-  },
-  {
-    path: ':transactionId/edit/:currentTransactionId',
-    component: TransactionEditPage,
-    pathMatch: 'full'
-  }
+    {
+        path: '',
+        component: TransactionsPage,
+        pathMatch: 'full'
+    },
+    {
+        path: ':transactionId/edit/:currentTransactionId',
+        component: TransactionEditPage,
+        pathMatch: 'full'
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class TransactionsPageRoutingModule { }
+export class TransactionsPageRoutingModule {}
