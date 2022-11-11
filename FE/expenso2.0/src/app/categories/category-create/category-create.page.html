@@ -1,20 +1,20 @@
 <ion-header [translucent]="true">
     <ion-toolbar size="small">
-    <ion-buttons slot="secondary">
-        <ion-button (click)="onCancelClick()">
-        Cancel
-        </ion-button>
-    </ion-buttons>
-    <ion-title>
-        Create Category
-    </ion-title>
-    <ion-buttons slot="end">
-        <ion-button (click)="onSaveClick()">
-        Save
-        </ion-button>
-    </ion-buttons>
+        <ion-buttons slot="secondary">
+            <ion-button (click)="onCancelClick()">
+                Cancel
+            </ion-button>
+        </ion-buttons>
+        <ion-title>
+            Create Category
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="onSaveClick()">
+                Save
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
-  </ion-header>
+</ion-header>
 
 <ion-content>
     <ion-item>
@@ -22,31 +22,31 @@
         <ion-input placeholder="Category Name..." [(ngModel)]="categoryName"></ion-input>
     </ion-item>
     <ion-item (click)="onIconSelect()">
-    <ion-label>Icon:</ion-label>
-    <ion-input>
-        <ion-icon slot="end" *ngIf="icon" name="{{icon.name}}"></ion-icon>
-    </ion-input>
+        <ion-label>Icon:</ion-label>
+        <ion-input>
+            <ion-icon slot="end" *ngIf="icon" name="{{icon.name}}"></ion-icon>
+        </ion-input>
     </ion-item>
     <ion-item>
-    <ion-label>Chart Color:</ion-label>
-    <input
-        [style.background]="colorList[0].value"
-        [colorPicker]="colorList[0].value"
-        [cpOKButton] = "true"
-        [cpOKButtonText] = "'Select'"
-        [cpCancelButton] = "true"
-        [cpSaveClickOutside] = "'false'"
-        [cpDisableInput]="false"
-        [cpAlphaChannel]="'disabled'"
-        [cpOutputFormat]="'hex'"
-        [cpPresetColors]="presetValues"
-        [cpAddColorButton]="true"
-        [(ngModel)]="color"
-        (colorPickerChange)="colorSelected($event)"
-    />
+        <ion-label>Chart Color:</ion-label>
+        <input
+            [style.background]="colorList[0].value"
+            [colorPicker]="colorList[0].value"
+            [cpOKButton]="true"
+            [cpOKButtonText]="'Select'"
+            [cpCancelButton]="true"
+            [cpSaveClickOutside]="'false'"
+            [cpDisableInput]="false"
+            [cpAlphaChannel]="'disabled'"
+            [cpOutputFormat]="'hex'"
+            [cpPresetColors]="presetValues"
+            [cpAddColorButton]="true"
+            [(ngModel)]="color"
+            (colorPickerChange)="colorSelected($event)"
+        />
     </ion-item>
     <ion-item>
-    <ion-label>Is Expense</ion-label>
-    <ion-checkbox color="primary" [(ngModel)]="isExpense">Is Expense</ion-checkbox>
+        <ion-label>Is Expense</ion-label>
+        <ion-checkbox color="primary" [(ngModel)]="isExpense">Is Expense</ion-checkbox>
     </ion-item>
 </ion-content>

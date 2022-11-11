@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { FacebookLoginPlugin } from "@capacitor-community/facebook-login";
-import { Plugins } from "@capacitor/core";
-import { IFbUser } from "../interfaces/user-fb.interface";
-import { StorageService } from "./storage.service";
+import { Injectable } from '@angular/core';
+import { FacebookLoginPlugin } from '@capacitor-community/facebook-login';
+import { Plugins } from '@capacitor/core';
+import { IFbUser } from '../interfaces/user-fb.interface';
+import { StorageService } from './storage.service';
 
 @Injectable({
     providedIn: 'root'
@@ -45,12 +45,13 @@ export class UsersFbService {
 
         if (result.accessToken) {
             this.token = result.accessToken;
-            this.storageService.set("fbToken", `${result.accessToken.token}`);
+            this.storageService.set('fbToken', `${ result.accessToken.token }`);
             this.setLoginUrl();
         }
     }
 
     private setLoginUrl(): void {
-        this.url = `https://graph.facebook.com/${this.token.userId}?fields=id,name,picture.width(720),birthday,email&access_token=${this.token.token}`;
+        this.url
+            = `https://graph.facebook.com/${ this.token.userId }?fields=id,name,picture.width(720),birthday,email&access_token=${ this.token.token }`;
     }
 }

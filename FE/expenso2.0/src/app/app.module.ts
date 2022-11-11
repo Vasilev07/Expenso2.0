@@ -21,33 +21,33 @@ import { transactionReducer } from './spendings/transactions/reducers/transactio
 import { transactionsReducer } from './transactions/reducers/transactions.reducer';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    FormsModule,
-    StoreModule.forRoot(
-    {
-        categories: categoriesReducer,
-        user: userReducer,
-        spendings: transactionReducer,
-        transactions: transactionsReducer
-    }
-    ),
-    EffectsModule.forRoot([AppEffect]),
-    HttpClientModule,
-    StoreDevtoolsModule.instrument({
-    maxAge: 25, // Retains last 25 states
-    }),
-    IonicStorageModule.forRoot(),
-  ],
-  providers: [
-    Facebook,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    entryComponents: [],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        FormsModule,
+        StoreModule.forRoot(
+            {
+                categories: categoriesReducer,
+                user: userReducer,
+                spendings: transactionReducer,
+                transactions: transactionsReducer
+            }
+        ),
+        EffectsModule.forRoot([AppEffect]),
+        HttpClientModule,
+        StoreDevtoolsModule.instrument({
+            maxAge: 25 // Retains last 25 states
+        }),
+        IonicStorageModule.forRoot()
+    ],
+    providers: [
+        Facebook,
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
