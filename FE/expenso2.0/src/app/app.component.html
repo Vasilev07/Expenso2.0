@@ -1,28 +1,28 @@
 <ion-app fullscreen class="ion-padding" scroll-y="false">
   <ion-slides *ngIf="!user">
     <ion-slide>
-      <img src="../assets/images/slide-4.png" />
-      <h2>Ready to Play?</h2>
-      <div class="slider-buttons">
+    <img src="../assets/images/slide-4.png" />
+    <h2>Ready to Play?</h2>
+    <div class="slider-buttons">
         <ion-item>
-          <ion-label>Name:</ion-label>
-          <ion-input placeholder="email" [(ngModel)]="email">
-          </ion-input>
+        <ion-label>Name:</ion-label>
+        <ion-input placeholder="email" [(ngModel)]="email">
+        </ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Password:</ion-label>
-          <ion-input placeholder="password" [(ngModel)]="password">
-          </ion-input>
+        <ion-label>Password:</ion-label>
+        <ion-input placeholder="password" [(ngModel)]="password">
+        </ion-input>
         </ion-item>
         <ion-item>
-          <ion-button fill="clear" (click)="onLogin()">Login<ion-icon slot="end" name="arrow-forward"></ion-icon>
-          </ion-button>
+        <ion-button fill="clear" (click)="onLogin()">Login<ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
         </ion-item>
         <ion-item>
-          <ion-button fill="clear" (click)="onFbLogin()">Facebook Login<ion-icon slot="end" name="arrow-forward"></ion-icon>
-          </ion-button>
+        <ion-button fill="clear" (click)="onFbLogin()">Facebook Login<ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
         </ion-item>
-      </div>
+    </div>
     </ion-slide>
   </ion-slides>
   <ion-router-outlet *ngIf="user"></ion-router-outlet>

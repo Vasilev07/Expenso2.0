@@ -18,24 +18,24 @@ export class StatisticsPage implements OnInit {
 
   public ngOnInit() {
     this.store.select('spendings').subscribe((spendings: any) => {
-      if(spendings[0]) {
+    if(spendings[0]) {
         this.expenses = spendings;
         this.createBarChart();
-      }
+    }
     });
   }
 
   public createBarChart() {
     this.bars = new Chart(this.barChart.nativeElement, {
-      type: 'doughnut',
-      data: {
+    type: 'doughnut',
+    data: {
         labels: [...this.expenses.map((expense) => expense.name)],
         datasets: [{
-          label: 'Viewers in millions',
-          data: [...this.expenses.map((expense) => expense.expencePercent * 100)],
-          backgroundColor: [...this.expenses.map((expense) => expense.color)]
+        label: 'Viewers in millions',
+        data: [...this.expenses.map((expense) => expense.expencePercent * 100)],
+        backgroundColor: [...this.expenses.map((expense) => expense.color)]
         }]
-      }
+    }
     });
   }
 }

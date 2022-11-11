@@ -13,22 +13,22 @@ export class TransactionsEffects {
 
   $retrieveTransactions = createEffect((): any => {
     return this.actions$.pipe(
-      ofType('[Transaction] Retrieve Transactions'),
-      switchMap(() => this.transactionService.getAllTransactions().pipe(
-          map((transactions) => ({type: '[Transaction] Retrieve Transactions Success', transactions})),
-          catchError(() => EMPTY)
-      )
-      )
+    ofType('[Transaction] Retrieve Transactions'),
+    switchMap(() => this.transactionService.getAllTransactions().pipe(
+        map((transactions) => ({type: '[Transaction] Retrieve Transactions Success', transactions})),
+        catchError(() => EMPTY)
+    )
+    )
     );
   });
 
   $deleteTransaction = createEffect((): any => {
     return this.actions$.pipe(
-      ofType('[Transaction] Delete Transactions'),
-      switchMap((transactionAction: any) => this.transactionService.delete(transactionAction.transaction.transactionId, transactionAction.transaction._id, transactionAction.transaction.isExpense).pipe(
+    ofType('[Transaction] Delete Transactions'),
+    switchMap((transactionAction: any) => this.transactionService.delete(transactionAction.transaction.transactionId, transactionAction.transaction._id, transactionAction.transaction.isExpense).pipe(
         map(() => ({type: '[Transaction] Retrieve Transactions'})),
         catchError(() => EMPTY)
-      ))
+    ))
     )
   });
 }

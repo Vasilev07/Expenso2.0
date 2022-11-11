@@ -29,17 +29,17 @@ import { transactionsReducer } from './transactions/reducers/transactions.reduce
     AppRoutingModule,
     FormsModule,
     StoreModule.forRoot(
-      {
+    {
         categories: categoriesReducer,
         user: userReducer,
         spendings: transactionReducer,
         transactions: transactionsReducer
-      }
+    }
     ),
     EffectsModule.forRoot([AppEffect]),
     HttpClientModule,
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
+    maxAge: 25, // Retains last 25 states
     }),
     IonicStorageModule.forRoot(),
   ],

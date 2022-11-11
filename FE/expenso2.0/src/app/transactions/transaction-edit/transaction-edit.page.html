@@ -1,17 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-button (click)="onSaveClick()">
+    <ion-button (click)="onSaveClick()">
         Save
-      </ion-button>
+    </ion-button>
     </ion-buttons>
     <ion-title>
-      Edit
+    Edit
     </ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="onCancelClick()">
+    <ion-button (click)="onCancelClick()">
         Cancel
-      </ion-button>
+    </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -36,10 +36,10 @@
   <ion-item (click)="onCategorySelect()">
     <ion-label>Category: </ion-label>
     <ion-input placeholde="Category">
-      <ng-container *ngIf="selectedCategory">
+    <ng-container *ngIf="selectedCategory">
         <ion-label>{{selectedCategory.name}}</ion-label>
         <ion-icon name="{{selectedCategory.icon}}"></ion-icon>
-      </ng-container>
+    </ng-container>
     </ion-input>
   </ion-item>
 </ion-content>
