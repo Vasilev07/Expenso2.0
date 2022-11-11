@@ -887,3 +887,12 @@ ij_yaml_keep_line_breaks = true
 ij_yaml_space_before_colon = false
 ij_yaml_spaces_within_braces = true
 ij_yaml_spaces_within_brackets = true
+
+# Ignore paths
+[/.editorconfig]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset
