@@ -10,27 +10,31 @@ export const addExpense = async(collection: IRepository<ITransaction>,
     await collection.updateManyAddInArray(criteria, 'expenses', entity);
 };
 
-export const addIncome = async(collection: IRepository<ITransaction>,
-                               criteria: { userId: ObjectId, date: string },
-                               entity: IIncome): Promise<void> => {
+export const addIncome = async(
+    collection: IRepository<ITransaction>,
+    criteria: { userId: ObjectId, date: string },
+    entity: IIncome): Promise<void> => {
     await collection.updateManyAddInArray(criteria, 'incomes', entity);
 };
 
 export const getSpendings = async(collection: IRepository<ITransaction>, aggregation: any): Promise<ITransaction[]> =>
     await collection.performAggregation(aggregation);
 
-export const getAllTransactions = async(collection: IRepository<ITransaction>,
-                                        criteria: {}): Promise<ITransaction[]> => await collection.findBy(criteria);
+export const getAllTransactions = async(
+    collection: IRepository<ITransaction>,
+    criteria: {}): Promise<ITransaction[]> => await collection.findBy(criteria);
 
-export const updateTransaction = async(collection: IRepository<ITransaction>,
-                                       toUpdate: string,
-                                       criteria: { transactionId: string, currentTransactionId: string },
-                                       entity: any) => await collection.updateManyArray(criteria, toUpdate, entity);
+export const updateTransaction = async(
+    collection: IRepository<ITransaction>,
+    toUpdate: string,
+    criteria: { transactionId: string, currentTransactionId: string },
+    entity: any) => await collection.updateManyArray(criteria, toUpdate, entity);
 
-export const removeTransaction = async(collection: IRepository<ITransaction>,
-                                       removeFrom: string,
-                                       transactionId: string,
-                                       currentTransactionId: string) => {
+export const removeTransaction = async(
+    collection: IRepository<ITransaction>,
+    removeFrom: string,
+    transactionId: string,
+    currentTransactionId: string) => {
     const criteria = { _id: new ObjectId(transactionId) };
     collection.removeFromArray(criteria, removeFrom, new ObjectId(currentTransactionId));
 };
