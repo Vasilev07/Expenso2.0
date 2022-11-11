@@ -1,10 +1,12 @@
-[{
-  "_id": {
-    "$oid": "60b3f2c0ae329307380afd58"
-  },
-  "email": "a",
-  "password": "$2b$10$YgRQsfzjz3m0s.Vi4TuSc.WsAhXXXABVVodfa39lRbuBGeAYdzuqm",
-  "name": "a",
-  "darkMode": true,
-  "currency": "BGN"
-}]
+[
+    {
+        "_id": {
+            "$oid": "60b3f2c0ae329307380afd58"
+        },
+        "email": "a",
+        "password": "$2b$10$YgRQsfzjz3m0s.Vi4TuSc.WsAhXXXABVVodfa39lRbuBGeAYdzuqm",
+        "name": "a",
+        "darkMode": true,
+        "currency": "BGN"
+    }
+]
