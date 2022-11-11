@@ -1,48 +1,48 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
-import { NavController } from "@ionic/angular";
-import { UserSettingsService } from "../services/user-settings.service";
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { UserSettingsService } from '../services/user-settings.service';
 
 @Component({
-  templateUrl: './currency.page.html',
-  styleUrls: ['./currency.page.scss']
+    templateUrl: './currency.page.html',
+    styleUrls: ['./currency.page.scss']
 })
 export class CurrencyPage implements OnInit {
-  public currencies: any;
-  public filteredData: any;
+    public currencies: any;
+    public filteredData: any;
 
-  constructor(private readonly http: HttpClient,
-            private readonly navCtrl: NavController,
-            private readonly usersSettingsService: UserSettingsService) {
-  }
+    constructor(private readonly http: HttpClient,
+                private readonly navCtrl: NavController,
+                private readonly usersSettingsService: UserSettingsService) {
+    }
 
-  public ngOnInit(): void {
-    this.http.get('http://openexchangerates.org/api/currencies.json').subscribe((currencies) => {
-    this.currencies = Object.entries(currencies).map((currency) => {
-        return {
-        currency: currency[0],
-        name: currency[1]
-        };
-    });
-    this.filteredData = this.currencies;
-    });
-  }
+    public ngOnInit(): void {
+        this.http.get('http://openexchangerates.org/api/currencies.json').subscribe((currencies) => {
+            this.currencies = Object.entries(currencies).map((currency) => {
+                return {
+                    currency: currency[0],
+                    name: currency[1]
+                };
+            });
+            this.filteredData = this.currencies;
+        });
+    }
 
-  public onCurrencySelect(currency): void {
-    this.usersSettingsService.settings.next(currency);
+    public onCurrencySelect(currency): void {
+        this.usersSettingsService.settings.next(currency);
 
-    this.onCancelClick();
-  }
+        this.onCancelClick();
+    }
 
-  public onCancelClick(): void {
-    this.navCtrl.back();
-  }
+    public onCancelClick(): void {
+        this.navCtrl.back();
+    }
 
-  public onSearchTriggered(event): void {
-    const searchTerm = event.detail.value;
+    public onSearchTriggered(event): void {
+        const searchTerm = event.detail.value;
 
-    this.filteredData = this.currencies.filter((currency) => {
-    return currency.name.toLowerCase().includes(searchTerm)
-    });
-  }
+        this.filteredData = this.currencies.filter((currency) => {
+            return currency.name.toLowerCase().includes(searchTerm);
+        });
+    }
 }
