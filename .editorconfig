@@ -889,10 +889,11 @@ ij_yaml_spaces_within_braces = true
 ij_yaml_spaces_within_brackets = true
 
 # Ignore paths
-[/.editorconfig]
+[{/.editorconfig, /BE/tsconfig.json, /FE/.gitignore, /FE/package.json}]
 charset = unset
 end_of_line = unset
 insert_final_newline = unset
 trim_trailing_whitespace = unset
 indent_style = unset
 indent_size = unset
+max_line_length = unset
