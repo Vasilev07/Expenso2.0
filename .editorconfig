@@ -531,5 +531,5 @@ ij_yaml_spaces_within_braces = true
 ij_yaml_spaces_within_brackets = true
 
 # Ignore paths
-[{.editorconfig, BE/tsconfig.json, FE/.gitignore, FE/package.json}]
+[{.editorconfig, /BE/tsconfig.json, /FE/.gitignore, /FE/package.json}]
 max_line_length = unset
