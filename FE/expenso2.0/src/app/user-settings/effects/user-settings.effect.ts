@@ -13,11 +13,11 @@ export class UserSettingsEffects {
 
   $updateUserSettings = createEffect((): any => {
     return this.actions$.pipe(
-      ofType('[User Details] Update User Details'),
-      switchMap((userDetails) => this.userService.updateUserPreferences(userDetails).pipe(
+    ofType('[User Details] Update User Details'),
+    switchMap((userDetails) => this.userService.updateUserPreferences(userDetails).pipe(
         map((users) => ({type: '[User Details] Update User Details Success', users})),
         catchError(() => EMPTY)
-      ))
+    ))
     );
   });
 }

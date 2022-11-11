@@ -19,4 +19,3 @@ export const after = async (db: any, collectionName: string) => {
     await db.connection.close();
     await db.close();
 };
-

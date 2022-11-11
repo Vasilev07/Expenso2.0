@@ -12,8 +12,8 @@
         "test:coverage": "jest --coverage",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "editor-config-check": "eclint check 'src/**/*' ",
-        "editor-config-fix": "eclint fix 'src/**/*' "
+        "editor-config-check": "eclint check 'src/**/*'",
+        "editor-config-fix": "eclint fix 'src/**/*'"
     },
     "private": true,
     "dependencies": {

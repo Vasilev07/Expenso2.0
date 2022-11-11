@@ -1,12 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Select Currency
+    Select Currency
     </ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="onCancelClick()">
+    <ion-button (click)="onCancelClick()">
         Cancel
-      </ion-button>
+    </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -17,8 +17,8 @@
   </ion-toolbar>
   <ion-list>
     <ion-item *ngFor="let currency of filteredData" (click)="onCurrencySelect(currency)">
-      <ion-label>{{ currency.currency | currencySymbol }}</ion-label>
-      <ion-note slot="end">{{ currency.name }}</ion-note>
+    <ion-label>{{ currency.currency | currencySymbol }}</ion-label>
+    <ion-note slot="end">{{ currency.name }}</ion-note>
     </ion-item>
   </ion-list>
 </ion-content>

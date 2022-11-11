@@ -12,19 +12,19 @@ export class CurrencyPage implements OnInit {
   public filteredData: any;
 
   constructor(private readonly http: HttpClient,
-              private readonly navCtrl: NavController,
-              private readonly usersSettingsService: UserSettingsService) {
+            private readonly navCtrl: NavController,
+            private readonly usersSettingsService: UserSettingsService) {
   }
 
   public ngOnInit(): void {
     this.http.get('http://openexchangerates.org/api/currencies.json').subscribe((currencies) => {
-      this.currencies = Object.entries(currencies).map((currency) => {
+    this.currencies = Object.entries(currencies).map((currency) => {
         return {
-          currency: currency[0],
-          name: currency[1]
+        currency: currency[0],
+        name: currency[1]
         };
-      });
-      this.filteredData = this.currencies;
+    });
+    this.filteredData = this.currencies;
     });
   }
 
@@ -42,7 +42,7 @@ export class CurrencyPage implements OnInit {
     const searchTerm = event.detail.value;
 
     this.filteredData = this.currencies.filter((currency) => {
-      return currency.name.toLowerCase().includes(searchTerm)
+    return currency.name.toLowerCase().includes(searchTerm)
     });
   }
 }
