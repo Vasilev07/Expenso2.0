@@ -20,7 +20,9 @@
                 <h2>
                     <div (click)="onTransactionEdit(transaction)">{{transaction?.category?.name}}</div>
                     <div (click)="onTransactionEdit(transaction)"
-                         [ngClass]="{'expense': transaction.isExpense, 'income': !transaction.isExpense}">{{transaction.amount}} {{user.currency}}</div>
+                            [ngClass]="{'expense': transaction.isExpense,
+                            'income': !transaction.isExpense
+                            }">{{transaction.amount}} {{user.currency}}</div>
                     <div (click)="onDeleteTransaction(transaction)">
                         <ion-icon name="trash-outline"></ion-icon>
                     </div>

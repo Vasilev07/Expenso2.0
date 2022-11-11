@@ -12,6 +12,7 @@ export class UsersFbService {
     public user: IFbUser;
     public url: string;
     public token;
+    private baseUrl: string= 'https://graph.facebook.com/';
 
     public constructor(private readonly storageService: StorageService) {
 
@@ -52,6 +53,6 @@ export class UsersFbService {
 
     private setLoginUrl(): void {
         this.url
-            = `https://graph.facebook.com/${ this.token.userId }?fields=id,name,picture.width(720),birthday,email&access_token=${ this.token.token }`;
+            = `${this.baseUrl}${ this.token.userId }?fields=id,name,picture.width(720),birthday,email&access_token=${ this.token.token }`;
     }
 }

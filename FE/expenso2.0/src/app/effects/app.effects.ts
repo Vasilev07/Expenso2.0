@@ -10,6 +10,7 @@ import { UsersService } from '../services/users.service';
 @Injectable()
 export class AppEffect {
     private token;
+    private baseUrl: string = `https://graph.facebook.com/`;
 
     constructor(private actions$: Actions,
                 private readonly usersFbService: UsersFbService,
@@ -23,16 +24,16 @@ export class AppEffect {
             ofType('[User Login] Perform Login With FB'),
             exhaustMap(() => this.usersFbService.login()),
             switchMap(() => this.http.get(this.usersFbService.url)
-                                .pipe(
-                                    map((res: any) => ({
-                                        id: res.id,
-                                        name: res.name,
-                                        pictureUrl: res.picture.data.url,
-                                        birthday: res.birthday,
-                                        email: res.email
-                                    })),
-                                    map((user) => ({ type: '[User Login Success] Performed Login With FB Success', user }))
-                                )
+                .pipe(
+                    map((res: any) => ({
+                        id: res.id,
+                        name: res.name,
+                        pictureUrl: res.picture.data.url,
+                        birthday: res.birthday,
+                        email: res.email
+                    })),
+                    map((user) => ({ type: '[User Login Success] Performed Login With FB Success', user }))
+                )
             )
         );
     });
@@ -62,7 +63,7 @@ export class AppEffect {
             exhaustMap(() => this.storageService.get('fbToken')),
             exhaustMap((token) => this.http.get(`https://graph.facebook.com/me?access_token=${ token }`)),
             switchMap((user: any) =>
-                this.http.get(`https://graph.facebook.com/${ user.id }?fields=id,name,picture.width(720),birthday,email&access_token=${ this.token }`)
+                this.http.get(`${this.baseUrl}${ user.id }?fields=id,name,picture.width(720),birthday,email&access_token=${ this.token }`)
                     .pipe(
                         map((res: any) => ({
                             id: res.id,
