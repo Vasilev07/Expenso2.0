@@ -1,14 +1,21 @@
 {
-  "restartable": "rs",
-  "ignore": [".git", "node_modules/", "dist/", "coverage/"],
-  "watch": ["src/"],
-  "verbose": true,
-  "execMap": {
-    "ts": "node -r ts-node/register"
-  },
-  "env": {
-    "NODE_ENV": "development",
-    "JWT_KEY": "secred"
-  },
-  "ext": "js,json,ts"
+    "restartable": "rs",
+    "ignore": [
+        ".git",
+        "node_modules/",
+        "dist/",
+        "coverage/"
+    ],
+    "watch": [
+        "src/"
+    ],
+    "verbose": true,
+    "execMap": {
+        "ts": "node -r ts-node/register"
+    },
+    "env": {
+        "NODE_ENV": "development",
+        "JWT_KEY": "secred"
+    },
+    "ext": "js,json,ts"
 }
