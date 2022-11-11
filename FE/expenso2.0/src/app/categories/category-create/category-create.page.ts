@@ -17,9 +17,10 @@ export class CategoryCreatePage implements OnInit {
     // TODO FIX THAT
     public isExpense: boolean = false;
 
-    public constructor(private readonly router: Router,
-                       private readonly store: Store<{ categories: [] }>,
-                       private readonly categoryIconService: CategoryIconService) {
+    public constructor(
+        private readonly router: Router,
+        private readonly store: Store<{ categories: [] }>,
+        private readonly categoryIconService: CategoryIconService) {
     }
 
     public ngOnInit(): void {
