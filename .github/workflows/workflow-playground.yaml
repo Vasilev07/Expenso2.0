@@ -1,0 +1,17 @@
+name: Integration (Automatic)
+
+on: [ push ]
+
+jobs:
+    editorconfig-check:
+        name: .editorconfig lint
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+            -   uses: editorconfig-checker/action-editorconfig-checker@v1
+    markdown-lint:
+        name: markdown lint
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+            -   run: npx markdownlint-cli **/*.md
