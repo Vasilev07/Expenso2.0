@@ -19,12 +19,10 @@ jobs:
     name: BE lint
     runs-on: ubuntu-latest
     steps:
-      - name: Display the path
-        run: echo $PATH
-        shell: bash
-        working-directory: ./temp
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
       - run: echo ${GITHUB_WORKSPACE}
+      - run: npm install
+        working-directory: ./BE
