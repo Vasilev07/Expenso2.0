@@ -68,7 +68,7 @@ export const init = (app: any, collection: any): void => {
         response.send(transaction);
     });
 
-    app.get('/transaction', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+    app.get('/transaction', async (request: Request, response: Response): Promise<any> => {
         const date = new Date();
         const currentMonth = date.getMonth() + 1;
         const currentYear = date.getFullYear();
@@ -78,14 +78,14 @@ export const init = (app: any, collection: any): void => {
         response.send(transactions);
     });
 
-    app.post('/transaction', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+    app.post('/transaction', async (request: Request, response: Response): Promise<any> => {
         await addTransaction(collection, request.body, request.headers.authorization, null);
 
         return response.status(200).json();
     });
 
     app.post('/transaction/:transactionsId/:currentTransactionId',
-        async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+        async (request: Request, response: Response): Promise<any> => {
             const transaction = request.body;
 
             const transactionId = request.params.transactionsId;
@@ -101,7 +101,7 @@ export const init = (app: any, collection: any): void => {
         });
 
     app.delete('/transaction/:transactionsId/:currentTransactionId/:isExpense',
-        async (request: Request, response: Response, next: NextFunction) => {
+        async (request: Request, response: Response) => {
             const transactionId = request.params.transactionsId;
             const { currentTransactionId } = request.params;
             const { isExpense } = request.params;

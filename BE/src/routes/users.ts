@@ -1,5 +1,5 @@
 import { compare, hash } from 'bcrypt';
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { sign } from 'jsonwebtoken';
 
 import { Statuses } from '../enums/status.enum';
@@ -7,7 +7,7 @@ import { IUser } from '../models/user.interface';
 import { findUserByEmail, registerUser, updateUser } from '../services/user.service';
 
 export const init = (app: any, collection: any): void => {
-    app.post('/signup', async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+    app.post('/signup', async (request: Request, response: Response): Promise<void> => {
         const isEmailAvailable = await findUserByEmail(collection, request.body.email);
 
         if (isEmailAvailable.length > 0) {
@@ -29,7 +29,7 @@ export const init = (app: any, collection: any): void => {
         response.status(Statuses.OK).send({});
     });
 
-    app.post('/login', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+    app.post('/login', async (request: Request, response: Response): Promise<any> => {
         const users = await findUserByEmail(collection, request.body.email);
 
         if (users.length < 1) {
@@ -59,7 +59,7 @@ export const init = (app: any, collection: any): void => {
         );
     });
 
-    app.post('/userPrefferences', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+    app.post('/userPrefferences', async (request: Request, response: Response): Promise<any> => {
         const requestUsers = request.body.users[0];
         const foundUser = await findUserByEmail(collection, requestUsers.email);
 

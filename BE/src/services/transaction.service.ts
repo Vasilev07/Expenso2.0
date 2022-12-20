@@ -5,8 +5,6 @@ import { IRepository } from '../repositories/mongo.repository';
 export const addExpense = async (collection: IRepository<ITransaction>,
     criteria: { userId: ObjectId, date: string },
     entity: IExpense): Promise<void> => {
-    console.log(entity);
-
     await collection.updateManyAddInArray(criteria, 'expenses', entity);
 };
 
@@ -18,7 +16,8 @@ export const addIncome = async (
     await collection.updateManyAddInArray(criteria, 'incomes', entity);
 };
 
-export const getSpendings = async (collection: IRepository<ITransaction>, aggregation: any): Promise<ITransaction[]> => await collection.performAggregation(aggregation);
+export const getSpendings = async (collection: IRepository<ITransaction>, aggregation: any): Promise<ITransaction[]> =>
+    await collection.performAggregation(aggregation);
 
 export const getAllTransactions = async (
     collection: IRepository<ITransaction>,

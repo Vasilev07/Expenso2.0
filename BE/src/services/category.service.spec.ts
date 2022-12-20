@@ -6,13 +6,11 @@ import {
 } from './category.service';
 
 describe('CategoryService', () => {
-    let db: any;
     const collectionName: string = 'category';
     let repository: any;
 
     beforeAll(async () => {
         const mock = await mongoDbMockConnect();
-        db = mock.db;
         repository = mongoRepository(mock.db, 'category');
     });
 

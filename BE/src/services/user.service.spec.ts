@@ -4,13 +4,11 @@ import { mongoRepository } from '../repositories/mongo.repository';
 import { deleteAll, getUserById, registerUser } from './user.service';
 
 describe('CategoryService', () => {
-    let db: any;
     const collectionName: string = 'users';
     let repository: any;
 
     beforeAll(async () => {
         const mock = await mongoDbMockConnect();
-        db = mock.db;
         repository = mongoRepository(mock.db, 'users');
     });
 

@@ -21,6 +21,8 @@
       "error",
       4
     ],
+    "no-undef": "off",
+    "no-return-await": "off",
     "import/prefer-default-export": "off",
     "import/extensions": "off",
     // "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
@@ -30,7 +32,7 @@
     ],
     "linebreak-style": [
       "error",
-      "windows"
+      "unix"
     ]
   }
 }

@@ -1,19 +1,15 @@
 import { ObjectId } from 'mongodb';
 import { after, mongoDbMockConnect } from '../db-mock';
 import { mongoRepository } from '../repositories/mongo.repository';
-import {
-    createCategory, deleteAll, deleteCategoryById, getAllCategories,
-} from './category.service';
+import { deleteAll } from './category.service';
 import { addExpense, addIncome, getAllTransactions } from './transaction.service';
 
 describe('CategoryService', () => {
-    let db: any;
     const collectionName: string = 'transactions';
     let repository: any;
 
     beforeAll(async () => {
         const mock = await mongoDbMockConnect();
-        db = mock.db;
         repository = mongoRepository(mock.db, 'transactions');
     });
 
@@ -27,7 +23,6 @@ describe('CategoryService', () => {
 
     describe('addExpense, addIncome, getAllTransactions', () => {
         it('should create passed category and getAllCategories should return it', async () => {
-            const id = new ObjectId();
             const userId = new ObjectId();
             const expense = {
                 _id: new ObjectId('60fd2c8c7ba7470b0ca6e1ab'),
