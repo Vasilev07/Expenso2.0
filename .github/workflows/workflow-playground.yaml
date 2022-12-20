@@ -18,10 +18,10 @@ jobs:
   lint-be:
     name: BE lint
     runs-on: ubuntu-latest
+    working-directory: ./temp
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-        working-directory: ./temp
       - run: echo ${GITHUB_WORKSPACE}
