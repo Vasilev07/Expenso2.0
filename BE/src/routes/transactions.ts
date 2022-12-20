@@ -1,14 +1,9 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { decode } from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
 import { transactionSpendingsAggregation, transactionSpendingsAggregationPerYear } from '../repositories/spendings';
 import {
-    addExpense,
-    addIncome,
-    getAllTransactions,
-    getSpendings,
-    removeTransaction,
-    updateTransaction,
+    addExpense, addIncome, getAllTransactions, getSpendings, removeTransaction,
 } from '../services/transaction.service';
 
 const addTransaction = async (collection: any, transaction: any, token: any, currentTransactionId: any) => {
@@ -36,35 +31,24 @@ const addTransaction = async (collection: any, transaction: any, token: any, cur
         },
     };
 
-    isExpense
-        ? await addExpense(
-            collection,
-            filter,
-            transactionToSave,
-        )
-        : await addIncome(
-            collection,
-            filter,
-            transactionToSave,
-        );
+    if (isExpense) {
+        await addExpense(collection, filter, transactionToSave);
+    } else {
+        await addIncome(collection, filter, transactionToSave);
+    }
 };
 
 export const init = (app: any, collection: any): void => {
-    app.get('/transaction/spendings/:date', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
+    app.get('/transaction/spendings/:date', async (request: Request, response: Response): Promise<any> => {
         const date = new Date(request.params.date);
-        console.log('request query', request.query);
         const isWholeYearSelected = request.query.wholeYearSelected === 'true';
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
-
-        console.log(month);
-        console.log(year);
 
         const transaction = isWholeYearSelected
             ? await getSpendings(collection, transactionSpendingsAggregationPerYear(year))
             : await getSpendings(collection, transactionSpendingsAggregation(`${month}-${year}`));
 
-        console.log(transaction);
         response.send(transaction);
     });
 

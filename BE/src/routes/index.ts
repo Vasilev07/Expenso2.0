@@ -9,6 +9,7 @@ export const routesInit = (app: Application, collection: any) => {
         .filter((filename) => filename !== 'index.js')
         .map((filename) => path.join(__dirname, filename))
         .forEach((modulePath) => {
+            // eslint-disable-next-line
             const route = require(modulePath);
             const controllerModulePath = modulePath.split('\\');
             const controllerName = controllerModulePath[controllerModulePath.length - 1].split('.')[0];

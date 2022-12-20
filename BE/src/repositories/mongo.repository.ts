@@ -63,7 +63,8 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
 
     const performAggregation = async (aggregation: any): Promise<any> => collection.aggregate(aggregation).toArray();
 
-    const removeFromArray = async (criteria: any, removeFrom: string, removedItemId: ObjectId): Promise<any> => collection.updateMany(criteria, { $pull: { [removeFrom]: { _id: removedItemId } } });
+    const removeFromArray = async (criteria: any, removeFrom: string, removedItemId: ObjectId): Promise<any> =>
+        collection.updateMany(criteria, { $pull: { [removeFrom]: { _id: removedItemId } } });
 
     return {
         create,

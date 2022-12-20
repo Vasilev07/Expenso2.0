@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { decode } from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
 
@@ -8,7 +8,7 @@ import { ICategory } from '../models/category.interface';
 import { createCategory, deleteCategoryById, getAllCategories } from '../services/category.service';
 
 export const init = (app: any, collection: any): void => {
-    app.get('/category', checkAuth, async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+    app.get('/category', checkAuth, async (request: Request, response: Response): Promise<void> => {
         const token = request.headers.authorization as any;
         const decodedToken = decode(token.split(' ')[1]) as any;
 
@@ -17,7 +17,7 @@ export const init = (app: any, collection: any): void => {
         response.status(Statuses.OK).send(categories);
     });
 
-    app.post('/category', checkAuth, async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+    app.post('/category', checkAuth, async (request: Request, response: Response): Promise<void> => {
         const categoryFromUser = request.body as ICategory;
         const token = request.headers.authorization as any;
         const decodedToken = decode(token.split(' ')[1]) as any;
@@ -32,13 +32,13 @@ export const init = (app: any, collection: any): void => {
         response.status(Statuses.OK).send(category);
     });
 
-    app.delete('/category', checkAuth, async (request: Request, response: Response, next: NextFunction): Promise<void> => {
+    app.delete('/category', checkAuth, async (request: Request, response: Response): Promise<void> => {
         const category = request.body as { id: string };
 
         try {
-            const test = await deleteCategoryById(collection, category?.id);
+            await deleteCategoryById(collection, category?.id);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
 
         response.status(Statuses.OK).send({});

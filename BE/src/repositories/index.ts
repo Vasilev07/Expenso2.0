@@ -14,6 +14,7 @@ export const initizalizeCollections = async (db: Db): Promise<ICollections> => {
 
     const dbData = await db.listCollections().toArray();
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     collectionsToCreate.forEach(([collectionName, ...rest]) => {
         if (!dbData.some((data) => data.name === collectionName)) {
             db.createCollection(collectionName);
