@@ -24,6 +24,6 @@ jobs:
         with:
           node-version: '16'
       - run: echo ${GITHUB_WORKSPACE}
-      - run: npm install
         working-directory: ./BE
+      - run: npm install
       - run: npm run lint
