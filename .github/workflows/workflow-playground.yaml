@@ -26,3 +26,4 @@ jobs:
       - run: echo ${GITHUB_WORKSPACE}
       - run: npm install
         working-directory: ./BE
+      - run: npm run lint
