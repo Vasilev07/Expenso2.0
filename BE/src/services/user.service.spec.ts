@@ -1,11 +1,11 @@
-import { ObjectId } from "mongodb";
-import { after, mongoDbMockConnect } from "../db-mock";
-import { mongoRepository } from "../repositories/mongo.repository";
-import { deleteAll, getUserById, registerUser } from "./user.service";
+import { ObjectId } from 'mongodb';
+import { after, mongoDbMockConnect } from '../db-mock';
+import { mongoRepository } from '../repositories/mongo.repository';
+import { deleteAll, getUserById, registerUser } from './user.service';
 
 describe('CategoryService', () => {
     let db: any;
-    let collectionName: string = 'users';
+    const collectionName: string = 'users';
     let repository: any;
 
     beforeAll(async () => {

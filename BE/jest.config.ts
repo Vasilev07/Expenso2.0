@@ -194,8 +194,8 @@ export default {
     moduleDirectories: ['node_modules', 'src'],
     roots: ['<rootDir>/src'],
     transform: {
-        '^.+\\.tsx?$': 'ts-jest'
+        '^.+\\.tsx?$': 'ts-jest',
     },
     testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
-    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 };

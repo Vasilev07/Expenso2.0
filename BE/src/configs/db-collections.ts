@@ -10,6 +10,6 @@ export const dbCollections: IDbCollections = {
         name: 'users',
     },
     categories: {
-        schemaValidation: 'categories'
-    }
+        schemaValidation: 'categories',
+    },
 };

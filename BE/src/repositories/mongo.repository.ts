@@ -1,4 +1,4 @@
-import { Db, ObjectId } from "mongodb";
+import { Db, ObjectId } from 'mongodb';
 
 export interface IRepository<T> {
     create: (entity: any) => Promise<any>;
@@ -16,16 +16,13 @@ export interface IRepository<T> {
 }
 
 export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<T> => {
-
     const collection = db.collection(collectionName);
 
     const create = async (entity: T) => {
         collection.insertOne(entity);
     };
 
-    const findAll = async (): Promise<T[]> => {
-        return collection.find({}).toArray();
-    };
+    const findAll = async (): Promise<T[]> => collection.find({}).toArray();
 
     const deleteById = async (id: string): Promise<void> => {
         console.log('repo', new ObjectId(id));
@@ -38,17 +35,11 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
         collection.deleteMany({});
     };
 
-    const getById = async (id: string): Promise<T[]> => {
-        return collection.find({ _id: new ObjectId(id) }).toArray();
-    };
+    const getById = async (id: string): Promise<T[]> => collection.find({ _id: new ObjectId(id) }).toArray();
 
-    const findBy = async (criteria: any): Promise<T[]> => {
-        return collection.find({ ...criteria }).toArray();
-    };
+    const findBy = async (criteria: any): Promise<T[]> => collection.find({ ...criteria }).toArray();
 
-    const findAllForUser = async (userId: ObjectId): Promise<T[]> => {
-        return collection.find({ userId }).toArray();
-    };
+    const findAllForUser = async (userId: ObjectId): Promise<T[]> => collection.find({ userId }).toArray();
 
     const updateManyAddInArray = async (criteria: any, toPushIn: string, entity: T): Promise<void> => {
         collection.updateMany({ ...criteria }, { $push: { [toPushIn]: entity } }, { upsert: true });
@@ -58,27 +49,21 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
         collection.updateMany(
             {
                 _id: new ObjectId(criteria.transactionId),
-                [toUpdate]: { $elemMatch: { _id: new ObjectId(criteria.currentTransactionId) } }
+                [toUpdate]: { $elemMatch: { _id: new ObjectId(criteria.currentTransactionId) } },
             },
             {
                 $set: {
-                    [toUpdate + '.$']: { ...entity }
-                }
-            }
+                    [`${toUpdate}.$`]: { ...entity },
+                },
+            },
         );
     };
 
-    const updateMany = async (criteria: any, entity: T): Promise<any> => {
-        return collection.updateMany({ ...criteria }, { "$set": { ...entity } });
-    };
+    const updateMany = async (criteria: any, entity: T): Promise<any> => collection.updateMany({ ...criteria }, { $set: { ...entity } });
 
-    const performAggregation = async (aggregation: any): Promise<any> => {
-        return collection.aggregate(aggregation).toArray();
-    };
+    const performAggregation = async (aggregation: any): Promise<any> => collection.aggregate(aggregation).toArray();
 
-    const removeFromArray = async (criteria: any, removeFrom: string, removedItemId: ObjectId): Promise<any> => {
-        return collection.updateMany(criteria, { $pull: { [removeFrom]: { _id: removedItemId } } })
-    };
+    const removeFromArray = async (criteria: any, removeFrom: string, removedItemId: ObjectId): Promise<any> => collection.updateMany(criteria, { $pull: { [removeFrom]: { _id: removedItemId } } });
 
     return {
         create,
@@ -92,6 +77,6 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
         updateMany,
         updateManyArray,
         removeFromArray,
-        deleteAll
-    }
+        deleteAll,
+    };
 };

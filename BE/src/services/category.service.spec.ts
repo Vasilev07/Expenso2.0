@@ -1,11 +1,13 @@
-import { ObjectId } from "mongodb";
-import { after, mongoDbMockConnect } from "../db-mock";
-import { mongoRepository } from "../repositories/mongo.repository";
-import { createCategory, deleteAll, deleteCategoryById, getAllCategories } from "./category.service";
+import { ObjectId } from 'mongodb';
+import { after, mongoDbMockConnect } from '../db-mock';
+import { mongoRepository } from '../repositories/mongo.repository';
+import {
+    createCategory, deleteAll, deleteCategoryById, getAllCategories,
+} from './category.service';
 
 describe('CategoryService', () => {
     let db: any;
-    let collectionName: string = 'category';
+    const collectionName: string = 'category';
     let repository: any;
 
     beforeAll(async () => {
@@ -32,7 +34,7 @@ describe('CategoryService', () => {
                 color: 'string',
                 icon: 'string',
                 userId,
-                isExpense: true
+                isExpense: true,
             };
 
             await createCategory(repository, instertedCategory);
@@ -53,7 +55,7 @@ describe('CategoryService', () => {
                 color: 'string',
                 icon: 'string',
                 userId,
-                isExpense: true
+                isExpense: true,
             };
 
             await createCategory(repository, instertedCategory);

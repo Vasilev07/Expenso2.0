@@ -24,7 +24,7 @@ export const init = (app: any, collection: any): void => {
 
         const category = {
             ...categoryFromUser,
-            userId: new ObjectId(decodedToken.userId)
+            userId: new ObjectId(decodedToken.userId),
         };
 
         await createCategory(collection, category);
@@ -37,7 +37,6 @@ export const init = (app: any, collection: any): void => {
 
         try {
             const test = await deleteCategoryById(collection, category?.id);
-
         } catch (error) {
             console.log(error);
         }

@@ -11,8 +11,8 @@ export const mongoDbMockConnect = async () => {
 
     return {
         db,
-        connection
-    }
+        connection,
+    };
 };
 
 export const after = async (db: any, collectionName: string) => {

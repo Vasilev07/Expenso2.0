@@ -23,6 +23,6 @@ export const initizalizeCollections = async (db: Db): Promise<ICollections> => {
     return {
         transactions: mongoRepository<any>(db, 'transactions'),
         categories: mongoRepository<any>(db, 'categories'),
-        users: mongoRepository<any>(db, 'users')
-    }
+        users: mongoRepository<any>(db, 'users'),
+    };
 };

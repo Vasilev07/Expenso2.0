@@ -7,7 +7,7 @@ import { IUser } from '../models/user.interface';
 import { findUserByEmail, registerUser, updateUser } from '../services/user.service';
 
 export const init = (app: any, collection: any): void => {
-    app.post('/signup', async(request: Request, response: Response, next: NextFunction): Promise<void> => {
+    app.post('/signup', async (request: Request, response: Response, next: NextFunction): Promise<void> => {
         const isEmailAvailable = await findUserByEmail(collection, request.body.email);
 
         if (isEmailAvailable.length > 0) {
@@ -21,7 +21,7 @@ export const init = (app: any, collection: any): void => {
             password,
             name: request.body.email,
             darkMode: request.body.dakrMode || false,
-            currency: request.body.currency || 'USD'
+            currency: request.body.currency || 'USD',
         };
 
         registerUser(collection, user);
@@ -29,7 +29,7 @@ export const init = (app: any, collection: any): void => {
         response.status(Statuses.OK).send({});
     });
 
-    app.post('/login', async(request: Request, response: Response, next: NextFunction): Promise<any> => {
+    app.post('/login', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
         const users = await findUserByEmail(collection, request.body.email);
 
         if (users.length < 1) {
@@ -45,7 +45,7 @@ export const init = (app: any, collection: any): void => {
         const token = sign(
             { email: users[0].email, userId: users[0]._id?.toString() },
             'secred',
-            { expiresIn: '1h' }
+            { expiresIn: '1h' },
         );
 
         return response.status(200).json(
@@ -53,13 +53,13 @@ export const init = (app: any, collection: any): void => {
                 message: 'Auth success',
                 token,
                 user: {
-                    email: users[0].email, id: users[0]._id, darkMode: users[0].darkMode, currency: users[0].currency
-                }
-            }
+                    email: users[0].email, id: users[0]._id, darkMode: users[0].darkMode, currency: users[0].currency,
+                },
+            },
         );
     });
 
-    app.post('/userPrefferences', async(request: Request, response: Response, next: NextFunction): Promise<any> => {
+    app.post('/userPrefferences', async (request: Request, response: Response, next: NextFunction): Promise<any> => {
         const requestUsers = request.body.users[0];
         const foundUser = await findUserByEmail(collection, requestUsers.email);
 
@@ -73,12 +73,12 @@ export const init = (app: any, collection: any): void => {
         const users = [{
             ...foundUser[0],
             currency: userCurrency,
-            darkMode: userMode
+            darkMode: userMode,
         }];
 
         await updateUser(collection, users[0]._id as any, {
             darkMode: userMode,
-            currency: userCurrency
+            currency: userCurrency,
         });
 
         return response.status(200).json([...users]);

@@ -1,27 +1,36 @@
 {
-    "extends": [
-        "airbnb"
+  "extends": [
+    "airbnb"
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 140,
+        "ignorePattern": "^import"
+      }
     ],
-    "plugins": [
-        "@typescript-eslint"
+    "implicit-arrow-linebreak": "off",
+    "no-underscore-dangle": 0,
+    "import/no-unresolved": 0,
+    "indent": [
+      "error",
+      4
     ],
-    "parser": "@typescript-eslint/parser",
-    "rules": {
-        "import/no-unresolved": 0,
-        "indent": [
-            "error",
-            4
-        ],
-        "import/prefer-default-export": "off",
-        "import/extensions": "off",
-        // "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": [
-            "error"
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ]
-    }
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    // "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error"
+    ],
+    "linebreak-style": [
+      "error",
+      "windows"
+    ]
+  }
 }

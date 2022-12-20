@@ -19,16 +19,16 @@ export const expressInit = (app: Application) => {
     app.use(bodyParser.json());
 
     app.use((req, res, next) => {
-        res.header("Access-Control-Allow-Origin", "http://localhost:8100");
-        res.header("Access-Control-Allow-Origin", "http://localhost:8100/");
-        res.header("Access-Control-Allow-Origin", 'capacitor://localhost');
-        res.header("Access-Control-Allow-Origin", 'ionic://localhost');
-        res.header("Access-Control-Allow-Origin", 'http://localhost');
-        res.header("Access-Control-Allow-Origin", 'http://localhost:8080');
-        res.header("Access-Control-Allow-Origin", 'http://localhost:8080/');
-        res.header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS")
-        res.header("Access-Control-Allow-Origin", '*');
-        res.header("Access-Control-Allow-Headers", "*");
+        res.header('Access-Control-Allow-Origin', 'http://localhost:8100');
+        res.header('Access-Control-Allow-Origin', 'http://localhost:8100/');
+        res.header('Access-Control-Allow-Origin', 'capacitor://localhost');
+        res.header('Access-Control-Allow-Origin', 'ionic://localhost');
+        res.header('Access-Control-Allow-Origin', 'http://localhost');
+        res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+        res.header('Access-Control-Allow-Origin', 'http://localhost:8080/');
+        res.header('Access-Control-Allow-Methods', 'DELETE, POST, GET, OPTIONS');
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Headers', '*');
 
         next();
     });

@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+import { ObjectId } from 'mongodb';
 
 export interface ICategory {
     id?: string;
@@ -7,4 +7,4 @@ export interface ICategory {
     icon: string;
     userId: ObjectId;
     isExpense: boolean;
-};
+}

@@ -1,12 +1,14 @@
-import { ObjectId } from "mongodb";
-import { after, mongoDbMockConnect } from "../db-mock";
-import { mongoRepository } from "../repositories/mongo.repository";
-import { createCategory, deleteAll, deleteCategoryById, getAllCategories } from "./category.service";
-import { addExpense, addIncome, getAllTransactions } from "./transaction.service";
+import { ObjectId } from 'mongodb';
+import { after, mongoDbMockConnect } from '../db-mock';
+import { mongoRepository } from '../repositories/mongo.repository';
+import {
+    createCategory, deleteAll, deleteCategoryById, getAllCategories,
+} from './category.service';
+import { addExpense, addIncome, getAllTransactions } from './transaction.service';
 
 describe('CategoryService', () => {
     let db: any;
-    let collectionName: string = 'transactions';
+    const collectionName: string = 'transactions';
     let repository: any;
 
     beforeAll(async () => {
@@ -35,8 +37,8 @@ describe('CategoryService', () => {
                     categoryId: new ObjectId('60b940d4f76f1130c8f19cea'),
                     name: 'Sport',
                     icon: 'american-football-outline',
-                    color: '#e433b4'
-                }
+                    color: '#e433b4',
+                },
             };
             const income = {
                 _id: new ObjectId('60fd2c8c7ba7470b0ca6e1ab'),
@@ -46,8 +48,8 @@ describe('CategoryService', () => {
                     categoryId: new ObjectId('60b940d4f76f1130c8f19cea'),
                     name: 'Sport',
                     icon: 'american-football-outline',
-                    color: '#e433b4'
-                }
+                    color: '#e433b4',
+                },
             };
             await addExpense(repository, { userId, date: new Date().toString() }, expense);
             await addIncome(repository, { userId, date: new Date().toString() }, income);
