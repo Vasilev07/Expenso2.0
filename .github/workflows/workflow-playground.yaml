@@ -15,5 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npx markdownlint-cli **/*.md
-#  lint-be:
-#    runs-on: ubuntu-latest
+  lint-be:
+    name: BE lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm run lint
