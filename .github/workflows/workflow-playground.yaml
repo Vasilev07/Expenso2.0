@@ -54,3 +54,21 @@ jobs:
         working-directory: ./FE/expenso2.0
       - run: npm run test
         working-directory: ./FE/expenso2.0
+  test-be:
+    name: BE tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+      - uses: actions/checkout@v2
+      - name: Setup Nodejs 16
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Setup MongoDb
+        uses: supercharge/mongodb-github-action@1.8.0
+      - name: Install Dependencies
+      - run: npm install --force
+        working-directory: ./BE
+      - name: Run Integration Tests
+      - run: npm run test
+        working-directory: ./BE
