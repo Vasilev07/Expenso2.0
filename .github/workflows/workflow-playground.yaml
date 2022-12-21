@@ -66,9 +66,7 @@ jobs:
           node-version: '16'
       - name: Setup MongoDb
         uses: supercharge/mongodb-github-action@1.8.0
-      - name: Install Dependencies
       - run: npm install --force
         working-directory: ./BE
-      - name: Run Integration Tests
       - run: npm run test
         working-directory: ./BE
