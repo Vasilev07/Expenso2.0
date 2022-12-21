@@ -28,3 +28,16 @@ jobs:
         working-directory: ./BE
       - run: npm run lint
         working-directory: ./BE
+  lint-fe:
+    name: FE lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: echo ${GITHUB_WORKSPACE}
+      - run: npm install
+        working-directory: ./FE
+      - run: npm run lint
+        working-directory: ./FE
