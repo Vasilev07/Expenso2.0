@@ -5,7 +5,6 @@ import { deleteAll } from './category.service';
 import { addExpense, addIncome, getAllTransactions } from './transaction.service';
 
 describe('CategoryService', () => {
-    const collectionName: string = 'transactions';
     let repository: any;
 
     beforeAll(async () => {
@@ -18,7 +17,7 @@ describe('CategoryService', () => {
     });
 
     afterAll(async () => {
-        await after(repository, collectionName);
+        await after(repository);
     });
 
     describe('addExpense, addIncome, getAllTransactions', () => {

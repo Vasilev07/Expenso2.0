@@ -26,8 +26,7 @@ describe('TransactionService', () => {
 
     describe('getAllSpendings()', () => {
         it('should call get', () => {
-            sut.getAllSpendings({} as any);
-
+            sut.getAllSpendings({} as any, true);
 
             expect(httpClient.get).toHaveBeenCalled();
         });
