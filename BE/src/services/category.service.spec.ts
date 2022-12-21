@@ -6,7 +6,6 @@ import {
 } from './category.service';
 
 describe('CategoryService', () => {
-    const collectionName: string = 'category';
     let repository: any;
 
     beforeAll(async () => {
@@ -19,7 +18,7 @@ describe('CategoryService', () => {
     });
 
     afterAll(async () => {
-        await after(repository, collectionName);
+        await after(repository);
     });
 
     describe('createCategory', () => {

@@ -4,7 +4,6 @@ import { mongoRepository } from '../repositories/mongo.repository';
 import { deleteAll, getUserById, registerUser } from './user.service';
 
 describe('CategoryService', () => {
-    const collectionName: string = 'users';
     let repository: any;
 
     beforeAll(async () => {
@@ -17,7 +16,7 @@ describe('CategoryService', () => {
     });
 
     afterAll(async () => {
-        await after(repository, collectionName);
+        await after(repository);
     });
 
     describe('registerUser, getUserById', () => {
