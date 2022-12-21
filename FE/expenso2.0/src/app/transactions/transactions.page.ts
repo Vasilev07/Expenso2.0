@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
 import { Store } from '@ngrx/store';
-import { ITransaction } from '../spendings/transactions/interfaces/transaction.interface';
 import { deleteTransaction, retrieveTransactions } from './actions/transactions.action';
 
 @Component({

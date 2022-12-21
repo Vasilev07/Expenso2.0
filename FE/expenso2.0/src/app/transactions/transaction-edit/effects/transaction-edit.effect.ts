@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { ITransaction } from 'src/app/spendings/transactions/interfaces/transaction.interface';
 import { TransactionService } from 'src/app/spendings/transactions/services/transaction.service';
 

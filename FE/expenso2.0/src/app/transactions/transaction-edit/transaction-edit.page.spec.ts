@@ -1,8 +1,8 @@
-import { ActivatedRoute, Router } from "@angular/router";
-import { ActionSheetController, NavController } from "@ionic/angular";
-import { Store } from "@ngrx/store";
-import { of } from "rxjs";
-import { TransactionEditPage } from "./transaction-edit.page";
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
+import { TransactionEditPage } from './transaction-edit.page';
 
 const transactions = [
     {

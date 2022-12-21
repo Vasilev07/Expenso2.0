@@ -7,11 +7,11 @@ const routes: Routes = [{
     component: UserSettingsPage,
     pathMatch: 'full'
 },
-    {
-        path: 'currency',
-        loadChildren: () => import('./currencies/currency.module').then(m => m.CurrencyModule),
-        pathMatch: 'full'
-    }];
+{
+    path: 'currency',
+    loadChildren: () => import('./currencies/currency.module').then(m => m.CurrencyModule),
+    pathMatch: 'full'
+}];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

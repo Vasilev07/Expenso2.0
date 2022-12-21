@@ -1,9 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { NavController } from "@ionic/angular";
-import { Store } from "@ngrx/store";
-import { ICategory } from "src/app/categories/category.interface";
-import { CategorySelectorService } from "./category-selected.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+import { ICategory } from 'src/app/categories/category.interface';
+import { CategorySelectorService } from './category-selected.service';
 
 @Component({
     templateUrl: 'category-selector.page.html'

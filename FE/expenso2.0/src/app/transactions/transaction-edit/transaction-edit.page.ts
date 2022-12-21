@@ -1,10 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { NavController } from "@ionic/angular";
-import { Store } from "@ngrx/store";
-import { ICategory } from "src/app/categories/category.interface";
-import { IExpenseIncomeCategory, ITransaction } from "src/app/spendings/transactions/interfaces/transaction.interface";
-import { editTransaction } from "./actions/transaction-edit.action";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { Store } from '@ngrx/store';
+import { IExpenseIncomeCategory, ITransaction } from 'src/app/spendings/transactions/interfaces/transaction.interface';
+import { editTransaction } from './actions/transaction-edit.action';
 
 @Component({
     selector: 'transactions-edit',

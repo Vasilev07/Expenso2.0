@@ -1,8 +1,7 @@
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { NavController } from "@ionic/angular";
-import { CategoryIconService } from "../services/category-icon.service";
-import { categoryIcons, ICategoryIcons } from "./category-icons";
+import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { CategoryIconService } from '../services/category-icon.service';
+import { categoryIcons, ICategoryIcons } from './category-icons';
 
 @Component({
     templateUrl: './category-icon-create.page.html'

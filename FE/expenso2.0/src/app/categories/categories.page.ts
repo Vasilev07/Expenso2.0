@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { retrieveCategoryList } from './actions/categories.action';
 import { ICategory } from './category.interface';
 
 @Component({
