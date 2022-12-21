@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: '16'
       - run: echo ${GITHUB_WORKSPACE}
-      - run: npm install
+      - run: npm install --force
         working-directory: ./FE/expenso2.0
       - run: npm run lint
         working-directory: ./FE/expenso2.0
