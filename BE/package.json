@@ -46,5 +46,16 @@
         "jsonwebtoken": "^8.5.1",
         "mongodb": "^3.6.4",
         "mongodb-memory-server": "^7.3.1"
+    },
+    "jest": {
+      "transform": {
+        ".(ts|tsx)": "ts-jest"
+      },
+      "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+      "moduleFileExtensions": [
+        "ts",
+        "tsx",
+        "js"
+      ]
     }
 }
