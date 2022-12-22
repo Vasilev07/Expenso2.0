@@ -5,11 +5,12 @@ export const mongoDbMockConnect = async () => {
     let db;
 
     // eslint-disable-next-line prefer-const
-    connection = await MongoClient.connect('mongodb://localhost:27017/test', {
+    connection = await MongoClient.connect('mongodb://localhost:27017/expenso-test', {
         useNewUrlParser: true,
+        useUnifiedTopology: true,
     });
     // eslint-disable-next-line prefer-const
-    db = await connection.db('test');
+    db = await connection.db('expenso-test');
 
     return {
         db,

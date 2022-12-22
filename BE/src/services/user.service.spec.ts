@@ -21,17 +21,20 @@ describe('CategoryService', () => {
 
     describe('registerUser, getUserById', () => {
         it('should register user and then found it', async () => {
-            const userId = new ObjectId();
             const user = {
+                _id: new ObjectId().toHexString(),
                 currency: 'BGN',
-                _id: userId.toHexString(),
                 name: 'GOSHO',
                 password: 'GOSHO',
                 email: 'GOSHO',
                 darkMode: false,
             };
 
-            await registerUser(repository, user);
+            try {
+                await registerUser(repository, user);
+            } catch (e) {
+                console.log(e);
+            }
 
             const foundUser = await getUserById(repository, user);
 
