@@ -11,7 +11,7 @@
     ],
     "verbose": true,
     "execMap": {
-        "ts": "node -r ts-node/register"
+        "ts": "ts-node"
     },
     "env": {
         "NODE_ENV": "development",

@@ -2,10 +2,13 @@
     "name": "be",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "src/index.ts",
     "scripts": {
+        "build": "tsc --build",
+        "clean": "tsc --build --clean",
+        "start:prod": "node dist/server.js",
         "test": "jest --coverage --forceExit",
-        "dev": "nodemon --config nodemon.json src\\index.ts",
+        "dev": "nodemon --config nodemon.json src/index.ts",
         "dev:debug": "nodemon --config nodemon.json --inspect-brk src\\index.ts",
         "lint": "eslint . --ext .ts",
         "lint-fix": "npm run lint -- --fix",
@@ -48,14 +51,14 @@
         "mongodb-memory-server": "^7.3.1"
     },
     "jest": {
-      "transform": {
-        ".(ts|tsx)": "ts-jest"
-      },
-      "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-      "moduleFileExtensions": [
-        "ts",
-        "tsx",
-        "js"
-      ]
+        "transform": {
+            ".(ts|tsx)": "ts-jest"
+        },
+        "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js"
+        ]
     }
 }
