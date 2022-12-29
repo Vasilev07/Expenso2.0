@@ -1,9 +1,10 @@
-import { MongoClient } from 'mongodb';
+const { MongoClient } = require('mongodb');
 
 const connect = async () => {
-    console.log('whole env', process.env);
+    console.log('on connect to DB');
+    // console.log('whole env', process.env);
     console.log('DB', process.env.DB_CONNECTION);
-    const url = process.env.DB_CONNECTION || 'mongodb://0.0.0.0:27017/expenso2.0';
+    const url = process.env.DB_CONNECTION || 'mongodb://0.0.0.0:27017/expenso';
     const dbName = 'expenso';
 
     const mongoClient = new MongoClient(url);
@@ -12,7 +13,7 @@ const connect = async () => {
     console.log('Connected to mongo!');
 
     const db = mongoClient.db(dbName);
-
+    console.log(db, 'db');
     return db;
 };
 

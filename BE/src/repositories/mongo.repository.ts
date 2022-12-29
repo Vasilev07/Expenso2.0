@@ -1,6 +1,7 @@
-import { Db, Document, ObjectId, WithId } from 'mongodb';
+import { Db, Document, ObjectId } from 'mongodb';
 
-export interface IRepository<T> {
+// @ts-nocheck
+export interface IRepository<T extends Document> {
     create: (entity: any) => Promise<any>;
     findAll: () => Promise<T[]>;
     deleteById: (id: string) => Promise<void>;
@@ -15,14 +16,17 @@ export interface IRepository<T> {
     removeFromArray: (criteria: any, removeFrom: string, removedItemId: ObjectId) => Promise<any>;
 }
 
-export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<T> => {
+// eslint-disable-next-line max-len
+export const mongoRepository = <T extends Document>(db: Db, collectionName: string): { performAggregation: (aggregation: any) => Promise<any>; updateManyArray: (criteria: any, toUpdate: string, entity: any) => Promise<void>; updateMany: (criteria: any, entity: any) => Promise<any>; updateManyAddInArray: (criteria: any, toPushIn: string, entity: T) => Promise<void>; getById: (id: string) => Promise<any[]>; deleteById: (id: string) => Promise<void>; deleteAll: () => Promise<void>; create: (entity: T) => Promise<void>; findBy: (criteria: any) => Promise<any[]>; findAllForUser: (userId: ObjectId) => Promise<any[]>; findAll: () => Promise<void>; removeFromArray: (criteria: any, removeFrom: string, removedItemId: ObjectId) => Promise<any> } => {
     const collection = db.collection(collectionName);
 
-    const create = async (entity: any) => {
+    const create = async (entity: T) => {
         await collection.insertOne(entity);
     };
 
-    const findAll = async (): Promise<WithId<Document>[]> => await collection.find({}).toArray();
+    const findAll = async (): Promise<void> => {
+        await collection.find({}).toArray();
+    };
 
     const deleteById = async (id: string): Promise<void> => {
         await collection.deleteOne({ _id: new ObjectId(id) });
@@ -32,14 +36,18 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
         await collection.deleteMany({});
     };
 
-    const getById = async (id: string): Promise<T[]> => await collection.find({ _id: id }).toArray();
+    const getById = async (id: string): Promise<any[]> => await collection.find({ _id: id }).toArray();
 
-    const findBy = async (criteria: any): Promise<T[]> => await collection.find({ ...criteria }).toArray();
+    const findBy = async (criteria: any): Promise<any[]> => await collection.find({ ...criteria }).toArray();
 
-    const findAllForUser = async (userId: ObjectId): Promise<T[]> => await collection.find({ userId }).toArray();
+    const findAllForUser = async (userId: ObjectId): Promise<any[]> => await collection.find({ userId }).toArray();
 
     const updateManyAddInArray = async (criteria: any, toPushIn: string, entity: T): Promise<void> => {
-        await collection.updateMany({ ...criteria }, { $push: { [toPushIn]: entity } }, { upsert: true });
+        await collection.updateMany(
+            { ...criteria },
+            { $push: { [toPushIn]: entity } } as unknown as any,
+            { upsert: true },
+        );
     };
 
     const updateManyArray = async (criteria: any, toUpdate: string, entity: T): Promise<void> => {
@@ -57,12 +65,12 @@ export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<
     };
 
     const updateMany = async (criteria: any, entity: T): Promise<any> =>
-        await collection.updateMany({ ...criteria }, { $set: { ...entity } });
+        await collection.updateMany({ ...criteria }, { $set: { ...entity } as any } as any);
 
-    const performAggregation = async (aggregation: any): Promise<any> => await collection.aggregate(aggregation).toArray();
+    const performAggregation = async (aggregation: any): Promise<any[]> => await collection.aggregate(aggregation).toArray();
 
     const removeFromArray = async (criteria: any, removeFrom: string, removedItemId: ObjectId): Promise<any> =>
-        await collection.updateMany(criteria, { $pull: { [removeFrom]: { _id: removedItemId } } });
+        await collection.updateMany(criteria, { $pull: { [removeFrom]: { _id: removedItemId } } as any });
 
     return {
         create,

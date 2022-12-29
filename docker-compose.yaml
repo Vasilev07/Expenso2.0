@@ -1,31 +1,31 @@
 services:
   app:
-    image: node:18-alpine
+    image: expenso
     working_dir: /app
-#    restart: always
     build: .
     environment:
-      DB_CONNECTION: mongodb://0.0.0.0:27017/expenso2.0
+      DB_CONNECTION: mongodb://localhost:27017/expenso
     depends_on:
       - mongo
     ports:
       - 3001:3001
     networks:
-      - mnet
+      - nodeapp-network
   mongo:
     image: mongo:5.0.6
-    command: [ "--replSet", "rs", "--bind_ip_all"]
+    container_name: mongo
+#    command: [ "--replSet", "rs", "--bind_ip_all"]
     ports:
       - 27017:27017
     networks:
-      - mnet
+      - nodeapp-network
     healthcheck:
       test: test $$(echo "rs.initiate().ok || rs.status().ok" | mongo --port 27017 --quiet) -eq 1
       interval: 10s
       start_period: 30s
     volumes:
 #      - '/home/sa/data/mongod.conf:/etc/mongod.conf'
-      - '/mongo/data/:/data/db'
+      - '/Users/gvasilev/projects/mongostorage/data/:/data/db'
 networks:
-  mnet:
+  nodeapp-network:
     driver: bridge
