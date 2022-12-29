@@ -4,7 +4,7 @@ services:
     working_dir: /app
     build: .
     environment:
-      DB_CONNECTION: mongodb://localhost:27017/expenso
+      DB_CONNECTION: mongodb://mongo:27017/expenso
     depends_on:
       - mongo
     ports:
@@ -24,8 +24,8 @@ services:
       interval: 10s
       start_period: 30s
     volumes:
-#      - '/home/sa/data/mongod.conf:/etc/mongod.conf'
-      - '/Users/gvasilev/projects/mongostorage/data/:/data/db'
+      - /var/docker/mongo/cnf:/etc/mongo
+      # - '/Users/gvasilev/projects/mongostorage/data/:/data/db'
 networks:
   nodeapp-network:
     driver: bridge
