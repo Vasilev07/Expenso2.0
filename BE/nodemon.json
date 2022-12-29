@@ -7,13 +7,14 @@
         "coverage/"
     ],
     "watch": [
-        "src/"
+        "src"
     ],
     "verbose": true,
     "execMap": {
         "ts": "ts-node"
     },
-    "env": {
+  "exec": "ts-node ./src/index.ts",
+  "env": {
         "NODE_ENV": "development",
         "JWT_KEY": "secred"
     },

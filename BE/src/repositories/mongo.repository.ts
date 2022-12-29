@@ -1,4 +1,4 @@
-import { Db, ObjectId } from 'mongodb';
+import { Db, Document, ObjectId, WithId } from 'mongodb';
 
 export interface IRepository<T> {
     create: (entity: any) => Promise<any>;
@@ -18,11 +18,11 @@ export interface IRepository<T> {
 export const mongoRepository = <T>(db: Db, collectionName: string): IRepository<T> => {
     const collection = db.collection(collectionName);
 
-    const create = async (entity: T) => {
+    const create = async (entity: any) => {
         await collection.insertOne(entity);
     };
 
-    const findAll = async (): Promise<T[]> => await collection.find({}).toArray();
+    const findAll = async (): Promise<WithId<Document>[]> => await collection.find({}).toArray();
 
     const deleteById = async (id: string): Promise<void> => {
         await collection.deleteOne({ _id: new ObjectId(id) });

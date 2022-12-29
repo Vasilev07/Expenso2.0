@@ -1,16 +1,31 @@
 services:
-#  app:
-#    image: node:18-alpine
-#    command: sh -c "npm install --force && npm run dev"
-#    working_dir: /app
-#    ports:
-#      - 3001:3001
-  mongodb:
+  app:
+    image: node:18-alpine
+    working_dir: /app
+#    restart: always
+    build: .
+    environment:
+      DB_CONNECTION: mongodb://0.0.0.0:27017/expenso2.0
+    depends_on:
+      - mongo
+    ports:
+      - 3001:3001
+    networks:
+      - mnet
+  mongo:
     image: mongo:5.0.6
-    command: [ "--replSet", "rs", "--bind_ip_all" ]
+    command: [ "--replSet", "rs", "--bind_ip_all"]
     ports:
       - 27017:27017
+    networks:
+      - mnet
     healthcheck:
       test: test $$(echo "rs.initiate().ok || rs.status().ok" | mongo --port 27017 --quiet) -eq 1
       interval: 10s
       start_period: 30s
+    volumes:
+#      - '/home/sa/data/mongod.conf:/etc/mongod.conf'
+      - '/mongo/data/:/data/db'
+networks:
+  mnet:
+    driver: bridge

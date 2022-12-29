@@ -1,7 +1,9 @@
 import { MongoClient } from 'mongodb';
 
 const connect = async () => {
-    const url = 'mongodb://localhost:27017/expenso2.0';
+    console.log('whole env', process.env);
+    console.log('DB', process.env.DB_CONNECTION);
+    const url = process.env.DB_CONNECTION || 'mongodb://0.0.0.0:27017/expenso2.0';
     const dbName = 'expenso';
 
     const mongoClient = new MongoClient(url);
