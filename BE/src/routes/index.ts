@@ -11,11 +11,20 @@ export const routesInit = (app: Application, collection: any) => {
         .forEach((modulePath) => {
             // eslint-disable-next-line
             const route = require(modulePath);
-            const controllerModulePath = modulePath.split('\\');
+            const controllerModulePath = modulePath.split(/\\|\//);
             const controllerName = controllerModulePath[controllerModulePath.length - 1].split('.')[0];
-
+            // console.log('route', route);
+            // console.log('modulePath', modulePath);
+            // console.log('controllerModulePath', controllerModulePath);
+            // console.log('controllerName', controllerName);
+            // console.log('collectiobnssadasdasdasd', collection);
             if (collection[controllerName]) {
+                // console.log('app', app);
+                // console.log('collection', collection[controllerName]);
+
                 route.init(app, collection[controllerName]);
+            } else {
+                console.error(`ROUTES FOR CONTROLLER ${controllerName} WAS INIT`);
             }
         });
 };

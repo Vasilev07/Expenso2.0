@@ -31,7 +31,8 @@ export const init = (app: any, collection: any): void => {
 
     app.post('/login', async (request: Request, response: Response): Promise<any> => {
         const users = await findUserByEmail(collection, request.body.email);
-
+        console.log('users', users);
+        console.log('request', request);
         if (users.length < 1) {
             return response.status(401).json({ message: 'Auth failed' });
         }

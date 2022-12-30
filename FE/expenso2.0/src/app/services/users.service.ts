@@ -13,7 +13,7 @@ export class UsersService {
     }
 
     public login(user: IUser): Observable<any> {
-        return this.httpService.post('http://localhost:3001/login', user);
+        return this.httpService.post('http://0.0.0.0:8080/login', user);
     }
 
     public storeToken(token): void {
@@ -25,6 +25,6 @@ export class UsersService {
     }
 
     public updateUserPreferences(userDetails: IUserDetails): any {
-        return this.httpService.post<IUserDetails>('http://localhost:3001/userPrefferences', userDetails);
+        return this.httpService.post<IUserDetails>('http://0.0.0.0:8080/userPrefferences', userDetails);
     }
 }

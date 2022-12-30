@@ -22,7 +22,6 @@ import { transactionsReducer } from './transactions/reducers/transactions.reduce
 
 @NgModule({
     declarations: [AppComponent],
-    entryComponents: [],
     imports: [
         BrowserModule,
         IonicModule.forRoot(),

@@ -30,7 +30,7 @@ export class CategoriesPage implements OnInit {
         this.router.navigate(['expenso/tabs/categories/create'])
     }
 
-    public expenseToggleSwitched(event: CustomEvent): void {
+    public expenseToggleSwitched(event: any): void {
         this.isExpense = event.detail.value === 'expense';
 
         this.filteredCategories = this.filterCategoriesOnTypChange(this.categories, this.isExpense);

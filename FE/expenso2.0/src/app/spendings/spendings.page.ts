@@ -13,7 +13,7 @@ export class SpendingsPage implements OnInit {
     public spendings: any;
     public filteredSpendings;
     public date = new Date().toISOString();
-    public user: any[];
+    public user: any;
     public wholeYearSelected: boolean = false;
 
     public constructor(private readonly router: Router,

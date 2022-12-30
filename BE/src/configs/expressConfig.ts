@@ -21,6 +21,7 @@ export const expressInit = (app: Application) => {
 
     app.use((req, res, next) => {
         res.header('Access-Control-Allow-Origin', 'http://localhost:8100');
+        res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
         res.header('Access-Control-Allow-Origin', 'http://localhost:8100/');
         res.header('Access-Control-Allow-Origin', 'capacitor://localhost');
         res.header('Access-Control-Allow-Origin', 'ionic://localhost');

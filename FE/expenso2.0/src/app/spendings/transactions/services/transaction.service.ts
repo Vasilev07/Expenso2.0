@@ -7,7 +7,7 @@ import { ITransaction } from '../interfaces/transaction.interface';
     providedIn: 'root'
 })
 export class TransactionService {
-    private baseUrl: string = 'http://localhost:3001';
+    private baseUrl: string = 'http://0.0.0.0:8080';
 
     public constructor(private readonly httpClient: HttpClient) {
     }

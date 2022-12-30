@@ -34,7 +34,7 @@ export class TransactionPage implements OnInit {
         });
     }
 
-    public expenseToggleSwitched(value: CustomEvent): void {
+    public expenseToggleSwitched(value: any): void {
         this.isExpense = value.detail.value === 'expense';
     }
 

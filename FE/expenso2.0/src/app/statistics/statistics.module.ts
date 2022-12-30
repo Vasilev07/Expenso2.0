@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
 import { StatisticsPageRoutingModule } from './statistics-routing.module';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { IonicModule } from '@ionic/angular';
+import { StatisticsPage } from './statistics.page';
 
 @NgModule({
     imports: [
-        IonicModule,
         CommonModule,
         StatisticsPageRoutingModule,
-        Ng2GoogleChartsModule
+        Ng2GoogleChartsModule,
+        IonicModule
     ],
-    declarations: []
+    declarations: [StatisticsPage]
 })
 export class StatisticsPageModule {}

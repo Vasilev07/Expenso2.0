@@ -8,10 +8,10 @@ export class CategoriesService {
     constructor(private readonly httpClient: HttpClient) { }
 
     public getAll(): Observable<ICategory[]> {
-        return this.httpClient.get<ICategory[]>('http://localhost:3001/category');
+        return this.httpClient.get<ICategory[]>('http://0.0.0.0:8080/category');
     }
 
     public addNew(category: ICategory): Observable<ICategory> {
-        return this.httpClient.post<ICategory>('http://localhost:3001/category', category);
+        return this.httpClient.post<ICategory>('http://0.0.0.0:8080/category', category);
     }
 }
