@@ -13,7 +13,7 @@ export class UsersService {
     }
 
     public login(user: IUser): Observable<any> {
-        return this.httpService.post('http://0.0.0.0:8080/login', user);
+        return this.httpService.post('http://localhost:8080/login', user);
     }
 
     public storeToken(token): void {

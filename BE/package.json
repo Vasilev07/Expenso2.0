@@ -9,7 +9,7 @@
         "start:prod": "node dist/server.js",
         "test": "jest --coverage --forceExit",
         "dev": "nodemon --config nodemon.json src/index.ts",
-        "dev:debug": "nodemon --config nodemon.json --inspect-brk src\\index.ts",
+        "dev:debug": "nodemon --config nodemon.json --inspect-brk src/index.ts",
         "lint": "eslint . --ext .ts",
         "lint-fix": "npm run lint -- --fix",
         "editor-config-check": "eclint check 'src/**/*'",

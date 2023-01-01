@@ -3,7 +3,7 @@ import { Db, Document, ObjectId } from 'mongodb';
 // @ts-nocheck
 export interface IRepository<T extends Document> {
     create: (entity: any) => Promise<any>;
-    findAll: () => Promise<T[]>;
+    findAll: () => Promise<void>;
     deleteById: (id: string) => Promise<void>;
     getById: (id: string) => Promise<T[]>;
     deleteAll: () => Promise<any>;
@@ -17,7 +17,7 @@ export interface IRepository<T extends Document> {
 }
 
 // eslint-disable-next-line max-len
-export const mongoRepository = <T extends Document>(db: Db, collectionName: string): { performAggregation: (aggregation: any) => Promise<any>; updateManyArray: (criteria: any, toUpdate: string, entity: any) => Promise<void>; updateMany: (criteria: any, entity: any) => Promise<any>; updateManyAddInArray: (criteria: any, toPushIn: string, entity: T) => Promise<void>; getById: (id: string) => Promise<any[]>; deleteById: (id: string) => Promise<void>; deleteAll: () => Promise<void>; create: (entity: T) => Promise<void>; findBy: (criteria: any) => Promise<any[]>; findAllForUser: (userId: ObjectId) => Promise<any[]>; findAll: () => Promise<void>; removeFromArray: (criteria: any, removeFrom: string, removedItemId: ObjectId) => Promise<any> } => {
+export const mongoRepository = <T extends Document>(db: Db, collectionName: string): IRepository<T> => {
     const collection = db.collection(collectionName);
 
     const create = async (entity: T) => {

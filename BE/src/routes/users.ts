@@ -30,6 +30,8 @@ export const init = (app: any, collection: any): void => {
     });
 
     app.post('/login', async (request: Request, response: Response): Promise<any> => {
+        console.log('AA NE');
+        console.log('AA NE');
         const users = await findUserByEmail(collection, request.body.email);
         console.log('users', users);
         console.log('request', request);
