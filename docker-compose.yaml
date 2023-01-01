@@ -24,9 +24,9 @@ services:
       interval: 10s
       start_period: 30s
     volumes:
-       - /var/docker/mongo/cnf:/etc/mongo
+      - /var/docker/mongo/cnf:/etc/mongo
       # - '/Users/gvasilev/projects/mongostorage/data/:/data/db'
-#      - /usr/local/etc:/etc/mongo
+#   - /usr/local/etc:/etc/mongo
 networks:
   nodeapp-network:
     driver: bridge
