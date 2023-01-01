@@ -18,8 +18,8 @@ export const getUserById = async (collection: IRepository<IUser>, entity: IUser)
 };
 
 export const updateUser = async (collection: IRepository<IUser>, userId: string, entity: any): Promise<IUser[]> =>
-    collection.updateMany({ _id: new ObjectId(userId) }, entity);
+    await collection.updateMany({ _id: new ObjectId(userId) }, entity);
 
 export const deleteAll = async (collection: IRepository<IUser>): Promise<void> => {
-    collection.deleteAll();
+    await collection.deleteAll();
 };

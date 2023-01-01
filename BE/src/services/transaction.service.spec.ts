@@ -4,12 +4,14 @@ import { mongoRepository } from '../repositories/mongo.repository';
 import { deleteAll } from './category.service';
 import { addExpense, addIncome, getAllTransactions } from './transaction.service';
 
-describe('CategoryService', () => {
+describe('TransactionService', () => {
     let repository: any;
+    let connection: any;
 
     beforeAll(async () => {
-        const mock = await mongoDbMockConnect();
+        const mock = await mongoDbMockConnect() as any;
         repository = mongoRepository(mock.db, 'transactions');
+        connection = mock.connection;
     });
 
     afterEach(async () => {
@@ -17,7 +19,7 @@ describe('CategoryService', () => {
     });
 
     afterAll(async () => {
-        await after(repository);
+        await after(connection);
     });
 
     describe('addExpense, addIncome, getAllTransactions', () => {

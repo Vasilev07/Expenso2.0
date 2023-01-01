@@ -3,12 +3,14 @@ import { after, mongoDbMockConnect } from '../db-mock';
 import { mongoRepository } from '../repositories/mongo.repository';
 import { deleteAll, getUserById, registerUser } from './user.service';
 
-describe('CategoryService', () => {
+describe('UserService', () => {
     let repository: any;
+    let connection: any;
 
     beforeAll(async () => {
-        const mock = await mongoDbMockConnect();
+        const mock = await mongoDbMockConnect() as any;
         repository = mongoRepository(mock.db, 'users');
+        connection = mock.connection;
     });
 
     afterEach(async () => {
@@ -16,7 +18,7 @@ describe('CategoryService', () => {
     });
 
     afterAll(async () => {
-        await after(repository);
+        await after(connection);
     });
 
     describe('registerUser, getUserById', () => {

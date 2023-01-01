@@ -7,10 +7,12 @@ import {
 
 describe('CategoryService', () => {
     let repository: any;
+    let connection: any;
 
     beforeAll(async () => {
-        const mock = await mongoDbMockConnect();
+        const mock = await mongoDbMockConnect() as any;
         repository = mongoRepository(mock.db, 'category');
+        connection = mock.connection;
     });
 
     afterEach(async () => {
@@ -18,7 +20,7 @@ describe('CategoryService', () => {
     });
 
     afterAll(async () => {
-        await after(repository);
+        await after(connection);
     });
 
     describe('createCategory', () => {

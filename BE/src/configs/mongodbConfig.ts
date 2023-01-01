@@ -5,7 +5,7 @@ const connect = async () => {
     // console.log('whole env', process.env);
     console.log('DB', process.env.DB_CONNECTION);
     const url = process.env.DB_CONNECTION || 'mongodb://0.0.0.0:27017/expenso';
-    const dbName = 'expenso';
+    const dbName = process.env.DB_NAME || 'expenso';
 
     const mongoClient = new MongoClient(url);
     await mongoClient.connect();

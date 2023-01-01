@@ -3,14 +3,16 @@ import { MongoClient } from 'mongodb';
 export const mongoDbMockConnect = async () => {
     let connection;
     let db;
+    const url = process.env.DB_CONNECTION_TEST || 'mongodb://0.0.0.0:27017/expenso-test';
+    const dbName = process.env.DB_NAME_TEST || 'expenso-test';
 
-    // eslint-disable-next-line prefer-const
-    connection = await MongoClient.connect('mongodb://localhost:27017/expenso-test', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-    // eslint-disable-next-line prefer-const
-    db = await connection.db('expenso-test');
+    try {
+        connection = await MongoClient.connect(url);
+        db = await connection.db(dbName);
+        console.log('Connected to mongo!');
+    } catch (e) {
+        console.error('BE database connection failed', e);
+    }
 
     return {
         db,
@@ -18,7 +20,11 @@ export const mongoDbMockConnect = async () => {
     };
 };
 
-export const after = async (db: any) => {
-    await db.connection.close();
-    await db.close();
+export const after = async (connection: MongoClient): Promise<void> => {
+    console.log(connection);
+    try {
+        await connection.close();
+    } catch (e) {
+        console.error(e);
+    }
 };
