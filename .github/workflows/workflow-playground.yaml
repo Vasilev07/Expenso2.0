@@ -29,33 +29,8 @@ jobs:
         working-directory: ./BE
       - run: npm run lint
         working-directory: ./BE
-  lint-fe:
-    name: FE lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - run: echo ${GITHUB_WORKSPACE}
-      - run: npm install --force
-        working-directory: ./FE/expenso2.0
-      - run: npm run lint
-        working-directory: ./FE/expenso2.0
-  test-fe:
-    name: FE tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - run: echo ${GITHUB_WORKSPACE}
-      - run: npm install --force
-        working-directory: ./FE/expenso2.0
-      - run: npm run test
-        working-directory: ./FE/expenso2.0
   test-be:
+    needs: [ lint-be ]
     name: BE tests
     runs-on: ubuntu-latest
     steps:
@@ -71,3 +46,31 @@ jobs:
         working-directory: ./BE
       - run: npm run test
         working-directory: ./BE
+  lint-fe:
+    needs: [ editorconfig-check, markdown-lint ]
+    name: FE lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: echo ${GITHUB_WORKSPACE}
+      - run: npm install --force
+        working-directory: ./FE/expenso2.0
+      - run: npm run lint
+        working-directory: ./FE/expenso2.0
+  test-fe:
+    needs: [ lint-fe ]
+    name: FE tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: echo ${GITHUB_WORKSPACE}
+      - run: npm install --force
+        working-directory: ./FE/expenso2.0
+      - run: npm run test
+        working-directory: ./FE/expenso2.0
