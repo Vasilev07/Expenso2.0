@@ -2,9 +2,11 @@ import { ObjectId } from 'mongodb';
 import { IExpense, IIncome, ITransaction } from '../models/transaction.interface';
 import { IRepository } from '../repositories/mongo.repository';
 
-export const addExpense = async (collection: IRepository<ITransaction>,
+export const addExpense = async (
+    collection: IRepository<ITransaction>,
     criteria: { userId: ObjectId, date: string },
-    entity: IExpense): Promise<void> => {
+    entity: IExpense,
+): Promise<void> => {
     await collection.updateManyAddInArray(criteria, 'expenses', entity);
 };
 

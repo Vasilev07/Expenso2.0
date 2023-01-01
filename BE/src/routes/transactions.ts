@@ -68,7 +68,8 @@ export const init = (app: any, collection: any): void => {
         return response.status(200).json();
     });
 
-    app.post('/transaction/:transactionsId/:currentTransactionId',
+    app.post(
+        '/transaction/:transactionsId/:currentTransactionId',
         async (request: Request, response: Response): Promise<any> => {
             const transaction = request.body;
 
@@ -82,9 +83,11 @@ export const init = (app: any, collection: any): void => {
             await addTransaction(collection, request.body, request.headers.authorization, currentTransactionId);
 
             return response.status(200).json();
-        });
+        },
+    );
 
-    app.delete('/transaction/:transactionsId/:currentTransactionId/:isExpense',
+    app.delete(
+        '/transaction/:transactionsId/:currentTransactionId/:isExpense',
         async (request: Request, response: Response) => {
             const transactionId = request.params.transactionsId;
             const { currentTransactionId } = request.params;
@@ -94,5 +97,6 @@ export const init = (app: any, collection: any): void => {
             await removeTransaction(collection, removeFrom, transactionId, currentTransactionId);
 
             return response.status(200).json();
-        });
+        },
+    );
 };
