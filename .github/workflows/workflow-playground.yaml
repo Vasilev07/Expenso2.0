@@ -1,7 +1,5 @@
 name: Integration (Automatic)
-
 on: [ push ]
-
 jobs:
   editorconfig-check:
     name: .editorconfig lint
