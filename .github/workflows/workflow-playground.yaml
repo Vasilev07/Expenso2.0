@@ -54,7 +54,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: '19'
+          node-version: '16'
       - run: echo ${GITHUB_WORKSPACE}
       - run: npm install --force
         working-directory: ./FE/expenso2.0
@@ -68,7 +68,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: '19'
+          node-version: '16'
       - run: echo ${GITHUB_WORKSPACE}
       - run: npm install --force
         working-directory: ./FE/expenso2.0
