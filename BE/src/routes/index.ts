@@ -24,7 +24,12 @@ export const routesInit = (app: Application, collection: any) => {
 
                 route.init(app, collection[controllerName]);
             } else {
-                console.error(`ROUTES FOR CONTROLLER ${controllerName} WAS INIT`);
+                console.log(controllerName);
+                if (controllerName === 'health') {
+                    route.init(app);
+                } else {
+                    console.error(`ROUTES FOR CONTROLLER ${controllerName} WAS NOT INIT`);
+                }
             }
         });
 };
