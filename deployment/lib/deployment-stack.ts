@@ -6,6 +6,7 @@ import * as ecr from 'aws-cdk-lib/aws-ecr';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Duration } from 'aws-cdk-lib';
 import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import { Port } from 'aws-cdk-lib/aws-ec2';
 
 export class DeploymentStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -48,8 +49,8 @@ export class DeploymentStack extends cdk.Stack {
             containerPort: 8080
         });
 
-        // const sg_service = new ec2.SecurityGroup(this, 'MySGService', { vpc: vpc });
-        // sg_service.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(3000));
+        const sg_service = new ec2.SecurityGroup(this, 'MySGService', { vpc: vpc });
+        sg_service.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(3000));
 
         const service = new ecs.FargateService(this, 'Service', {
             cluster,
@@ -67,7 +68,7 @@ export class DeploymentStack extends cdk.Stack {
 
         const lb = new elbv2.ApplicationLoadBalancer(this, 'ALB', {
             vpc,
-            internetFacing: true
+            internetFacing: true,
         });
 
         const listener = lb.addListener('Listener', {
@@ -81,5 +82,6 @@ export class DeploymentStack extends cdk.Stack {
         });
 
         listener.connections.allowDefaultPortFromAnyIpv4('Open to the world');
+        listener.connections.addSecurityGroup(sg_service);
     }
 }
