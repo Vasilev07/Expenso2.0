@@ -45,11 +45,11 @@ export class DeploymentStack extends cdk.Stack {
         });
 
         container.addPortMappings({
-            containerPort: 3000
+            containerPort: 8080
         });
 
-        const sg_service = new ec2.SecurityGroup(this, 'MySGService', { vpc: vpc });
-        sg_service.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(3000));
+        // const sg_service = new ec2.SecurityGroup(this, 'MySGService', { vpc: vpc });
+        // sg_service.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(3000));
 
         const service = new ecs.FargateService(this, 'Service', {
             cluster,
