@@ -42,7 +42,8 @@ export class DeploymentStack extends cdk.Stack {
         fargateTaskDefinition.addToExecutionRolePolicy(executionRolePolicy);
 
         const container = fargateTaskDefinition.addContainer('BE', {
-           image: ecs.ContainerImage.fromEcrRepository(repository, "expenso")
+            image: ecs.ContainerImage.fromEcrRepository(repository, 'expenso'),
+            logging: ecs.LogDrivers.awsLogs({ streamPrefix: 'expenso-log-group', logRetention: 30 })
         });
 
         container.addPortMappings({
@@ -68,11 +69,11 @@ export class DeploymentStack extends cdk.Stack {
 
         const lb = new elbv2.ApplicationLoadBalancer(this, 'ALB', {
             vpc,
-            internetFacing: true,
+            internetFacing: true
         });
 
         const listener = lb.addListener('Listener', {
-            port: 80,
+            port: 80
         });
 
         listener.addTargets('Target', {
