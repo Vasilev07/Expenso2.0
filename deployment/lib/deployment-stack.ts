@@ -57,7 +57,7 @@ export class DeploymentStack extends cdk.Stack {
             cluster,
             taskDefinition: fargateTaskDefinition,
             desiredCount: 2,
-            assignPublicIp: false
+            assignPublicIp: true
         });
 
         const scaling = service.autoScaleTaskCount({ maxCapacity: 6, minCapacity: 2 });
