@@ -26,7 +26,7 @@ export class DeploymentStack extends cdk.Stack {
         });
 
         const vpc = new ec2.Vpc(this, 'MyVpc', {
-            maxAzs: 3
+            maxAzs: 2
         });
 
         const cluster = new ecs.Cluster(this, 'MyCluster', {
@@ -50,22 +50,22 @@ export class DeploymentStack extends cdk.Stack {
             containerPort: 8080
         });
 
-        const sg_service = new ec2.SecurityGroup(this, 'MySGService', { vpc: vpc });
-        sg_service.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(3000));
+        // const sg_service = new ec2.SecurityGroup(this, 'MySGService', { vpc: vpc });
+        // sg_service.addIngressRule(ec2.Peer.ipv4('0.0.0.0/0'), ec2.Port.tcp(3000));
 
         const service = new ecs.FargateService(this, 'Service', {
             cluster,
             taskDefinition: fargateTaskDefinition,
             desiredCount: 2,
-            assignPublicIp: true
+            // assignPublicIp: true
         });
 
-        const scaling = service.autoScaleTaskCount({ maxCapacity: 6, minCapacity: 2 });
-        scaling.scaleOnCpuUtilization('CpuScaling', {
-            targetUtilizationPercent: 50,
-            scaleInCooldown: Duration.seconds(60),
-            scaleOutCooldown: Duration.seconds(60)
-        });
+        // const scaling = service.autoScaleTaskCount({ maxCapacity: 6, minCapacity: 2 });
+        // scaling.scaleOnCpuUtilization('CpuScaling', {
+        //     targetUtilizationPercent: 50,
+        //     scaleInCooldown: Duration.seconds(60),
+        //     scaleOutCooldown: Duration.seconds(60)
+        // });
 
         const lb = new elbv2.ApplicationLoadBalancer(this, 'ALB', {
             vpc,
@@ -77,12 +77,12 @@ export class DeploymentStack extends cdk.Stack {
         });
 
         listener.addTargets('Target', {
-            port: 80,
+            port: 8080,
             targets: [service],
             healthCheck: { path: '/health' }
         });
 
         listener.connections.allowDefaultPortFromAnyIpv4('Open to the world');
-        listener.connections.addSecurityGroup(sg_service);
+        // listener.connections.addSecurityGroup(sg_service);
     }
 }
