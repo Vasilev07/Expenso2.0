@@ -111,12 +111,12 @@ jobs:
         working-directory: ./FE/expenso2.0
       - run: npm run build
         working-directory: ./FE/expenso2.0
-      - run: mkdir archive && zip -r archive/Archive.zip ./FE/expenso2.0/www/
+      - run: zip -r ./FE/expenso2.0/www/Archive.zip ./FE/expenso2.0/www/
       - run: cd ./FE/expenso2.0 && ls -la
       - uses: shallwefootball/s3-upload-action@master
         with:
           aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws_bucket: ${{ secrets.AWS_BUCKET }}
-          source_dir: 'archive/Archive.zip'
+          source_dir: 'FE/expenso2.0/www/Archive.zip'
           destination_dir: 'latest'
