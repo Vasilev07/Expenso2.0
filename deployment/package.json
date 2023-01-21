@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@aws-cdk/aws-ecs-patterns": "^1.189.0",
+    "@aws-cdk/aws-s3-deployment": "^1.189.0",
     "aws-cdk-lib": "2.60.0",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.21"
