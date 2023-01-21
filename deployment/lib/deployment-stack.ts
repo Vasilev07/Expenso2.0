@@ -5,7 +5,9 @@ import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
-import * as s3Deployment from '@aws-cdk/aws-s3-deployment';
+import * as s3deploy from '@aws-cdk/aws-s3-deployment';
+import * as path from 'path';
+import * as s3 from 'aws-cdk-lib/aws-s3';
 
 export class DeploymentStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -83,11 +85,6 @@ export class DeploymentStack extends cdk.Stack {
 
         listener.connections.allowDefaultPortFromAnyIpv4('Open to the world');
         // listener.connections.addSecurityGroup(sg_service);
-
-        // const deployment = new s3Deployment.BucketDeployment(this, "deployStaticWebsite", {
-        //     sources: [s3Deployment.Source.asset("../website")],
-        //     destinationBucket: myBucket
-        // });
     }
 }
 
