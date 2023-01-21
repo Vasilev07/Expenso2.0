@@ -22,7 +22,7 @@ export class DeploymentStackProd extends cdk.Stack {
         // buildBucket.grantRead(new iam.AccountRootPrincipal());
 
         new s3deploy.BucketDeployment(this, 'DeployWebsite', {
-            sources: [s3deploy.Source.bucket(buildBucket, 'latest')],
+            sources: [s3deploy.Source.bucket(buildBucket, 'latest/Archive.zip')],
             destinationBucket: deploymentBucket,
             // destinationKeyPrefix: 'web/static', // optional prefix in destination bucket
         });
