@@ -111,7 +111,6 @@ jobs:
         working-directory: ./FE/expenso2.0
       - run: npm run build
         working-directory: ./FE/expenso2.0
-      - name: Zip artifact for deployment
       - run: zip -r Archive.zip ./FE/expenso2.0/www/
       - run: cd ./FE/expenso2.0 && ls -la
       - uses: shallwefootball/s3-upload-action@master
