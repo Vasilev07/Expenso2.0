@@ -110,8 +110,8 @@ jobs:
       - run: npm install --force
         working-directory: ./FE/expenso2.0
       - run: npm run build
-      - run: ls -la
         working-directory: ./FE/expenso2.0
+      - run: ls -la
       - uses: shallwefootball/s3-upload-action@master
         with:
           aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
