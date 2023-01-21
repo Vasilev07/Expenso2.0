@@ -110,6 +110,7 @@ jobs:
       - run: npm install --force
         working-directory: ./FE/expenso2.0
       - run: npm run build
+      - run: ls -la
         working-directory: ./FE/expenso2.0
       - uses: shallwefootball/s3-upload-action@master
         with:
