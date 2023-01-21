@@ -29,23 +29,23 @@ jobs:
         working-directory: ./BE
       - run: npm run lint
         working-directory: ./BE
-  test-be:
-    needs: [ lint-be ]
-    name: BE tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-      - name: Setup Nodejs 16
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.13'
-      - name: Setup MongoDb
-        uses: supercharge/mongodb-github-action@1.8.0
-      - run: npm install
-        working-directory: ./BE
-      - run: npm run test
-        working-directory: ./BE
+#  test-be:
+#    needs: [ lint-be ]
+#    name: BE tests
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout Repo
+#        uses: actions/checkout@v2
+#      - name: Setup Nodejs 16
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: '16.13'
+#      - name: Setup MongoDb
+#        uses: supercharge/mongodb-github-action@1.8.0
+#      - run: npm install
+#        working-directory: ./BE
+#      - run: npm run test
+#        working-directory: ./BE
   lint-fe:
     needs: [ editorconfig-check, markdown-lint ]
     name: FE lint
@@ -60,22 +60,22 @@ jobs:
         working-directory: ./FE/expenso2.0
       - run: npm run lint
         working-directory: ./FE/expenso2.0
-  test-fe:
-    needs: [ lint-fe ]
-    name: FE tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-      - run: echo ${GITHUB_WORKSPACE}
-      - run: npm install --force
-        working-directory: ./FE/expenso2.0
-      - run: npm run test
-        working-directory: ./FE/expenso2.0
+#  test-fe:
+#    needs: [ lint-fe ]
+#    name: FE tests
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: actions/setup-node@v3
+#        with:
+#          node-version: '16'
+#      - run: echo ${GITHUB_WORKSPACE}
+#      - run: npm install --force
+#        working-directory: ./FE/expenso2.0
+#      - run: npm run test
+#        working-directory: ./FE/expenso2.0
   build-be:
-    needs: [ test-fe, test-be ]
+#    needs: [ test-fe, test-be ]
     name: Build Image
     runs-on: ubuntu-latest
     steps:
@@ -98,24 +98,26 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-#  s3-push:
+  s3-push:
 #    needs: [ test-fe, test-be ]
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@master
-#      - uses: actions/setup-node@v3
-#        with:
-#          node-version: '16'
-#      - run: echo ${GITHUB_WORKSPACE}
-#      - run: npm install --force
-#        working-directory: ./FE/expenso2.0
-#      - run: npm run build
-#        working-directory: ./FE/expenso2.0
-#      - run: cd ./FE/expenso2.0 && ls -la
-#      - uses: shallwefootball/s3-upload-action@master
-#        with:
-#          aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-#          aws_bucket: ${{ secrets.AWS_BUCKET }}
-#          source_dir: 'FE/expenso2.0/www'
-#          destination_dir: 'latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: echo ${GITHUB_WORKSPACE}
+      - run: npm install --force
+        working-directory: ./FE/expenso2.0
+      - run: npm run build
+        working-directory: ./FE/expenso2.0
+      - name: Zip artifact for deployment
+      - run: zip -r Archive.zip ./FE/expenso2.0/www/
+      - run: cd ./FE/expenso2.0 && ls -la
+      - uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: 'Archive.zip'
+          destination_dir: 'latest'

@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { DeploymentStack } from '../lib/deployment-stack';
-import { DeploymentStackProd } from '../lib/deployment-prod';
+import { DeploymentServer } from '../lib/deployment-server';
+import { DeploymentUi } from '../lib/deployment-ui';
 
 const app = new cdk.App();
-// new DeploymentStack(app, 'DeploymentStack', {
-//     env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION }
-// });
+new DeploymentServer(app, 'DeploymentStack', {
+    env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION }
+});
 
-new DeploymentStackProd(app, 'DeploymentStackPROD', {
+new DeploymentUi(app, 'DeploymentStackPROD', {
     env: { account: process.env.CDK_DEFAULT_ACCOUNT, region: process.env.CDK_DEFAULT_REGION }
 });
