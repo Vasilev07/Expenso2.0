@@ -5,7 +5,7 @@ import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
-import * as s3deploy from '@aws-cdk/aws-s3-deployment';
+import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import * as path from 'path';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 
@@ -87,7 +87,26 @@ export class DeploymentServer extends cdk.Stack {
 
         listener.connections.allowDefaultPortFromAnyIpv4('Open to the world');
 
-       this.uri = lb.loadBalancerDnsName;
+        const buildBucket = s3.Bucket.fromBucketName(
+            this,
+            'build-bucket',
+            'expenso-web-ui-builds',
+        );
+
+        const deploymentBucket = s3.Bucket.fromBucketName(
+            this,
+            'deployment-bucket',
+            'expenso-web-ui-prod',
+        );
+
+        new s3deploy.BucketDeployment(this, 'DeployWebsite', {
+            sources: [
+                s3deploy.Source.bucket(buildBucket, 'latest/Archive.zip'),
+                s3deploy.Source.jsonData('config.json', { api: lb.loadBalancerDnsName })
+            ],
+            destinationBucket: deploymentBucket,
+            // destinationKeyPrefix: 'web/static', // optional prefix in destination bucket
+        });
     }
 }
 

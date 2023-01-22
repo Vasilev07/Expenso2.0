@@ -13,11 +13,11 @@ const server = new DeploymentServer(app, 'DeploymentStack', {
     }
 });
 
-new DeploymentUi(app, 'DeploymentStackPROD', server.uri,
-    {
-        env: {
-            account: process.env.CDK_DEFAULT_ACCOUNT,
-            region: process.env.CDK_DEFAULT_REGION
-        }
-    }
-);
+// new DeploymentUi(app, 'DeploymentStackPROD', server.uri,
+//     {
+//         env: {
+//             account: process.env.CDK_DEFAULT_ACCOUNT,
+//             region: process.env.CDK_DEFAULT_REGION
+//         }
+//     }
+// );
