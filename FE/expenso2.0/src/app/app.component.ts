@@ -11,6 +11,7 @@ import { IUser } from './interfaces/user.interface';
 import { ThemeService } from './services/theme.service';
 import { UsersFbService } from './services/users-fb.service';
 import { retrieveTransactions } from './spendings/transactions/actions/transaction.action';
+import { UsersService } from './services/users.service';
 
 registerWebPlugin(FacebookLogin as any);
 
@@ -33,10 +34,11 @@ export class AppComponent implements OnInit {
     public currency: string;
 
     public constructor(private readonly usersService: UsersFbService,
+        private readonly localUserService: UsersService,
         private readonly router: Router,
         private readonly store: Store<{ user: unknown }>,
         private readonly themeService: ThemeService) {
-        this.usersService.setupFbLogin();;
+        this.usersService.setupFbLogin();
     }
 
     public ngOnInit() {
@@ -71,6 +73,7 @@ export class AppComponent implements OnInit {
 
     public onLogin(): void {
         const user: IUser = { email: this.email, password: this.password, currency: this.currency };
+        this.localUserService.healthCheck();
         this.store.dispatch(loginUser({ user }));
     }
 }

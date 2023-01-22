@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { transactionReducer } from './spendings/transactions/reducers/transaction.reducer';
 import { transactionsReducer } from './transactions/reducers/transactions.reducer';
+import { BASE_PATH, CONFIGURATION } from './app-configuration.constants';
 
 @NgModule({
     declarations: [AppComponent],
@@ -45,8 +46,14 @@ import { transactionsReducer } from './transactions/reducers/transactions.reduce
     providers: [
         Facebook,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+        {
+            provide: BASE_PATH, useFactory: (configuration: any): string => {
+                return configuration['api']!;
+            }, deps: [CONFIGURATION]
+        }
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

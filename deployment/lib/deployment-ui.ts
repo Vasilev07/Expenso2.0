@@ -37,7 +37,7 @@ export class DeploymentUi extends cdk.Stack {
         new s3deploy.BucketDeployment(this, 'DeployWebsite', {
             sources: [
                 s3deploy.Source.bucket(buildBucket, 'latest/Archive.zip'),
-                s3deploy.Source.jsonData('config', { api: 'serverUri' })
+                s3deploy.Source.jsonData('config.json', { api: 'serverUri' })
             ],
             destinationBucket: deploymentBucket,
             // destinationKeyPrefix: 'web/static', // optional prefix in destination bucket

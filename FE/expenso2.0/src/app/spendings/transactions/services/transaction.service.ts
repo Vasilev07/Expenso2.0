@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ITransaction } from '../interfaces/transaction.interface';
+import { BASE_PATH } from '../../../app-configuration.constants';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TransactionService {
-    private baseUrl: string = 'http://0.0.0.0:8080';
+    private baseUrl: string;
 
-    public constructor(private readonly httpClient: HttpClient) {
+    public constructor(private readonly httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string) {
+        this.baseUrl = basePath ? basePath : 'http://0.0.0.0:8080';
     }
 
     public addNew(transaction: ITransaction): Observable<ITransaction> {
