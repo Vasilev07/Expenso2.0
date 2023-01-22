@@ -111,7 +111,7 @@ jobs:
         working-directory: ./FE/expenso2.0
       - run: npm run build
         working-directory: ./FE/expenso2.0
-      - run: mkdir archive && tar -C www -cf - . | gzip > archive/Archive.zip && cd www && ls -la
+      - run: find www -type f -print0 | tar -cvzf archive/Archive.zip --null -T - && mkdir archive && cp -r www/* archive/ && cd archive/ && zip -r Archive.zip *
         working-directory: ./FE/expenso2.0
       - run: cd ./FE/expenso2.0 && ls -la
       - uses: shallwefootball/s3-upload-action@master
