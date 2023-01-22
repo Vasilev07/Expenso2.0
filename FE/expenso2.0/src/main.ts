@@ -11,7 +11,10 @@ if (environment.production) {
 }
 
 const main: () => Promise<void> = async(): Promise<void> => {
+    console.log('HERE');
     const response: Response = await fetch(environment.appConfigFilePath);
+    console.log('response', response);
+
     const configuration = await response.json();
     const providers = [{ provide: CONFIGURATION, useValue: configuration }];;
 

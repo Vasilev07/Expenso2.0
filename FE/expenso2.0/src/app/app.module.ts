@@ -49,6 +49,7 @@ import { BASE_PATH, CONFIGURATION } from './app-configuration.constants';
         { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
         {
             provide: BASE_PATH, useFactory: (configuration: any): string => {
+                console.log('config', configuration);
                 return configuration['api']!;
             }, deps: [CONFIGURATION]
         }

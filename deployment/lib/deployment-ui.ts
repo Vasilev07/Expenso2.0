@@ -19,21 +19,6 @@ export class DeploymentUi extends cdk.Stack {
             'expenso-web-ui-prod',
         );
 
-        // const url = JSON.stringify({ api: serverUri });
-        // const fileToAdd = fs.writeFileSync('/tmp/config.json', url);
-        // new s3deploy.BucketDeployment(this, 'DeployWebsite', {
-        //     sources: [s3deploy.Source.bucket(buildBucket, 'latest/Archive.zip')],
-        //     destinationBucket: deploymentBucket,
-        //     // destinationKeyPrefix: 'web/static', // optional prefix in destination bucket
-        // });
-        //
-        // const archive = archiver('zip', { zlib: { level: 9 } });
-        //
-        // const output = fs.createWriteStream('/tmp/config.zip');
-        // archive.pipe(output);
-        // archive.append(url, { name: 'config.json' });
-        // archive.finalize();
-
         new s3deploy.BucketDeployment(this, 'DeployWebsite', {
             sources: [
                 s3deploy.Source.bucket(buildBucket, 'latest/Archive.zip'),
