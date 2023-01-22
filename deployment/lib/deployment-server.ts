@@ -10,6 +10,8 @@ import * as path from 'path';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 
 export class DeploymentServer extends cdk.Stack {
+    public uri: string;
+
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
@@ -84,7 +86,8 @@ export class DeploymentServer extends cdk.Stack {
         });
 
         listener.connections.allowDefaultPortFromAnyIpv4('Open to the world');
-        // listener.connections.addSecurityGroup(sg_service);
+
+       this.uri = lb.loadBalancerDnsName;
     }
 }
 
