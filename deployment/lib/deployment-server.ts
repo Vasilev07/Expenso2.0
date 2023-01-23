@@ -8,6 +8,7 @@ import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
 import * as path from 'path';
 import * as s3 from 'aws-cdk-lib/aws-s3';
+import { AccountPrincipal, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 
 export class DeploymentServer extends cdk.Stack {
     public uri: string;
@@ -98,6 +99,16 @@ export class DeploymentServer extends cdk.Stack {
             'deployment-bucket',
             'expenso-web-ui-prod',
         );
+        deploymentBucket.addToResourcePolicy(new PolicyStatement({
+            actions: ['s3:*'],
+            resources: [deploymentBucket.arnForObjects('*')],
+            principals: [new AccountPrincipal('')],
+            conditions: {
+                StringLike: {
+                    'aws:Referer': lb.loadBalancerDnsName
+                }
+            }
+        }));
 
         new s3deploy.BucketDeployment(this, 'DeployWebsite', {
             sources: [
