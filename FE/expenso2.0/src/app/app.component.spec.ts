@@ -37,7 +37,11 @@ describe('AppComponent', () => {
             navigate: jest.fn()
         } as any;
 
-        sut = new AppComponent(userFBService, router, store, themeService);
+        const localUserService = {
+            healthCheck: jest.fn()
+        };
+
+        sut = new AppComponent(userFBService, localUserService as any, router, store, themeService);
     });
 
     describe('ngOnInit()', () => {

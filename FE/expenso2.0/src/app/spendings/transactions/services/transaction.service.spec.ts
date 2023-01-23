@@ -12,7 +12,7 @@ describe('TransactionService', () => {
             delete: jest.fn()
         } as any;
 
-        sut = new TransactionService(httpClient);
+        sut = new TransactionService(httpClient, "");
     });
 
     describe('addNew()', () => {
