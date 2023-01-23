@@ -99,21 +99,23 @@ export class DeploymentServer extends cdk.Stack {
             'deployment-bucket',
             'expenso-web-ui-prod',
         );
-        deploymentBucket.addToResourcePolicy(new PolicyStatement({
-            actions: ['s3:*'],
-            resources: [deploymentBucket.arnForObjects('*')],
-            principals: [new AccountPrincipal(process.env.CDK_DEFAULT_ACCOUNT)],
-            conditions: {
-                StringLike: {
-                    'aws:Referer': lb.loadBalancerDnsName
-                }
-            }
-        }));
+        // deploymentBucket.addToResourcePolicy(new PolicyStatement({
+        //     actions: ['s3:*'],
+        //     resources: [deploymentBucket.arnForObjects('*')],
+        //     principals: [new AccountPrincipal(process.env.CDK_DEFAULT_ACCOUNT)],
+        //     conditions: {
+        //         StringLike: {
+        //             'aws:Referer': lb.loadBalancerDnsName
+        //         }
+        //     }
+        // }));
+        // deploymentBucket.addL
+        // deploymentBucket
 
         new s3deploy.BucketDeployment(this, 'DeployWebsite', {
             sources: [
                 s3deploy.Source.bucket(buildBucket, 'latest/Archive.zip'),
-                s3deploy.Source.jsonData('config.json', { api: lb.loadBalancerDnsName })
+                s3deploy.Source.jsonData('config.json', { api: `http://${ lb.loadBalancerDnsName }` })
             ],
             destinationBucket: deploymentBucket,
             // destinationKeyPrefix: 'web/static', // optional prefix in destination bucket
