@@ -99,18 +99,6 @@ export class DeploymentServer extends cdk.Stack {
             'deployment-bucket',
             'expenso-web-ui-prod',
         );
-        // deploymentBucket.addToResourcePolicy(new PolicyStatement({
-        //     actions: ['s3:*'],
-        //     resources: [deploymentBucket.arnForObjects('*')],
-        //     principals: [new AccountPrincipal(process.env.CDK_DEFAULT_ACCOUNT)],
-        //     conditions: {
-        //         StringLike: {
-        //             'aws:Referer': lb.loadBalancerDnsName
-        //         }
-        //     }
-        // }));
-        // deploymentBucket.addL
-        // deploymentBucket
 
         new s3deploy.BucketDeployment(this, 'DeployWebsite', {
             sources: [
