@@ -113,7 +113,7 @@ jobs:
         working-directory: ./FE/expenso2.0
       - run: mkdir archive
       - run: ls -la
-      - run:  find www -type f -print0 | tar -cvzf archive/Archive.zip --null -T -
+      - run: mkdir archive && cd www && zip -r ../archive/Archive.zip .
         working-directory: ./FE/expenso2.0
       - run: cd ./FE/expenso2.0 && ls -la
       - uses: shallwefootball/s3-upload-action@master
