@@ -102,7 +102,7 @@ export class DeploymentServer extends cdk.Stack {
         deploymentBucket.addToResourcePolicy(new PolicyStatement({
             actions: ['s3:*'],
             resources: [deploymentBucket.arnForObjects('*')],
-            principals: [new AccountPrincipal('')],
+            principals: [new AccountPrincipal(process.env.CDK_DEFAULT_ACCOUNT)],
             conditions: {
                 StringLike: {
                     'aws:Referer': lb.loadBalancerDnsName
