@@ -24,7 +24,7 @@ export const init = (app: any, collection: any): void => {
             currency: request.body.currency || 'USD',
         };
 
-        registerUser(collection, user);
+        await registerUser(collection, user);
 
         response.status(Statuses.OK).send({});
     });
@@ -36,13 +36,13 @@ export const init = (app: any, collection: any): void => {
         console.log('users', users);
         console.log('request', request);
         if (users.length < 1) {
-            return response.status(401).json({ message: 'Auth failed' });
+            return response.status(401).json({ message: 'Auth failed, no such user' });
         }
 
         const doesPasswordMatch = await compare(request.body.password, users[0].password);
 
         if (!doesPasswordMatch) {
-            return response.status(401).json({ message: 'Auth failed' });
+            return response.status(401).json({ message: 'Auth failed password does not match' });
         }
 
         const token = sign(
