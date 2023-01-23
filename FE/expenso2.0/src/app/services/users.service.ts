@@ -15,11 +15,11 @@ export class UsersService {
                        private storageService: StorageService,
                        @Optional() @Inject(BASE_PATH) basePath: string) {
         console.log('baseUrl', basePath);
-        this.baseUrl = basePath;
+        this.baseUrl = basePath ? basePath : 'http://0.0.0.0:8080';
     }
 
     public login(user: IUser): Observable<any> {
-        return this.httpService.post('http://localhost:8080/login', user);
+        return this.httpService.post(`${ this.baseUrl }/login`, user);
     }
 
     public healthCheck(): Observable<any> {
@@ -35,6 +35,6 @@ export class UsersService {
     }
 
     public updateUserPreferences(userDetails: IUserDetails): any {
-        return this.httpService.post<IUserDetails>('http://0.0.0.0:8080/userPrefferences', userDetails);
+        return this.httpService.post<IUserDetails>(`${ this.baseUrl }/userPrefferences`, userDetails);
     }
 }

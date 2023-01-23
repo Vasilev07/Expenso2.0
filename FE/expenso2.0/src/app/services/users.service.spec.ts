@@ -16,7 +16,7 @@ describe('UsersService', () => {
             get: jest.fn()
         } as any;
 
-        sut = new UsersService(httpService, storageService);
+        sut = new UsersService(httpService, storageService, {} as any);
     });
 
     describe('login()', () => {
