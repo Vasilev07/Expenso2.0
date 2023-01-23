@@ -12,8 +12,8 @@ export class UsersService {
     private baseUrl: string;
 
     public constructor(private readonly httpService: HttpClient,
-       private storageService: StorageService,
-       @Optional() @Inject(BASE_PATH) basePath: string) {
+                       private storageService: StorageService,
+                       @Optional() @Inject(BASE_PATH) basePath: string) {
         console.log('baseUrl', basePath);
         this.baseUrl = basePath ? basePath : 'http://0.0.0.0:8080';
     }
