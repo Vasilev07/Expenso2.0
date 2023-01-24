@@ -40,8 +40,8 @@ export class DeploymentServer extends cdk.Stack {
         const repository = ecr.Repository.fromRepositoryName(this, 'expenso', 'expenso');
 
         const fargateTaskDefinition = new ecs.FargateTaskDefinition(this, 'ApiTaskDefinition', {
-            memoryLimitMiB: 1024,
-            cpu: 512
+            memoryLimitMiB: 2048,
+            cpu: 1024
         });
         fargateTaskDefinition.addToExecutionRolePolicy(executionRolePolicy);
 
