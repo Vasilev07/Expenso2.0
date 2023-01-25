@@ -40,4 +40,5 @@ docker-compose up
 ```
 
 # Architecture Overview
-![architecture]( expenso_infra_architecture.drawio.svg "Architecture Overview")
+![architecture]( expenso_infra_architecture.svg "Architecture Overview")
+
