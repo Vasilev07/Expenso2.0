@@ -3,7 +3,7 @@
 ## Application consist of:
   - **Back-End** (server code in folder **BE**) - written in **Node.js**
   - **Front-End** (UI code in folder **FE**) - written using **Ionic Framework** (Angular)
-  - **Database** - (**MongoDB**) via a docker container image
+  - **Database** - (**MongoDB**) via a docker container image locally and via Atlas managed service.
 
 ## In order to run the app locally
 
