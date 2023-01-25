@@ -41,4 +41,3 @@ docker-compose up
 
 # Architecture Overview
 ![architecture]( expenso_infra_architecture.svg "Architecture Overview")
-
